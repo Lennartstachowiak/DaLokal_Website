@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="firstBlock">
+  <!-- !!! Have to change this to {{farmer_img}} -->
+  <img src="./static/farmerExample.svg" alt="" class="farmerImage">
+  <!-- !!! Have to change this to {{farmer_name}} -->
+  <h1 class="farmerName">{{data[0][1]}} {{data[0][2]}}</h1>
+  <!-- hyperlink to settings -->
+  <button type="button" class="buttonEdit">Edit</button>
+</div>
+
+<div class="aboutMeBox">
+  <!-- First Box -->
+  <div class="aboutMeBoxText">
+    <h2 class="subHeader">About me</h2>
+    <!-- !!! Have to change this later to {{text_about_me}} -->
+    <p>{{data[0][3]}}</p>
+  </div>
+  <!-- Second Box -->
+  <img src="./static/farmExample.jpg" alt="" class="aboutMeBoxImage">
+
+</div>
+
+<div class="locationBox">
+  <!-- First Box -->
+  <div class="locationBoxText">
+    <h2 class="subHeader">My location</h2>
+    <div class="locationBoxTextContent">
+      <p>Lohmühlenstraße 65, 12435 Berlin</p>
+      <div class="locationBoxDistance">
+        <img src="./static/carIcon.svg" alt="" class="carIcon">
+        <div>
+          <p>10 min</p>
+          <p>5 km</p>
+        </div>
+      </div>
+      <button type="button" class="buttonRoute">Route</button>
+    </div>
+  </div>
+  <!-- Second Box -->
+  <!-- Google maps AI -->
+  <img src="./static/maps.png" alt="" class="maps">
+
+</div>
+
+<h3>My<br><span style="color: #66D836;">Products</span></h3>
+
+<div class="productBox">
+
+  <div class="productBoxContent">
+    <!-- Image -->
+    <img src="./static/carrots.jpg" alt="" class="productImage">
+    <!-- Name, Describtion, Price -->
+    <div class="productInformation">
+      <h4>Carrots</h4>
+      <p class="productText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar habitasse tristique mattis pulvinar.
+        Volutpat
+        dui.</p>
+      <div class="productButtonLine">
+        <button type="button" class="buttonProduct">2,00 €</button>
+        <button type="button" class="buttonProduct"
+          style="color: black; background-color: white; border: solid 1px black; ">250 g</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="productBoxContent">
+    <!-- Image -->
+    <img src="./static/carrots.jpg" alt="" class="productImage">
+    <!-- Name, Describtion, Price -->
+    <div class="productInformation">
+      <h4>Carrots</h4>
+      <p class="productText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar habitasse tristique mattis pulvinar.
+        Volutpat
+        dui.</p>
+      <div class="productButtonLine">
+        <button type="button" class="buttonProduct">2,00 €</button>
+        <button type="button" class="buttonProduct"
+          style="color: black; background-color: white; border: solid 1px black; ">250 g</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="productBoxContent">
+    <!-- Image -->
+    <img src="./static/carrots.jpg" alt="" class="productImage">
+    <!-- Name, Describtion, Price -->
+    <div class="productInformation">
+      <h4>Carrots</h4>
+      <p class="productText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar habitasse tristique mattis pulvinar.
+        Volutpat
+        dui.</p>
+      <div class="productButtonLine">
+        <button type="button" class="buttonProduct">2,00 €</button>
+        <button type="button" class="buttonProduct"
+          style="color: black; background-color: white; border: solid 1px black; ">250 g</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="productBoxContent">
+    <!-- Image -->
+    <img src="./static/carrots.jpg" alt="" class="productImage">
+    <!-- Name, Describtion, Price -->
+    <div class="productInformation">
+      <h4>Carrots</h4>
+      <p class="productText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar habitasse tristique mattis pulvinar.
+        Volutpat
+        dui.</p>
+      <div class="productButtonLine">
+        <button type="button" class="buttonProduct">2,00 €</button>
+        <button type="button" class="buttonProduct"
+          style="color: black; background-color: white; border: solid 1px black; ">250 g</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<h3 style="margin: 40px 0 50px 0;">My<br><span style="color: #66D836;">Statistic</span></h3>
+
+{% endblock %}
