@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='logInStyles.css') }}">
+    <title>Welcome</title>
+    <script> </script>
+</head>
+
+<body>
+    <header>
+        <div class="logoBoxHeader">
+            <img src="./static/DaLokal_Logo.svg" alt="DaLokal_Logo" class="logo">
+            <h6>DaLokal</h6>
+        </div>
+        <div class="logInBoxHeader">
+            <form action="/index">
+                <button class="logInButton">Log In</button>
+            </form>
+            <form action="/index">
+                <button class="logInButton">Sign Up</button>
+            </form>
+        </div>
+    </header>
+    <main>
+        <h1>Find your<br><span style="color: #66D836;">farm nearby</span></h1>
+        <div class="productCategorieContainer">
+            <button class="productCategorieBox">
+                <img class="productCategorieImg" src="/static/icon_file/vegetables.png" alt="">
+                <p class="productCategorieText">Vegetables</p>
+            </button>
+            <button class="productCategorieBox">
+                <img class="productCategorieImg" src="/static/icon_file/milk_products.png" alt="">
+                <p class="productCategorieText">Milk products</p>
+            </button>
+            <button class="productCategorieBox">
+                <img class="productCategorieImg" src="/static/icon_file/wheat.png" alt="">
+                <p class="productCategorieText">Wheat</p>
+            </button>
+            <button class="productCategorieBox">
+                <img class="productCategorieImg" src="/static/icon_file/meat.png" alt="">
+                <p class="productCategorieText">Meat</p>
+            </button>
+        </div>
+
+        <div class="farmBoxesContainer">
+            <div class="farmBox">
+                <img class="farmImg" src="/static/farmHourseExample.jpg" alt="">
+                <div class="farmInfo">
+                    <div class="farmInfoFirstLine">
+                        <h2>Farm made by Willi</h2>
+                        <button class="buttonOpen">Open</button>
+                    </div>
+                    <div class="farmAdress">Lohmühlenstraße 65, 12435 Berlin</div>
+                    <div class="farmProductCategoriesContainer">
+                        <h3>Product categories:</h3>
+                        <div class="farmProductCategories">
+                            <img class="farmProductImg" src="/static/icon_file/vegetables.png" alt="Here">
+                            <p class="farmProductTag">Vegetables</p>
+                        </div>
+                        <div class="farmProductCategories">
+                            <img class="farmProductImg" src="/static/icon_file/milk_products.png" alt="Here">
+                            <p class="farmProductTag">Milk products</p>
+                        </div>
+                        <div class="farmProductCategories">
+                            <img class="farmProductImg" src="/static/icon_file/wheat.png" alt="Here">
+                            <p class="farmProductTag">Wheat</p>
+                        </div>
+                        <div class="farmProductCategories">
+                            <img class="farmProductImg" src="/static/icon_file/meat.png" alt="Here">
+                            <p class="farmProductTag">Meat</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="farmBox">
+                <img class="farmImg" src="/static/farmHourseExample.jpg" alt="">
+                <div class="farmInfo">
+                    <div class="farmInfoFirstLine">
+                        <h2>Farm made by Willi</h2>
+                        <button class="buttonOpen" style="background-color: #FF0000;">Closed</button>
+                    </div>
+                    <div class="farmAdress">Lohmühlenstraße 65, 12435 Berlin</div>
+                    <div class="farmProductCategoriesContainer">
+                        <h3>Product categories:</h3>
+                        <div class="farmProductCategories">
+                            <img class="farmProductImg" src="/static/icon_file/milk_products.png" alt="Here">
+                            <p class="farmProductTag">Milk products</p>
+                        </div>
+                        <div class="farmProductCategories">
+                            <img class="farmProductImg" src="/static/icon_file/meat.png" alt="Here">
+                            <p class="farmProductTag">Meat</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="farmBox">
+                <img class="farmImg" src="/static/farmHourseExample.jpg" alt="">
+                <div class="farmInfo">
+                    <div class="farmInfoFirstLine">
+                        <h2>Farm made by Willi</h2>
+                        <button class="buttonOpen">Open</button>
+                    </div>
+                    <div class="farmAdress">Lohmühlenstraße 65, 12435 Berlin</div>
+                    <div class="farmProductCategoriesContainer">
+                        <h3>Product categories:</h3>
+                        <div class="farmProductCategories">
+                            <img class="farmProductImg" src="/static/icon_file/vegetables.png" alt="Here">
+                            <p class="farmProductTag">Vegetables</p>
+                        </div>
+                        <div class="farmProductCategories">
+                            <img class="farmProductImg" src="/static/icon_file/milk_products.png" alt="Here">
+                            <p class="farmProductTag">Milk products</p>
+                        </div>
+                        <div class="farmProductCategories">
+                            <img class="farmProductImg" src="/static/icon_file/wheat.png" alt="Here">
+                            <p class="farmProductTag">Wheat</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+
+</html>
