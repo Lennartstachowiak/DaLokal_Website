@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <script> 
+    var flash_message="{{flash_message}}"; 
+    </script>
+    <script src="/static/script.js"></script>
+</head>
+
+<body onload="flashMessage()">
+    <form action="/sign-up" method="POST">
+        <div class="signUpContainer">
+            <h1>Sign up</h1>
+            <table>
+                <tr>
+                    <td>
+                        <label for="email">Email</label>
+                    </td>
+                    <td>
+                        <!-- The pattern is checking if the format matches the email pattern -->
+                        <input type="email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Enter Email" name="email" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="psw">Password</label>
+                    </td>
+                    <td>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="psw_repeat">Repeat Password</label>
+                    </td>
+                    <td>
+                        <input type="password" placeholder="Repeat Password" name="psw_repeat" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <button type="submit" class="signupbtn">Sign Up</button>
+                        <form action="/main">
+                            <button type="button" class="cancelbtn" onclick="history.back()">Cancel</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <div id="errorEmail"></div>
+        </div>
+    </form>
+</body>
+
+</html>
