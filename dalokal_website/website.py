@@ -1,8 +1,6 @@
 import os
 
 from flask import Flask, render_template, request, session, jsonify, redirect
-""" Imported for catching errors """
-import pymysql
 """ For hashing the password """
 from werkzeug.security import generate_password_hash, check_password_hash
 from flaskext.mysql import MySQL
@@ -10,9 +8,9 @@ from flaskext.mysql import MySQL
 app = Flask(__name__)
 
 # These lines represent the db configuration required for our Flask.
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+app.config['MYSQL_DATABASE_HOST'] = 'myinstance'
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'Lennart2418'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'My2418SQL5765'
 app.config['MYSQL_DATABASE_DB'] = 'dalokalschema'
 # The next line ‘mysql = MySQL(app)’ creates an instance which will provide us the access.
 mysql = MySQL()
