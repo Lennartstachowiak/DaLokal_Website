@@ -9,7 +9,7 @@ from flaskext.mysql import MySQL
 app = Flask(__name__)
 
 conn = pymysql.connect(
-    host = '127.0.0.1',
+    host = '35.242.230.227',
     user = 'root',
     passwd = 'My2418SQL5765',
     db = 'dalokalschema'
