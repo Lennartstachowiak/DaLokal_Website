@@ -8,7 +8,7 @@ from flaskext.mysql import MySQL
 app = Flask(__name__)
 
 # These lines represent the db configuration required for our Flask.
-app.config['MYSQL_DATABASE_HOST'] = 'myinstance'
+app.config['MYSQL_DATABASE_HOST'] = '35.242.230.227'
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'My2418SQL5765'
 app.config['MYSQL_DATABASE_DB'] = 'dalokalschema'
@@ -20,7 +20,7 @@ mysql.init_app(app)
 def index():
     conn = mysql.connect()
     cursor =conn.cursor()
-    cursor.execute("SELECT * from user_table;")
+    # cursor.execute("SELECT * from user_table;")
     data = cursor.fetchall()
     return render_template('index.html', page_title='My Page', data=data)
 
