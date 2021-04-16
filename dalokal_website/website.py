@@ -7,8 +7,8 @@ from flaskext.mysql import MySQL
 
 app = Flask(__name__)
 
-# These lines represent the db configuration required for our Flask.
-app.config['MYSQL_DATABASE_HOST'] = '35.242.230.127'
+# These lines represent the db configuration required for Flask.
+app.config['MYSQL_DATABASE_HOST'] = '/cloudsql/dalokal:europe-west3:myinstance'
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'My2418SQL5765'
 app.config['MYSQL_DATABASE_DB'] = 'dalokalschema'
