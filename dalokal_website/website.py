@@ -16,8 +16,8 @@ app = Flask(__name__)
 # )
 
 # These lines represent the db configuration required for Flask.
-app.config['MYSQL_DATABASE_HOST'] = '0.0.0.0'
-app.config['MYSQL_DATABASE_USER'] = 'root'
+app.config['MYSQL_DATABASE_HOST'] = '35.198.147.186'
+app.config['MYSQL_DATABASE_USER'] = 'myuser'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'My2418SQL5765'
 app.config['MYSQL_DATABASE_DB'] = 'dalokalschema'
 # The next line ‘mysql = MySQL(app)’ creates an instance which will provide us the access.
