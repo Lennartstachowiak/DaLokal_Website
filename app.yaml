@@ -10,12 +10,12 @@ beta_settings:
 
 # instance_class: F2
 
-# manual_scaling:
-#   instances: 1
-# resources:
-#   cpu: 1
-#   memory_gb: 0.5
-#   disk_size_gb: 10
+manual_scaling:
+  instances: 1
+resources:
+  cpu: 1
+  memory_gb: 0.5
+  disk_size_gb: 10
 
 # handlers:
 # - url: /static
@@ -26,4 +26,5 @@ beta_settings:
 #   redirect_http_response_code: 301
 #   script: auto
 
-# env_variables:
+env_variables:
+  DB_PASSWORD: 'My2418SQL5765'
