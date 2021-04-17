@@ -26,8 +26,8 @@ db_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
 # app.config['MYSQL_DATABASE_PASSWORD'] = 'My2418SQL5765'
 # app.config['MYSQL_DATABASE_DB'] = 'dalokalschema'
 # The next line ‘mysql = MySQL(app)’ creates an instance which will provide us the access.
-mysql = MySQL()
-mysql.init_app(app)
+# mysql = MySQL()
+# mysql.init_app(app)
 
 @app.route('/index', methods=['GET', 'POST'])
 def index():
