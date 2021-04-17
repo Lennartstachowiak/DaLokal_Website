@@ -32,8 +32,7 @@ mysql.init_app(app)
 @app.route('/index', methods=['GET', 'POST'])
 def index():
     unix_socket = '/cloudsql/{}'.format(db_connection_name)
-        conn = pymysql.connect(user=db_user, password=db_password,
-                              unix_socket=unix_socket, db=db_name)
+    conn = pymysql.connect(user=db_user, password=db_password,unix_socket=unix_socket, db=db_name)
     # conn = mysql.connect()
     cursor =conn.cursor()
     # cursor.execute("SELECT * from user_table;")
