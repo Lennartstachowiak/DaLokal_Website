@@ -1,5 +1,7 @@
 runtime: python38 
 
+env: flex
+
 beta_settings:
   cloud_sql_instances: dalokal:europe-west3:myinstanceid=tcp:3306
 
