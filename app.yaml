@@ -5,11 +5,18 @@ runtime_config:
     python_version: 3
 
 beta_settings:
-  cloud_sql_instances: dalokal:europe-west3:myinstanceid
+  cloud_sql_instances: dalokal:europe-west3:myinstanceid=tcp:3306
 
-instance_class: F2
+# instance_class: F2
 
-entrypoint: python main.py
+entrypoint: gunicorn -b :$PORT main:app
+
+manual_scaling:
+  instances: 1
+resources:
+  cpu: 1
+  memory_gb: 0.5
+  disk_size_gb: 10
 
 # handlers:
 # - url: /static
@@ -20,4 +27,4 @@ entrypoint: python main.py
 #   redirect_http_response_code: 301
 #   script: auto
 
-env_variables:
+# env_variables:
