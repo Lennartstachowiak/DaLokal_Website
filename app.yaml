@@ -12,3 +12,6 @@ handlers:
   script: auto
 
 env_variables:
+  MYSQL_DSN: mysql:unix_socket=/cloudsql/dalokal:europe-west3:myinstanceid;dbname=dalokalschema
+  MYSQL_USER: root
+  MYSQL_PASSWORD: 'My2418SQL5765'
