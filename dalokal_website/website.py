@@ -2,7 +2,7 @@ import os
 
 from flask import Flask, render_template, request, session, jsonify, redirect
 """ For hashing the password """
-# import pymysql
+import pymysql
 from werkzeug.security import generate_password_hash, check_password_hash
 from flaskext.mysql import MySQL
 
