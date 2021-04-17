@@ -1,5 +1,8 @@
 runtime: python38 
 
+beta_settings:
+  cloud_sql_instances: dalokal:europe-west3:myinstanceid=tcp:3306
+
 instance_class: F2
 
 handlers:
