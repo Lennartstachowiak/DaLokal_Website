@@ -1,7 +1,10 @@
-runtime: custom 
-
+runtime: python
 env: flex
 
+runtime_config:
+    python_version: 3
+
+  
 beta_settings:
   cloud_sql_instances: dalokal:europe-west3:myinstanceid=tcp:3306
 
