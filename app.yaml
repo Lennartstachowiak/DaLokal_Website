@@ -26,5 +26,4 @@ resources:
 #   redirect_http_response_code: 301
 #   script: auto
 
-env_variables:
-  DB_PASSWORD: 'My2418SQL5765'
+# env_variables:
