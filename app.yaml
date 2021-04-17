@@ -6,7 +6,7 @@ runtime_config:
     python_version: 3
 
 beta_settings:
-  cloud_sql_instances: dalokal:europe-west3:myinstanceid
+  cloud_sql_instances: gunicorn -b :$PORT main:app
 
 # instance_class: F2
 
@@ -26,4 +26,4 @@ resources:
 #   redirect_http_response_code: 301
 #   script: auto
 
-# env_variables:
+env_variables:
