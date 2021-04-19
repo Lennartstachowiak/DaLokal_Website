@@ -44,15 +44,9 @@ def main():
 def sign_up():
     # If not POST than returns static page
     if request.method == 'POST':
-        # Connect db
-        unix_socket = '/cloudsql/{}'.format(db_connection_name)
-        conn = pymysql.connect(user=db_user, password=db_password,
-                               unix_socket=unix_socket, db=db_name)
-        # conn = mysql.connect()
-        cursor = conn.cursor()
         email = request.form.get('email')
         # Check if email already exists
-        # Wanted to check with SELECT EXISTS(SELECT * F[...]) but this works better
+        # Wanted to check with SELECT EXISTS(SELECT * F[...]) but this works
         emailCheck = cursor.execute(
             'SELECT * FROM user_basic_table WHERE email="{email}";'.format(email=email))
         if emailCheck == 1:
