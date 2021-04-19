@@ -9,20 +9,27 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 
 # Connection to database set up
-db_user = os.environ.get('CLOUD_SQL_USERNAME')
-db_password = os.environ.get('CLOUD_SQL_PASSWORD')
-db_name = os.environ.get('CLOUD_SQL_DATABASE_NAME')
-db_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
+# db_user = os.environ.get('CLOUD_SQL_USERNAME')
+# db_password = os.environ.get('CLOUD_SQL_PASSWORD')
+# db_name = os.environ.get('CLOUD_SQL_DATABASE_NAME')
+# db_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
+# unix_socket = '/cloudsql/{}'.format(db_connection_name)
+# conn = pymysql.connect(
+#     user=db_user,
+#     password=db_password,
+#     unix_socket=unix_socket,
+#     db=db_name
+# )
+# cursor = conn.cursor()
 
-unix_socket = '/cloudsql/{}'.format(db_connection_name)
+
 conn = pymysql.connect(
-    user=db_user,
-    password=db_password,
-    unix_socket=unix_socket,
-    db=db_name
+    host='localhost',
+    user='root',
+    password='My2418SQL5765',
+    database='dalokalschema'
 )
 cursor = conn.cursor()
-
 
 
 @app.route('/index', methods=['GET', 'POST'])
@@ -38,8 +45,6 @@ def main():
     return render_template('main.html')
 
 # Sign up page
-
-
 @app.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
     # If not POST than returns static page
