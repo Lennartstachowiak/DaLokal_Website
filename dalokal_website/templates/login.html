@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -6,38 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In</title>
+    <script>
+        var flash_message = "{{flash_message}}";
+    </script>
+    <script src="/static/script.js"></script>
 </head>
 
-<body>
-    <h1>Log in</h1>
-    <table>
-        <tr>
-            <td>
-                <label for="email">Email</label>
-            </td>
-            <td>
-                <input type="email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Enter Email"
-                    name="email" required>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="psw">Password</label>
-            </td>
-            <td>
-                <input type="password" placeholder="Enter Password" name="psw" required>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <button type="submit" class="signupbtn">Sign Up</button>
-                <form action="/main">
-                    <button type="button" class="cancelbtn" onclick="history.back()">Cancel</button>
-                </form>
-            </td>
-        </tr>
-    </table>
+<body onload="flashMessage()">
+    <form method="POST" action="/login">
+        <h1>Log in</h1>
+        <div class="loginContainer">
+            <input type="email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Enter Email"
+                name="email" required>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+            <label class="checkbox">
+                <input type="checkbox">
+                Remember me
+            </label>
+            <button type="submit" class="signupbtn">Login</button>
+            <br>
+            <div id="errorMessage"></div>
+        </div>
+    </form>
 </body>
 
 </html>

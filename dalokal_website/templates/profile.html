@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="firstBlock">
+  <!-- !!! Have to change this to {{farmer_img}} -->
+  <img src="./static/farmHourseExample.jpg" alt="" class="farmerImage">
+  <!-- !!! Have to change this to {{farmer_name}} -->
+  <div class="farmDescriptionBox">
+    <h1 class="farmerName">{{data}} {{data}}</h1>
+    <p class="farmDescription">{{data}}</p>
+  </div>
+</div>
+
+
+
+<h3>My<br><span style="color: #66D836;">Products</span></h3>
+
+<div class="productBox">
+
+  <div class="productBoxContent">
+    <!-- Image -->
+    <img src="./static/carrots.jpg" alt="" class="productImage">
+    <!-- Name, Describtion, Price -->
+    <div class="productInformation">
+      <h4>Carrots</h4>
+      <p class="productText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar habitasse tristique mattis pulvinar.
+        Volutpat
+        dui.</p>
+      <div class="productButtonLine">
+        <button type="button" class="buttonProduct">2,00 €</button>
+        <button type="button" class="buttonProduct"
+          style="color: black; background-color: white; border: solid 1px black; ">250 g</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="productBoxContent">
+    <!-- Image -->
+    <img src="./static/carrots.jpg" alt="" class="productImage">
+    <!-- Name, Describtion, Price -->
+    <div class="productInformation">
+      <h4>Carrots</h4>
+      <p class="productText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar habitasse tristique mattis pulvinar.
+        Volutpat
+        dui.</p>
+      <div class="productButtonLine">
+        <button type="button" class="buttonProduct">2,00 €</button>
+        <button type="button" class="buttonProduct"
+          style="color: black; background-color: white; border: solid 1px black; ">250 g</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="productBoxContent">
+    <!-- Image -->
+    <img src="./static/carrots.jpg" alt="" class="productImage">
+    <!-- Name, Describtion, Price -->
+    <div class="productInformation">
+      <h4>Carrots</h4>
+      <p class="productText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar habitasse tristique mattis pulvinar.
+        Volutpat
+        dui.</p>
+      <div class="productButtonLine">
+        <button type="button" class="buttonProduct">2,00 €</button>
+        <button type="button" class="buttonProduct"
+          style="color: black; background-color: white; border: solid 1px black; ">250 g</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="productBoxContent">
+    <!-- Image -->
+    <img src="./static/carrots.jpg" alt="" class="productImage">
+    <!-- Name, Describtion, Price -->
+    <div class="productInformation">
+      <h4>Carrots</h4>
+      <p class="productText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar habitasse tristique mattis pulvinar.
+        Volutpat
+        dui.</p>
+      <div class="productButtonLine">
+        <button type="button" class="buttonProduct">2,00 €</button>
+        <button type="button" class="buttonProduct"
+          style="color: black; background-color: white; border: solid 1px black; ">250 g</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="locationBox">
+  <!-- First Box -->
+  <div class="locationBoxText">
+    <h2 class="subHeader">My location</h2>
+    <div class="locationBoxTextContent">
+      <p>Lohmühlenstraße 65, 12435 Berlin</p>
+      <div class="locationBoxDistance">
+        <img src="./static/carIcon.svg" alt="" class="carIcon">
+        <div>
+          <p>10 min</p>
+          <p>5 km</p>
+        </div>
+      </div>
+      <button type="button" class="buttonRoute">Route</button>
+    </div>
+  </div>
+  <!-- Second Box -->
+  <!-- Google maps AI -->
+  <img src="./static/maps.png" alt="" class="maps">
+
+</div>
+
+{% endblock %}
