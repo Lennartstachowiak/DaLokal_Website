@@ -10,6 +10,10 @@ app = Flask(__name__)
 
 # Connect db
 def connect_to_database():
+    db_user = os.environ.get('CLOUD_SQL_USERNAME')
+    db_password = os.environ.get('CLOUD_SQL_PASSWORD')
+    db_name = os.environ.get('CLOUD_SQL_DATABASE_NAME')
+    db_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
     unix_socket = '/cloudsql/{}'.format(db_connection_name)
     conn = pymysql.connect(
         user=db_user,
@@ -18,17 +22,14 @@ def connect_to_database():
         db=db_name
     )
     cursor = conn.cursor()
-    
+    return cursor
 
+# Close database connection
 def close_database_connection():
     conn.close
 
-db_user = os.environ.get('CLOUD_SQL_USERNAME')
-db_password = os.environ.get('CLOUD_SQL_PASSWORD')
-db_name = os.environ.get('CLOUD_SQL_DATABASE_NAME')
-db_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
 
-
+# websites
 @app.route('/index', methods=['GET', 'POST'])
 def index():
     # cursor.execute("SELECT * from user_table;")
