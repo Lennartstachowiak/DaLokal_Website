@@ -9,7 +9,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 
 # Connect db
-def connect_to_database();
+def connect_to_database():
     unix_socket = '/cloudsql/{}'.format(db_connection_name)
     conn = pymysql.connect(
         user=db_user,
