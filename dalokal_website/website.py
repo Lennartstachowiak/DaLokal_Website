@@ -8,33 +8,28 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 
-# Connect db
-def connect_to_database():
-    db_user = os.environ.get('CLOUD_SQL_USERNAME')
-    db_password = os.environ.get('CLOUD_SQL_PASSWORD')
-    db_name = os.environ.get('CLOUD_SQL_DATABASE_NAME')
-    db_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
-    unix_socket = '/cloudsql/{}'.format(db_connection_name)
-    conn = pymysql.connect(
-        user=db_user,
-        password=db_password,
-        unix_socket=unix_socket,
-        db=db_name
-    )
-    cursor = conn.cursor()
-    return cursor
+# Connection to database set up
+db_user = os.environ.get('CLOUD_SQL_USERNAME')
+db_password = os.environ.get('CLOUD_SQL_PASSWORD')
+db_name = os.environ.get('CLOUD_SQL_DATABASE_NAME')
+db_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
 
-# Close database connection
-def close_database_connection():
-    conn.close
+unix_socket = '/cloudsql/{}'.format(db_connection_name)
+conn = pymysql.connect(
+    user=db_user,
+    password=db_password,
+    unix_socket=unix_socket,
+    db=db_name
+)
+cursor = conn.cursor()
 
 
-# websites
+
 @app.route('/index', methods=['GET', 'POST'])
 def index():
     # cursor.execute("SELECT * from user_table;")
     data = cursor.fetchall()
-    close_database_connection()
+    conn.close
     return render_template('index.html', page_title='My Page', data=data)
 
 
@@ -49,10 +44,15 @@ def main():
 def sign_up():
     # If not POST than returns static page
     if request.method == 'POST':
-        connect_to_database()
+        # Connect db
+        unix_socket = '/cloudsql/{}'.format(db_connection_name)
+        conn = pymysql.connect(user=db_user, password=db_password,
+                               unix_socket=unix_socket, db=db_name)
+        # conn = mysql.connect()
+        cursor = conn.cursor()
         email = request.form.get('email')
         # Check if email already exists
-        # Wanted to check with SELECT EXISTS(SELECT * F[...]) but this works
+        # Wanted to check with SELECT EXISTS(SELECT * F[...]) but this works better
         emailCheck = cursor.execute(
             'SELECT * FROM user_basic_table WHERE email="{email}";'.format(email=email))
         if emailCheck == 1:
@@ -69,7 +69,7 @@ def sign_up():
             email=email, psw=psw))
         # Commit changes to change the db
         cursor.execute('COMMIT;')
-        close_database_connection()
+        conn.close
         return redirect('/sign-up/complete-sign-up')
     else:
         print('Not POST')
