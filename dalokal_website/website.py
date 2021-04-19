@@ -16,8 +16,12 @@ def connect_to_database():
         password=db_password,
         unix_socket=unix_socket,
         db=db_name
-    cursor = conn.cursor()
     )
+    cursor = conn.cursor()
+    
+
+def close_database_connection():
+    conn.close
 
 db_user = os.environ.get('CLOUD_SQL_USERNAME')
 db_password = os.environ.get('CLOUD_SQL_PASSWORD')
@@ -29,7 +33,7 @@ db_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
 def index():
     # cursor.execute("SELECT * from user_table;")
     data = cursor.fetchall()
-    conn.close
+    close_database_connection()
     return render_template('index.html', page_title='My Page', data=data)
 
 
@@ -64,7 +68,7 @@ def sign_up():
             email=email, psw=psw))
         # Commit changes to change the db
         cursor.execute('COMMIT;')
-        conn.close
+        close_database_connection()
         return redirect('/sign-up/complete-sign-up')
     else:
         print('Not POST')
