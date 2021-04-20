@@ -1,0 +1,152 @@
+html {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    font-family: SF Pro Display;
+    font-style: normal;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 1100px;
+}
+
+.logoBoxHeader {
+    position: absolute;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 40px;
+    margin-right: 10px;
+}
+
+h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    font-size: 26px;
+    color: #414141;
+}
+
+h1 {
+    padding: 0;
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.loginContainer {
+    height: 80%;
+    min-height: 750px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logInInput {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    min-height: 64px;
+}
+
+input, button {
+    margin: 15px;
+}
+
+.inputText, .loginButton{
+    border: 0;
+    font-size: 1rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 25px;
+    transition: 0.2s;
+}
+
+.loginButton:hover {
+    background-color: #66D836;
+    color: white;
+}
+
+/* Remove input action border */
+input:focus {
+    outline-width: 0;
+    background-color: #67d8368e;
+}
+
+.errorMessage {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    color: white;
+    width: 300px;
+    padding: 0 50px;
+    min-height: 80px;
+    border-radius: 25px;
+    margin-bottom: 40px;
+}
+
+.noErrorMessage {
+    min-height: 80px;
+    margin-bottom: 40px;
+}
+
+a, a:link, a:visited, a:active {
+    text-decoration: none;
+    color: white;
+}
+
+.underline {
+    text-decoration: underline 2px solid;
+}
+
+@media only screen and (max-width: 1150px) {
+    .logo {
+        height: 2.5rem;
+        margin-right: 10px;
+        margin-left: 25px;
+    }
+
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        width: 1150px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .logo {
+        margin-left: 0px;
+    }
+
+    .logoBoxHeader {
+        width: 100%;
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .logInInput {
+        max-width: 300px;
+        min-height: 64px;
+    }
+
+    .errorMessage {
+        text-align: center;
+        max-width: 200px;
+        padding: 0 50px;
+        min-height: 80px;
+    }
+}
