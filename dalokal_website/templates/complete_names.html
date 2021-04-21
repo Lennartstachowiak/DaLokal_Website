@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='logInStyle.css') }}">
+    <title>Complete your profile</title>
+</head>
+
+<body>
+    <a href="/">
+        <div class="logoBoxHeader">
+            <img src="/static/DaLokal_Logo.svg" alt="DaLokal_Logo" class="logo">
+            <h6>DaLokal</h6>
+        </div>
+    </a>
+    <form method="POST" action="/sign-up/complete-sign-up">
+        <div class="loginContainer">
+            <h1>Complete your profile</h1>
+            <input class="logInInput inputText" placeholder="Enter your farmname" type="text" name="farmname"
+                id="farmname" required>
+            <input class="logInInput inputText" placeholder="Enter your firstname" type="text" name="firstname"
+                id="firstname" required>
+            <input class="logInInput inputText" placeholder="Enter your lastname" type="text" name="lastname"
+                id="lastname" required>
+            <button class="logInInput loginButton" type="submit" class="signupbtn">Submit</button>
+        </div>
+    </form>
+</body>
+
+</html>

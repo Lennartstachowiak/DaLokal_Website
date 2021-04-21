@@ -19,14 +19,33 @@
         <div class="logInBoxHeader">
             {% if loggedIn != True %}
             <form action="/login">
-                <button class="logInButton">Log In</button>
+                <button class="logInButton">
+                    <div class="alignButtonContent">
+                        <img class="iconButton" src="/static/login.svg"> Log in
+                    </div>
+                </button>
             </form>
             <form action="/signup">
-                <button class="logInButton">Sign Up</button>
+                <button class="logInButton">
+                    <div class="alignButtonContent">
+                        <img class="iconButton" src="/static/signup.svg"> Sign up
+                    </div>
+                </button>
             </form>
             {% else %}
             <form action="/profile">
-                <button class="logInButton">Go to my profile</button>
+                <button class="logInButton">
+                    <div class="alignButtonContent">
+                        <img class="iconButton" src="/static/profile.svg"> {{firstname}}
+                    </div>
+                </button>
+            </form>
+            <form action="/logout">
+                <button class="logInButton">
+                    <div class="alignButtonContent">
+                        <img class="iconButton" src="/static/logout.svg"> Log out
+                    </div>
+                </button>
             </form>
             {% endif %}
         </div>

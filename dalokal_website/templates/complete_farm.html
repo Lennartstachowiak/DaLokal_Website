@@ -1,0 +1,203 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='logInStyle.css') }}">
+    <title>Complete your farm information</title>
+    <script>
+        function timecheck(b, e) {
+            if (document.getElementById(b).value != '') {
+                document.getElementById(e).required = true;
+            } else {
+                document.getElementById(e).required = false;
+            } if (document.getElementById(e).value != '') {
+                document.getElementById(b).required = true;
+            } else {
+                document.getElementById(b).required = false;
+            }
+        }
+        function clearTimeInput(b, e) {
+            document.getElementById(b).value = ''
+            document.getElementById(e).value = ''
+        }
+    </script>
+</head>
+
+<body>
+    <a href="/">
+        <div class="logoBoxHeader">
+            <img src="/static/DaLokal_Logo.svg" alt="DaLokal_Logo" class="logo">
+            <h6>DaLokal</h6>
+        </div>
+    </a>
+    <form method="POST" action="/sign-up/complete-sign-up/farm-information">
+        <div class="loginContainer">
+            <h1>Complete your farm information</h1>
+            <div class="timeContainer">
+                <h3>Opening hours:</h3>
+                <table>
+                    <div class="dayContainer">
+                        <tr>
+                            <td>
+                                <label for="">Monday:</label>
+                            </td>
+                            <td>
+                                <input type="time" id="mon_b" name="mon_b">
+                            </td>
+                            <td>
+                                <p>to</p>
+                            </td>
+                            <td>
+                                <input type="time" id="mon_e" name="mon_e">
+                            </td>
+                            <td>
+                                <button type="button" onclick="clearTimeInput('mon_b','mon_e')"
+                                    class="clearButton">Clear</button>
+                            </td>
+                        </tr>
+                    </div>
+                    <div class="dayContainer">
+                        <tr>
+                            <td>
+                                <label for="">Tuesday:</label>
+                            </td>
+                            <td>
+                                <input type="time" id="tue_b" name="tue_b">
+                            </td>
+                            <td>
+                                <p>to</p>
+                            </td>
+                            <td>
+                                <input type="time" id="tue_e" name="tue_e">
+                            </td>
+                            <td>
+                                <button type="button" onclick="clearTimeInput('tue_b','tue_e')"
+                                    class="clearButton">Clear</button>
+                            </td>
+                        </tr>
+                    </div>
+                    <div class="dayContainer">
+                        <tr>
+                            <td>
+                                <label for="">Wednesday:</label>
+                            </td>
+                            <td>
+                                <input type="time" id="wed_b" name="wed_b">
+                            </td>
+                            <td>
+                                <p>to</p>
+                            </td>
+                            <td>
+                                <input type="time" id="wed_e" name="wed_e">
+                            </td>
+                            <td>
+                                <button type="button" onclick="clearTimeInput('wed_b','wed_e')"
+                                    class="clearButton">Clear</button>
+                            </td>
+                        </tr>
+                    </div>
+                    <div class="dayContainer">
+                        <tr>
+                            <td>
+                                <label for="">Thursday:</label>
+                            </td>
+                            <td>
+                                <input type="time" id="thu_b" name="thu_b">
+                            </td>
+                            <td>
+                                <p>to</p>
+                            </td>
+                            <td>
+                                <input type="time" id="thu_e" name="thu_e">
+                            </td>
+                            <td>
+                                <button type="button" onclick="clearTimeInput('thu_b','thu_e')"
+                                    class="clearButton">Clear</button>
+                            </td>
+                        </tr>
+                    </div>
+                    <div class="dayContainer">
+                        <tr>
+                            <td>
+                                <label for="">Friday:</label>
+                            </td>
+                            <td>
+                                <input type="time" id="fri_b" name="fri_b">
+                            </td>
+                            <td>
+                                <p>to</p>
+                            </td>
+                            <td>
+                                <input type="time" id="fri_e" name="fri_e">
+                            </td>
+                            <td>
+                                <button type="button" onclick="clearTimeInput('fri_b','fri_e')"
+                                    class="clearButton">Clear</button>
+                            </td>
+                        </tr>
+                    </div>
+                    <div class="dayContainer">
+                        <tr>
+                            <td>
+                                <label for="">Saturday:</label>
+                            </td>
+                            <td>
+                                <input type="time" id="sat_b" name="sat_b">
+                            </td>
+                            <td>
+                                <p>to</p>
+                            </td>
+                            <td>
+                                <input type="time" id="sat_e" name="sat_e">
+                            </td>
+                            <td>
+                                <button type="button" onclick="clearTimeInput('sat_b','sat_e')"
+                                    class="clearButton">Clear</button>
+                            </td>
+                        </tr>
+                    </div>
+                    <div class="dayContainer">
+                        <tr>
+                            <td>
+                                <label for="">Sunday:</label>
+                            </td>
+                            <td>
+                                <input type="time" id="sun_b" name="sun_b">
+                            </td>
+                            <td>
+                                <p>to</p>
+                            </td>
+                            <td>
+                                <input type="time" id="sun_e" name="sun_e">
+                            </td>
+                            <td>
+                                <button type="button" onclick="clearTimeInput('sun_b','sun_e')"
+                                    class="clearButton">Clear</button>
+                            </td>
+                        </tr>
+                    </div>
+                </table>
+            </div>
+            <div>
+                <input class="inputAdress" placeholder="Street" type="text" name="farmStreet"
+                    id="farmStreet" required>
+                <input class="inputAdress"  placeholder="Street number" type="number" name="farmStreetNumber"
+                    id="farmStreetNumber" required>
+                <input class="inputAdress"  placeholder="Postal code" type="number" min="10000" max="99999" name="farmPostalCode"
+                    id="farmPostalCode" required>
+                <input class="inputAdress"  placeholder="City" type="text" name="farmCity"
+                    id="farmCity" required>
+            </div>
+            
+            <textarea class="descriptionText" placeholder="Enter your description about your farm" type="text"
+                name="farmDescription" id="farmDescription" required></textarea>
+            <button
+                onclick="timecheck('mon_b','mon_e'), timecheck('tue_b','tue_e'), timecheck('wed_b','wed_e'), timecheck('thu_b','thu_e'), timecheck('fri_b','fri_e'), timecheck('sat_b','sat_e'), timecheck('sun_b','sun_e')"
+                class="logInInput loginButton" type="submit" class="signupbtn">Submit</button>
+        </div>
+    </form>
+</body>
+
+</html>

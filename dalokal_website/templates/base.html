@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page_title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script> </script>
 </head>
 
 <body>
@@ -20,10 +21,26 @@
         </a>
 
         <div class="linkBoxHeader">
-            <p class="linkHeader"><a href="/">Products</a></p>
-            <p class="linkHeader"><a href="/">Statistic</a></p>
+            <form action="/">
+                <button class="logInButton">
+                    <div class="alignButtonContent">
+                        <img class="iconButton" src="/static/home.svg"> Homepage
+                    </div>
+                </button>
+            </form>
+            <form action="/profile/edit">
+                <button class="logInButton">
+                    <div class="alignButtonContent">
+                        <img class="iconButton" src="/static/edit.svg"> Edit
+                    </div>
+                </button>
+            </form>
             <form action="/logout">
-                <input type="submit" value="Logout" class="linkheaer">
+                <button class="logInButton">
+                    <div class="alignButtonContent">
+                        <img class="iconButton" src="/static/logout.svg"> Log out
+                    </div>
+                </button>
             </form>
         </div>
     </header>

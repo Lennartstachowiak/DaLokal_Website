@@ -37,14 +37,21 @@ cursor = conn.cursor()
 def index():
     if 'userId' in session:
         loggedIn = True
-        return render_template('index.html', loggedIn=loggedIn)
+        userId = session['userId']
+        try:
+            cursor.execute(
+                'SELECT firstname FROM user_info_table WHERE user_id="{userId}";'.format(userId=userId))
+            firstname = cursor.fetchone()[0]
+            return render_template('index.html', loggedIn=loggedIn, firstname=firstname)
+        except:
+            return redirect('/sign-up/complete-sign-up')
     return render_template('index.html')
 
 
 @main.route('/profile', methods=['GET', 'POST'])
 def profile():
     # check if session cookie exist, if not returns to login
-    if 'userId' and 'psw' in session:
+    if 'userId' in session:
         userId = session['userId']
         # check if session cookie is using the right data
         psw = session['psw']
@@ -66,7 +73,13 @@ def profile():
             farmname = userInfo[1]
             firstname = userInfo[2]
             lastname = userInfo[3]
-            return render_template('profile.html', page_title='My Page', farmname=farmname, firstname=firstname, lastname=lastname)
+            cursor.execute(
+                'SELECT * FROM farm_basic_table WHERE user_id="{userId}";'.format(userId=userId))
+            farmInfo = cursor.fetchone()
+            time = farmInfo[1]
+            adress = farmInfo[2]
+            description = farmInfo[3]
+            return render_template('profile.html', page_title='My Page', farmname=farmname, firstname=firstname, lastname=lastname, time=time, adress=adress, description=description)
     else:
         return redirect('/login')
 
