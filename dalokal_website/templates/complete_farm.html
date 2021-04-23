@@ -6,33 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='logInStyle.css') }}">
     <title>Complete your farm information</title>
-    <script>
-        function timecheck(b, e) {
-            if (document.getElementById(b).value != '') {
-                document.getElementById(e).required = true;
-            } else {
-                document.getElementById(e).required = false;
-            } if (document.getElementById(e).value != '') {
-                document.getElementById(b).required = true;
-            } else {
-                document.getElementById(b).required = false;
-            }
-        }
-        function clearTimeInput(b, e) {
-            document.getElementById(b).value = ''
-            document.getElementById(e).value = ''
-        }
-    </script>
+    <script src="/static/script.js"></script>
 </head>
 
 <body>
-    <a href="/">
-        <div class="logoBoxHeader">
-            <img src="/static/DaLokal_Logo.svg" alt="DaLokal_Logo" class="logo">
-            <h6>DaLokal</h6>
-        </div>
-    </a>
-    <form method="POST" action="/sign-up/complete-sign-up/farm-information">
+    <header>
+        <a href="/">
+            <div class="logoBoxHeader">
+                <img src="/static/DaLokal_Logo.svg" alt="DaLokal_Logo" class="logo">
+                <h6>DaLokal</h6>
+            </div>
+        </a>
+        <form action="/logout">
+            <button class="signOutButton">
+                <div class="alignButtonContent">
+                    <img class="iconButton" src="/static/logout.svg"> Log out
+                </div>
+            </button>
+        </form>
+    </header>
+
+    <form method="POST" action="/signup/complete-signup/farm-information">
         <div class="loginContainer">
             <h1>Complete your farm information</h1>
             <div class="timeContainer">
@@ -181,16 +175,15 @@
                 </table>
             </div>
             <div>
-                <input class="inputAdress" placeholder="Street" type="text" name="farmStreet"
+                <input class="farmInput inputText" placeholder="Enter your farmname" type="text" name="farmname"
+                    id="farmname" required>
+                <input class="inputAdress" placeholder="Street, Street number" type="text" name="farmStreet"
                     id="farmStreet" required>
-                <input class="inputAdress"  placeholder="Street number" type="number" name="farmStreetNumber"
-                    id="farmStreetNumber" required>
-                <input class="inputAdress"  placeholder="Postal code" type="number" min="10000" max="99999" name="farmPostalCode"
-                    id="farmPostalCode" required>
-                <input class="inputAdress"  placeholder="City" type="text" name="farmCity"
-                    id="farmCity" required>
+                <input class="inputAdress" placeholder="Postal code" type="number" min="10000" max="99999"
+                    name="farmPostalCode" id="farmPostalCode" required>
+                <input class="inputAdress" placeholder="City" type="text" name="farmCity" id="farmCity" required>
             </div>
-            
+
             <textarea class="descriptionText" placeholder="Enter your description about your farm" type="text"
                 name="farmDescription" id="farmDescription" required></textarea>
             <button

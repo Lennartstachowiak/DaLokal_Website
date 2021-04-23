@@ -34,12 +34,13 @@ header {
 
 h6 {
     font-weight: bold;
-    font-size: 1.6rem;
+    font-size: 26px;
     color: #414141;
 }
 
 .logoBoxHeader {
     display: flex;
+    justify-content: center;
     align-items: center;
 }
 

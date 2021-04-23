@@ -7,17 +7,81 @@
   <img src="./static/farmHourseExample.jpg" alt="" class="farmerImage">
   <!-- !!! Have to change this to {{farmer_name}} -->
   <div class="farmDescriptionBox">
-    <h1 class="farmerName">{{farmname}}</h1>
-    <h6>{{firstname}} {{lastname}}</h6>
-    {{time}} <br>
-    {{adress}}
-    <p class="farmDescription">{{description}}</p>
+    <div class="infoContainer">
+      <h1 class="farmerName">{{farmname}}</h1>
+      <textarea class="description">{{description}}</textarea>
+    </div>
+    <div class="timeAdressContainer">
+      <p class="adress">{{adress}}</p>
+      <div class="timeContainer">
+        {% if time != () %}
+        <table>
+          {% for day in time%}
+          <tr>
+            <td>
+              <p class="time">{{day[1]}}:</p>
+            </td>
+            <td>
+              <p class="time">{{day[2]}}</p>
+            </td>
+            <td>
+              <p class="time">to</p>
+            </td>
+            <td>
+              <p class="time">{{day[3]}}</p>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+        {% else %}
+        <div class="noTime">
+          <img src="/static/bug.svg" alt="" style="height: 28px; width: 28px; margin: 10px;">
+          <p>No opening hours provided!</p>
+        </div>
+
+        {% endif %}
+      </div>
+    </div>
+
   </div>
 </div>
 
+<div class="alignProductButton">
+  <h3>Our<br><span style="color: #66D836;">Products</span></h3>
 
+  <button onclick="openModal()" class="button">
+    <div class="alignButtonContent">
+      <img class="iconButton" src="/static/add.svg" alt=""> Add product
+    </div>
+  </button>
+</div>
 
-<h3>My<br><span style="color: #66D836;">Products</span></h3>
+<div id="simpleModal" class="modal">
+  <div class="modal-content">
+    <button onclick="closeModal()" class="closeBtn">&times;</button>
+    <div class="modalProduct">
+      <h2>Add a product</h2>
+      <div>
+        <form method="POST" action="">
+          <div class="center">
+              <input class="productInput inputText" placeholder="Enter the product name" type="text" name="productName"
+                  id="productName" required>
+              <textarea class="descriptionText" placeholder="Enter the product description" type="text" name="productDescription"
+                  id="productDescription" required></textarea>
+              <h5>Price</h5>
+              <div class="price">
+                <input class="priceInput" type="number" name="priceEuro" id="priceEuro" placeholder="0">
+                <p class="priceText">.</p>
+                <input class="priceInput" type="number" min="0" max="99" name="priceCent" id="priceCent" placeholder="00">
+                <p class="priceText">€</p>
+              </div>
+              <button class="submit" type="submit" class="signupbtn">Submit</button>
+          </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="productBox">
 
@@ -27,7 +91,8 @@
     <!-- Name, Describtion, Price -->
     <div class="productInformation">
       <h4>Carrots</h4>
-      <p class="productText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar habitasse tristique mattis pulvinar.
+      <p class="productText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar habitasse tristique
+        mattis pulvinar.
         Volutpat
         dui.</p>
       <div class="productButtonLine">
@@ -44,7 +109,8 @@
     <!-- Name, Describtion, Price -->
     <div class="productInformation">
       <h4>Carrots</h4>
-      <p class="productText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar habitasse tristique mattis pulvinar.
+      <p class="productText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar habitasse tristique
+        mattis pulvinar.
         Volutpat
         dui.</p>
       <div class="productButtonLine">
@@ -61,7 +127,8 @@
     <!-- Name, Describtion, Price -->
     <div class="productInformation">
       <h4>Carrots</h4>
-      <p class="productText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar habitasse tristique mattis pulvinar.
+      <p class="productText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar habitasse tristique
+        mattis pulvinar.
         Volutpat
         dui.</p>
       <div class="productButtonLine">
@@ -78,7 +145,8 @@
     <!-- Name, Describtion, Price -->
     <div class="productInformation">
       <h4>Carrots</h4>
-      <p class="productText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar habitasse tristique mattis pulvinar.
+      <p class="productText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar habitasse tristique
+        mattis pulvinar.
         Volutpat
         dui.</p>
       <div class="productButtonLine">

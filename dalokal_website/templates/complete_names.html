@@ -10,17 +10,25 @@
 </head>
 
 <body>
-    <a href="/">
-        <div class="logoBoxHeader">
-            <img src="/static/DaLokal_Logo.svg" alt="DaLokal_Logo" class="logo">
-            <h6>DaLokal</h6>
-        </div>
-    </a>
-    <form method="POST" action="/sign-up/complete-sign-up">
+    <header>
+        <a href="/">
+            <div class="logoBoxHeader">
+                <img src="/static/DaLokal_Logo.svg" alt="DaLokal_Logo" class="logo">
+                <h6>DaLokal</h6>
+            </div>
+        </a>
+        <form action="/logout">
+            <button class="signOutButton">
+                <div class="alignButtonContent">
+                    <img class="iconButton" src="/static/logout.svg"> Log out
+                </div>
+            </button>
+        </form>
+    </header>
+
+    <form method="POST" action="/signup/complete-signup">
         <div class="loginContainer">
             <h1>Complete your profile</h1>
-            <input class="logInInput inputText" placeholder="Enter your farmname" type="text" name="farmname"
-                id="farmname" required>
             <input class="logInInput inputText" placeholder="Enter your firstname" type="text" name="firstname"
                 id="firstname" required>
             <input class="logInInput inputText" placeholder="Enter your lastname" type="text" name="lastname"

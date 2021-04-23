@@ -53,7 +53,6 @@ h6 {
 }
 
 .logoBoxHeader {
-    width: 150px;
     height: 50px;
     display: flex;
     align-items: center;
@@ -64,6 +63,7 @@ h6 {
     display: flex;
     align-items: center;
 }
+
 .iconButton {
     height: 1rem;
     width: 1rem;
@@ -150,20 +150,61 @@ a {
 
 .farmDescriptionBox {
     height: 200px;
+    width: 818px;
     margin-left: 28px;
+    display: flex;
 }
+
+.infoContainer {
+    width: 395px;
+}
+
+.description {
+    border:0;
+    width: 375px;
+    height: 115px;
+    resize: none;
+    font-family: SF Pro Display;
+    font-size: 1rem;
+    text-align: justify;
+}
+
+.noTime {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 
 .farmerName {
     font-weight: bold;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    height: 84px;
+    overflow: scroll;
 }
 
-.farmDescription {
+.timeAdressContainer {
+    width: 355px;
+    margin-left: 28px;
+}
+
+.adress {
+    display: flex;
+    align-items: center;
+    height: 50px;
     font-weight: bold;
-    font-size: 1rem;
 }
 
+.timeContainer {
+    height: 150px;
+}
+
+.time {
+    font-size: 0.9rem;
+}
 
 /* Second Box */
 
@@ -297,6 +338,216 @@ h4 {
     height: 254px;
     border-radius: 30px;
 }
+
+.button {
+    border: 0;
+    height: 45px;
+    width: 140px;
+    font-size: 0.8rem;
+    transition: 0.2s;
+    border-radius: 6px;
+    align-self: center;
+    margin-left: auto;
+}
+
+.button:hover {
+    background-color: #66D836;
+    color: white;
+    outline: none;
+}
+
+.button:focus {
+    outline: none;
+}
+
+.button:hover .iconButton {
+    filter: invert(100%) sepia(6%) saturate(1%) hue-rotate(87deg) brightness(106%) contrast(100%);
+}
+
+.alignProductButton {
+    display: flex;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 150%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+}
+
+.modal-content {
+    position: relative;
+    background-color: white;
+    margin: 3% auto;
+    padding: 20px;
+    width: 800px;
+    height: 670px;
+    border-radius: 25px;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: black;
+    font-size: 30px;
+    padding: 4px 12.24px;
+    border-radius: 100px;
+    border: 0;
+    transition: 0.2s;
+}
+
+.closeBtn:focus {
+    outline: none;
+}
+
+.closeBtn:hover, .closeBtn:focus {
+    color: white;
+    background-color: #66D836;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modalProduct {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.productContainer{
+    height: 100%;
+    min-height: 750px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.productInput {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 690px;
+    min-height: 64px;
+} 
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.inputText {
+    border: 0;
+    font-size: 1rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 25px;
+    transition: 0.2s;
+    margin: 15px;
+    margin-top: 60px;
+}
+
+.descriptionText {
+    border: 0;
+    width: 660px;
+    height: 200px;
+    resize: none;
+    border-radius: 25px;
+    padding: 15px;
+    margin: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    font-family: SF Pro Display;
+    font-style: normal;
+    font-size: 1rem;
+}
+
+
+h5 {
+    text-align: center;
+    font-family: SF Pro Display;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-top: 15px;
+}
+
+.price {
+    display: flex;
+    margin: auto;
+    margin-top: 15px;
+    justify-content: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    width: 260px;
+    padding-right: 30px;
+}
+
+.priceInput {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    margin: 0 15px;
+    min-height: 40px;
+    border: 0;
+    font-size: 1rem;
+    transition: 0.2s;
+} 
+
+.priceInput:focus, .descriptionText:focus, .inputText:focus {
+    outline: none;
+    background-color: #67d8368e;
+}
+
+.priceText {
+    font-size: 1.5rem;
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+}
+
+.submit {
+    border: 0;
+    height: 50px;
+    width: 160px;
+    font-size: 0.9rem;
+    transition: 0.2s;
+    border-radius: 15px;
+    align-self: center;
+    margin-top: 30px;
+}
+
+.submit:hover {
+    background-color: #66D836;
+    color: white;
+    outline: none;
+}
+
+.submit:focus {
+    outline: none;
+}
+
+/* Animations for modal popup */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+  }
 
 
 

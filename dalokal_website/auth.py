@@ -23,26 +23,77 @@ auth = Blueprint('auth', __name__)
 # cursor = conn.cursor()
 
 # Database connection for local connection
-conn = pymysql.connect(
-    host='localhost',
-    user='root',
-    password='My2418SQL5765',
-    database='dalokalschema'
-)
-cursor = conn.cursor()
 
-# Sign up page
+
+def connectDatabase():
+    cursor = pymysql.connect(
+        host='localhost',
+        user='root',
+        password='My2418SQL5765',
+        database='dalokalschema'
+    ).cursor()
+    # cursor = conn.cursor()
+    return cursor
+
+
+@auth.route('/login', methods=['GET', 'POST'])
+def login():
+    # If not post than just return html
+    if request.method != 'POST':
+        return render_template('login.html', flash_message='')
+    else:
+        email = request.form.get('email')
+        psw = request.form.get('psw')
+        # Have to do something with that ->
+        remember = True if request.form.get('remember') else False
+
+        # Check if email not in db
+        cursor = connectDatabase()
+        cursor.execute(
+            'SELECT EXISTS(SELECT email FROM user_table WHERE email="{email}");'.format(email=email))
+        email_check = cursor.fetchone()[0]
+        if not email_check:
+            return render_template('login.html', flash_message='wrong')
+        else:
+            cursor.execute(
+                'SELECT password FROM user_table WHERE email="{email}";'.format(email=email))
+            psw_check = cursor.fetchone()[0]
+            if not check_password_hash(psw_check, psw):
+                return render_template('login.html', flash_message='wrong')
+            else:
+                # Get the user id from the logged in user
+                cursor.execute(
+                    'SELECT user_id FROM user_table WHERE email="{email}";'.format(email=email))
+                userId = cursor.fetchone()[0]
+                cursor.close()
+                # Create a session cookie
+                session['userId'] = userId
+                session['psw'] = psw_check
+                return redirect('/')
+
+
+@auth.route('/logout')
+def logout():
+    session.pop('userId', None)
+    session.pop('email', None)
+    session.pop('psw', None)
+    return redirect('/')
 
 
 @auth.route('/signup', methods=['GET', 'POST'])
 def signup():
+    # Prevending going on this page while logged in
+    if 'userId' in session:
+        return redirect('/')
     # If not POST than returns static page
-    if request.method == 'POST':
+    if request.method != 'POST':
+        return render_template('signup.html', flash_message="")
+    else:
         email = request.form.get('email')
         # Check if email already exists
-        # Wanted to check with SELECT EXISTS(SELECT * F[...]) but this works
+        cursor = connectDatabase()
         cursor.execute(
-            'SELECT EXISTS(SELECT * FROM user_basic_table WHERE email="{email}");'.format(email=email))
+            'SELECT EXISTS(SELECT * FROM user_table WHERE email="{email}");'.format(email=email))
         emailCheck = cursor.fetchone()[0]
         if emailCheck == 1:
             return render_template('signup.html', flash_message='email')
@@ -55,172 +106,153 @@ def signup():
             return render_template('signup.html', flash_message='psw')
 
         # Try to INSERT INTO the db
+        # Email and password
         psw = generate_password_hash(psw)
-        cursor.execute('INSERT INTO user_basic_table (email, password) VALUES ("{email}","{psw}");'.format(
+        cursor.execute('INSERT INTO user_table (email, password) VALUES ("{email}","{psw}");'.format(
             email=email, psw=psw))
         # Commit changes to change the db
         cursor.execute('COMMIT;')
         # Adding the session cookies after signing up
         cursor.execute(
-            'SELECT user_id FROM user_basic_table WHERE email="{email}";'.format(email=email))
+            'SELECT user_id FROM user_table WHERE email="{email}";'.format(email=email))
         session['userId'] = cursor.fetchone()[0]
         cursor.execute(
-            'SELECT password FROM user_basic_table WHERE email="{email}";'.format(email=email))
+            'SELECT password FROM user_table WHERE email="{email}";'.format(email=email))
         session['psw'] = cursor.fetchone()[0]
-        conn.close
-        return redirect('/sign-up/complete-sign-up')
-    else:
-        print('Not POST')
-    return render_template('signup.html', flash_message="")
+        cursor.close()
+        return redirect('/signup/complete-signup')
 
 
-@auth.route('/login', methods=['GET', 'POST'])
-def login():
-    # If not post than just return html
-    if request.method == 'POST':
-        email = request.form.get('email')
-        psw = request.form.get('psw')
-        remember = True if request.form.get('remember') else False
-
-        cursor.execute(
-            'SELECT email FROM user_basic_table WHERE email="{email}";'.format(email=email))
-        email_check = cursor.fetchone()
-        if not email_check:
-            print('Wrong')
-            return render_template('login.html', flash_message='wrong')
-        else:
-            cursor.execute(
-                'SELECT password FROM user_basic_table WHERE email="{email}";'.format(email=email))
-            psw_check = cursor.fetchone()[0]
-            if not check_password_hash(psw_check, psw):
-                return render_template('login.html', flash_message='wrong')
-            else:
-                """ Work with session and go back to homepage """
-                # Get the user id from the logged in user
-                cursor.execute(
-                    'SELECT user_id FROM user_basic_table WHERE email="{email}";'.format(email=email))
-                userId = cursor.fetchone()[0]
-                session['userId'] = userId
-                session['psw'] = psw_check
-                return redirect('/')
-    return render_template('login.html', flash_message='')
-
-
-@auth.route('/logout')
-def logout():
-    session.pop('userId', None)
-    session.pop('email', None)
-    session.pop('psw', None)
-    return redirect('/')
-
-
-@auth.route('/sign-up/complete-sign-up', methods=['GET', 'POST'])
+@auth.route('/signup/complete-signup', methods=['GET', 'POST'])
 def complete_sign_up():
-    if request.method == 'POST':
-        # Check if session data is right
-        if 'userId' in session:
-            userId = session['userId']
-            # check if session cookie is using the right data
-            psw = session['psw']
-            cursor.execute(
-                'SELECT password FROM user_basic_table WHERE user_id="{userId}";'.format(userId=userId))
-            psw_check = cursor.fetchone()[0]
-            if psw == psw_check:
+    # Check if session data is right
+    if 'userId' not in session:
+        return redirect('/')
 
-                # check if method is post
-                if request.method == 'POST':
-                    farmname = request.form.get('farmname')
-                    firstname = request.form.get('firstname')
-                    lastname = request.form.get('lastname')
-                    # Insert data into database for the user
-                    cursor.execute('INSERT INTO user_info_table VALUES ("{userId}", "{farmname}", "{firstname}", "{lastname}");'
-                                   .format(userId=userId, farmname=farmname, firstname=firstname, lastname=lastname)
-                                   )
-                    cursor.execute('COMMIT;')
-                    return redirect('/sign-up/complete-sign-up/farm-information')
-            else:
-                return redirect('/login')
+    userId = session['userId']
+    # check if session cookie is using the right data
+    psw = session['psw']
+    cursor = connectDatabase()
+    cursor.execute(
+        'SELECT password FROM user_table WHERE user_id="{userId}";'.format(userId=userId))
+    psw_check = cursor.fetchone()[0]
+    if psw != psw_check:
+        cursor.close()
+        return redirect('/logout')
 
-    return render_template('complete_names.html')
+    # prevents going back to this page
+    cursor.execute(
+        'SELECT firstname FROM user_table WHERE user_id="{userId}";'.format(userId=userId))
+    checkUser = cursor.fetchone()[0]
+    if checkUser != None:
+        return redirect('/signup/complete-signup/farm-information')
+
+    # check if method is post
+    if request.method != 'POST':
+        cursor.close()
+        return render_template('complete_names.html')
+    else:
+        firstname = request.form.get('firstname')
+        lastname = request.form.get('lastname')
+        # Update user
+        cursor.execute('UPDATE user_table SET firstname="{firstname}", lastname="{lastname}" WHERE user_id={userId};'
+                        .format(firstname=firstname, lastname=lastname, userId=userId))
+        cursor.execute('COMMIT;')
+        cursor.close()
+        return redirect('/signup/complete-signup/farm-information')
 
 
-@auth.route('/sign-up/complete-sign-up/farm-information', methods=['GET', 'POST'])
+@auth.route('/signup/complete-signup/farm-information', methods=['GET', 'POST'])
 def farm_information():
-    if request.method == 'POST':
-        # Check if session data is right
-        if 'userId' in session:
-            userId = session['userId']
-            # check if session cookie is using the right data
-            psw = session['psw']
+    # Check if session data is right
+    if 'userId' not in session:
+        return redirect('/')
+
+    userId = session['userId']
+    # check if session cookie is using the right data
+    psw = session['psw']
+    cursor = connectDatabase()
+    cursor.execute(
+        'SELECT password FROM user_table WHERE user_id="{userId}";'.format(userId=userId))
+    psw_check = cursor.fetchone()[0]
+    if psw != psw_check:
+        cursor.close()
+        return redirect('/logout')
+
+    # prevents going back to this page
+    cursor.execute(
+        'SELECT EXISTS(SELECT * FROM farm_table WHERE user_id="{userId}");'.format(userId=userId))
+    checkFarm = cursor.fetchone()[0]
+    if checkFarm == 1:
+        cursor.close()
+        return redirect('/')
+
+    if request.method != 'POST':
+        cursor.close()
+        return render_template('complete_farm.html')
+    else:
+        # Create farm for user
+        farmname = request.form.get('farmname')
+        description = request.form.get('farmDescription')
+        cursor.execute('INSERT INTO farm_table (user_id, farmname, description) VALUES ("{userId}", "{farmname}", "{description}");'.format(
+            userId=userId, farmname=farmname, description=description))
+        cursor.execute('COMMIT;')
+
+        # Time
+        cursor.execute(
+            'SELECT farm_id FROM farm_table WHERE user_id="{userId}";'.format(userId=userId))
+        farmId = cursor.fetchone()[0]
+
+        mon_b = request.form.get('mon_b')
+        mon_e = request.form.get('mon_e')
+        if mon_b != '':
             cursor.execute(
-                'SELECT password FROM user_basic_table WHERE user_id="{userId}";'.format(userId=userId))
-            psw_check = cursor.fetchone()[0]
-            if psw == psw_check:
-                # Time
-                timeDic = {'Monday':'','Tuesday':'','Wednesday':'','Thursday':'','Friday':'','Saturday':'','Sunday':''}
+                'INSERT INTO time_table VALUES ("{farmId}","Monday","{b}","{e}");'.format(farmId=farmId, b=mon_b, e=mon_e))
 
-                mon_b = request.form.get('mon_b')
-                mon_e = request.form.get('mon_e')
-                monday = [mon_b,mon_e]
-                timeDic['Monday'] = monday
+        tue_b = request.form.get('tue_b')
+        tue_e = request.form.get('tue_e')
+        if tue_b != '':
+            cursor.execute(
+                'INSERT INTO time_table VALUES ("{farmId}","Tuesday","{b}","{e}");'.format(farmId=farmId, b=tue_b, e=tue_e))
 
-                tue_b = request.form.get('tue_b')
-                tue_e = request.form.get('tue_e')
-                tuesday = [tue_b,tue_e]
-                timeDic['Tuesday'] = tuesday
+        wed_b = request.form.get('wed_b')
+        wed_e = request.form.get('wed_e')
+        if wed_b != '':
+            cursor.execute(
+                'INSERT INTO time_table VALUES ("{farmId}","Wednesday","{b}","{e}");'.format(farmId=farmId, b=wed_b, e=wed_e))
 
-                wed_b = request.form.get('wed_b')
-                wed_e = request.form.get('wed_e')
-                wednesday = [wed_b,wed_e]
-                timeDic['Wednesday'] = wednesday
+        thu_b = request.form.get('thu_b')
+        thu_e = request.form.get('thu_e')
+        if thu_b != '':
+            cursor.execute(
+                'INSERT INTO time_table VALUES ("{farmId}","Thursday","{b}","{e}");'.format(farmId=farmId, b=thu_b, e=thu_e))
 
-                thu_b = request.form.get('thu_b')
-                thu_e = request.form.get('thu_e')
-                thursday = [thu_b,thu_e]
-                timeDic['Thursday'] = thursday
+        fri_b = request.form.get('fri_b')
+        fri_e = request.form.get('fri_e')
+        if fri_b != '':
+            cursor.execute(
+                'INSERT INTO time_table VALUES ("{farmId}","Friday","{b}","{e}");'.format(farmId=farmId, b=fri_b, e=fri_e))
 
-                fri_b = request.form.get('fri_b')
-                fri_e = request.form.get('fri_e')
-                friday = [fri_b,fri_e]
-                timeDic['Friday'] = friday
+        sat_b = request.form.get('sat_b')
+        sat_e = request.form.get('sat_e')
+        if sat_b != '':
+            cursor.execute(
+                'INSERT INTO time_table VALUES ("{farmId}","Saturday","{b}","{e}");'.format(farmId=farmId, b=sat_b, e=sat_e))
 
-                sat_b = request.form.get('sat_b')
-                sat_e = request.form.get('sat_e')
-                saturday = [sat_b,sat_e]
-                timeDic['Saturday'] = saturday
-                
-                sun_b = request.form.get('sun_b')
-                sun_e = request.form.get('sun_e')
-                sunday = [sun_b,sun_e]
-                timeDic['Sunday'] = sunday
+        sun_b = request.form.get('sun_b')
+        sun_e = request.form.get('sun_e')
+        if sun_b != '':
+            cursor.execute(
+                'INSERT INTO time_table VALUES ("{farmId}","Sunday","{b}","{e}");'.format(farmId=farmId, b=sun_b, e=sun_e))
 
-                # Adress
-                adressDic = {'Street':'','StreetNumber':'','PostalCode':'','City':''}
+        # Adress
+        street = request.form.get('farmStreet')
+        postalCode = request.form.get('farmPostalCode')
+        city = request.form.get('farmCity')
+        cursor.execute(
+            'INSERT INTO adress_table VALUES ("{farmId}","{street}","{postalCode}","{city}");'.format(farmId=farmId, street=street, postalCode=postalCode, city=city))
 
-                street = request.form.get('farmStreet')
-                adressDic['Street'] = street
-
-                streetNumber = request.form.get('farmStreetNumber')
-                adressDic['StreetNumber'] = streetNumber
-
-                postalCode = request.form.get('farmPostalCode')
-                adressDic['PostalCode'] = postalCode
-
-                city = request.form.get('farmCity')
-                adressDic['City'] = city
-
-                # Description
-                description = request.form.get('farmDescription')
-
-                # Insert data into database for the user
-                cursor.execute('INSERT INTO farm_basic_table VALUES ("{userId}", "{timeDic}", "{adressDic}", "{description}");'
-                                .format(userId=userId, timeDic=timeDic, adressDic = adressDic, description = description)
-                                )
-                cursor.execute('COMMIT;')
-                return redirect('/')
-            
-            else:
-                return redirect('/login')
-
-
-    return render_template('complete_farm.html')
+        # Commit inserts
+        cursor.execute('COMMIT;')
+        cursor.close()
+        return redirect('/')
