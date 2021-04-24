@@ -174,8 +174,8 @@ def addProduct():
 
         cursor.execute(
             '''INSERT INTO 
-                product_table (farm_id, product_name, product_description, product_price, product_weight) 
-            VALUES ("{farmId}", "{category}" "{productName}", "{productDescription}", "{price}", "{weight}");'''.format(
+                product_table (farm_id, category, product_name, product_description, product_price, product_weight) 
+            VALUES ("{farmId}", "{category}", "{productName}", "{productDescription}", "{price}", "{weight}");'''.format(
                 farmId=farmId, category=category, productName=productName, productDescription=productDescription, price=price, weight=weight))
         cursor.execute('COMMIT;')
         cursor.close()
