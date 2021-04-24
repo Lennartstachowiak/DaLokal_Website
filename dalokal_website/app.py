@@ -51,6 +51,7 @@ def checkCompleteUser(userId):
         return redirect('/signup/complete-signup/farm-information')
     return True
 
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if 'userId' not in session:
@@ -72,7 +73,7 @@ def index():
         # Checking if finished signup
         if checkCompleteUser(userId) != True:
             return checkCompleteUser(userId)
-        
+
         cursor = connectDatabase()
         cursor.execute(
             'SELECT firstname FROM user_table WHERE user_id="{userId}";'.format(userId=userId))
@@ -128,13 +129,58 @@ def profile():
                                 WHEN day = 'Sunday' THEN 7
                         END ASC;'''.format(farmId=farmId))
         time = cursor.fetchall()
-        # Adress 
-        cursor.execute('SELECT * FROM adress_table WHERE farm_id="{farmId}";'.format(farmId=farmId))
+        # Adress
+        cursor.execute(
+            '''SELECT * FROM adress_table WHERE farm_id="{farmId}";'''.format(farmId=farmId))
         farmAdress = cursor.fetchone()
         adress = farmAdress[1]+', '+str(farmAdress[2])+' '+farmAdress[3]
+        cursor.execute('''
+            SELECT 
+                farm_id, category, product_name, product_description, product_price, product_weight 
+            FROM product_table WHERE farm_id="{farmId}";'''.format(farmId=farmId))
+        products = cursor.fetchall()
         cursor.close()
-        return render_template('profile.html', page_title='My Page', farmname=farmname, firstname=firstname, lastname=lastname,  description=description, time=time, adress=adress)
+        return render_template('profile.html', page_title='My Page', farmname=farmname, firstname=firstname, lastname=lastname,  description=description, time=time, adress=adress, products=products)
 
+
+@app.route('/profile/product-add', methods=['GET', 'POST'])
+def addProduct():
+    # check if session cookie exist, if not returns to login
+    if 'userId' not in session:
+        return redirect('/login')
+    else:
+        userId = session['userId']
+        # check if session cookie is using the right data, if not logout
+        psw = session['psw']
+        cursor = connectDatabase()
+        cursor.execute(
+            'SELECT password FROM user_table WHERE user_id="{userId}";'.format(userId=userId))
+        psw_check = cursor.fetchone()[0]
+        if psw != psw_check:
+            return redirect('/logout')
+
+        # Get farmId
+        cursor = connectDatabase()
+        cursor.execute(
+            'SELECT farm_id FROM farm_table WHERE user_id="{userId}";'.format(userId=userId))
+        farmId = cursor.fetchone()[0]
+
+        # Create product
+        productName = request.form.get('productName')
+        productDescription = request.form.get('productDescription')
+        price = request.form.get('priceEuro')+'.'+request.form.get('priceCent')
+        weight = request.form.get('weight')
+        category = request.form.get('category')
+
+        cursor.execute(
+            '''INSERT INTO 
+                product_table (farm_id, product_name, product_description, product_price, product_weight) 
+            VALUES ("{farmId}", "{category}" "{productName}", "{productDescription}", "{price}", "{weight}");'''.format(
+                farmId=farmId, category=category, productName=productName, productDescription=productDescription, price=price, weight=weight))
+        cursor.execute('COMMIT;')
+        cursor.close()
+
+        return redirect('/profile')
 
 
 # if __name__ == "__main__":
