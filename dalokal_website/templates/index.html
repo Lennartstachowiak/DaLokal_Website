@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <title>Welcome</title>
-    <script> </script>
+    <script src="/static/script.js"></script>
 </head>
 
 <body>
@@ -40,18 +40,30 @@
                     </div>
                 </button>
             </form>
-            <form action="/logout">
-                <button class="logInButton">
-                    <div class="alignButtonContent">
-                        <img class="iconButton" src="/static/logout.svg"> Log out
-                    </div>
-                </button>
-            </form>
+            <button onclick="openModal('logoutModal')" class="logInButton">
+                <div class="alignButtonContent">
+                    <img class="iconButton" src="/static/logout.svg"> Log out
+                </div>
+            </button>
             {% endif %}
         </div>
     </header>
     <main>
-        <h1>Find your<br><span style="color: #66D836;">farm nearby</span></h1>
+        <div id="logoutModal" class="logoutModal">
+            <div class="logoutContent">
+              <button onclick="closeModal('logoutModal')" class="closeBtn">&times;</button>
+              <div class="modalContainer">
+                  <h2>Do you really want to logout?</h2>
+                  <div class="logoutButtons">
+                    <form action="/logout">
+                      <button class="button">Yes</button>
+                    </form>
+                    <button onclick="closeModal('logoutModal')" class="button">No</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+        <div class="mainHeader">Find your<br><span style="color: #66D836;">farm nearby</span></div>
         <div class="productCategorieContainer">
             <button class="productCategorieBox">
                 <img class="productCategorieImg" src="/static/icon_file/vegetables.png" alt="">
@@ -77,11 +89,11 @@
                 <div class="farmInfo">
                     <div class="farmInfoFirstLine">
                         <h2>Farm made by Willi</h2>
-                        <button class="buttonOpen">Open</button>
+                        <div class="buttonOpen">Open</div>
                     </div>
                     <div class="farmAdress">Lohmühlenstraße 65, 12435 Berlin</div>
                     <div class="farmProductCategoriesContainer">
-                        <h3>Product categories:</h3>
+                        <div class="categorieHeader">Product categories:</div>
                         <div class="farmProductCategories">
                             <img class="farmProductImg" src="/static/icon_file/vegetables.png" alt="Here">
                             <p class="farmProductTag">Vegetables</p>
@@ -106,11 +118,11 @@
                 <div class="farmInfo">
                     <div class="farmInfoFirstLine">
                         <h2>Farm made by Willi</h2>
-                        <button class="buttonOpen" style="background-color: #FF0000;">Closed</button>
+                        <div class="buttonOpen" style="background-color: #FF0000;">Closed</div>
                     </div>
                     <div class="farmAdress">Lohmühlenstraße 65, 12435 Berlin</div>
                     <div class="farmProductCategoriesContainer">
-                        <h3>Product categories:</h3>
+                        <div class="categorieHeader">Product categories:</div>
                         <div class="farmProductCategories">
                             <img class="farmProductImg" src="/static/icon_file/milk_products.png" alt="Here">
                             <p class="farmProductTag">Milk products</p>
@@ -127,11 +139,11 @@
                 <div class="farmInfo">
                     <div class="farmInfoFirstLine">
                         <h2>Farm made by Willi</h2>
-                        <button class="buttonOpen">Open</button>
+                        <div class="buttonOpen">Open</div>
                     </div>
                     <div class="farmAdress">Lohmühlenstraße 65, 12435 Berlin</div>
                     <div class="farmProductCategoriesContainer">
-                        <h3>Product categories:</h3>
+                        <div class="categorieHeader">Product categories:</div>
                         <div class="farmProductCategories">
                             <img class="farmProductImg" src="/static/icon_file/vegetables.png" alt="Here">
                             <p class="farmProductTag">Vegetables</p>

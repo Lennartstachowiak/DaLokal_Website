@@ -33,16 +33,29 @@
                     </div>
                 </button>
             </form>
-            <form action="/logout">
-                <button class="logInButton">
-                    <div class="alignButtonContent">
-                        <img class="iconButton" src="/static/logout.svg"> Log out
-                    </div>
-                </button>
-            </form>
+            <!-- Log out button ask again -->
+            <button onclick="openModal('logoutModal')" class="logInButton">
+                <div class="alignButtonContent">
+                    <img class="iconButton" src="/static/logout.svg"> Log out
+                </div>
+            </button>
         </div>
     </header>
     <main>
+        <div id="logoutModal" class="logoutModal">
+            <div class="logoutContent">
+              <button onclick="closeModal('logoutModal')" class="closeBtn">&times;</button>
+              <div class="modalContainer">
+                  <h2>Do you really want to logout?</h2>
+                  <div class="logoutButtons">
+                    <form action="/logout">
+                      <button class="button">Yes</button>
+                    </form>
+                    <button onclick="closeModal('logoutModal')" class="button">No</button>
+                  </div>
+              </div>
+            </div>
+          </div>
         {% block content%}
         {% endblock %}
     </main>

@@ -27,13 +27,13 @@ function clearTimeInput(b, e) {
 }
 
 
-function openModal() {
-    var modal = document.getElementById('simpleModal');
+function openModal(modalId) {
+    var modal = document.getElementById(modalId);
     modal.style.display = 'block'
 }
 
-function closeModal() {
-    var modal = document.getElementById('simpleModal');
+function closeModal(modalId) {
+    var modal = document.getElementById(modalId);
     modal.style.display = 'none'
 }
 

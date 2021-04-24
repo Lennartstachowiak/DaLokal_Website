@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='logInStyle.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <title>Complete your profile</title>
+    <script src="/static/script.js"></script>
 </head>
 
 <body>
@@ -17,25 +18,38 @@
                 <h6>DaLokal</h6>
             </div>
         </a>
-        <form action="/logout">
-            <button class="signOutButton">
-                <div class="alignButtonContent">
-                    <img class="iconButton" src="/static/logout.svg"> Log out
-                </div>
-            </button>
-        </form>
+        <button onclick="openModal('logoutModal')" style="margin-left: auto;" class="signOutButton">
+            <div class="alignButtonContent">
+                <img class="iconButton" src="/static/logout.svg"> Log out
+            </div>
+        </button>
     </header>
-
-    <form method="POST" action="/signup/complete-signup">
-        <div class="loginContainer">
-            <h1>Complete your profile</h1>
-            <input class="logInInput inputText" placeholder="Enter your firstname" type="text" name="firstname"
-                id="firstname" required>
-            <input class="logInInput inputText" placeholder="Enter your lastname" type="text" name="lastname"
-                id="lastname" required>
-            <button class="logInInput loginButton" type="submit" class="signupbtn">Submit</button>
-        </div>
-    </form>
+    <main>
+        <div id="logoutModal" class="logoutModal">
+            <div class="logoutContent">
+              <button onclick="closeModal('logoutModal')" class="closeBtn">&times;</button>
+              <div class="modalContainer">
+                  <h2>Do you really want to logout?</h2>
+                  <div class="logoutButtons">
+                    <form action="/logout">
+                      <button class="button">Yes</button>
+                    </form>
+                    <button onclick="closeModal('logoutModal')" class="button">No</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+        <form method="POST" action="/signup/complete-signup">
+            <div class="loginContainer">
+                <h1>Complete your profile</h1>
+                <input class="logInInput inputText" placeholder="Enter your firstname" type="text" name="firstname"
+                    id="firstname" required>
+                <input class="logInInput inputText" placeholder="Enter your lastname" type="text" name="lastname"
+                    id="lastname" required>
+                <button class="submit" type="submit" class="signupbtn">Submit</button>
+            </div>
+        </form>
+    </main>
 </body>
 
 </html>
