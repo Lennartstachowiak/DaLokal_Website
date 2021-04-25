@@ -4,7 +4,7 @@
 
 <div class="firstBlock">
   <!-- !!! Have to change this to {{farmer_img}} -->
-  <img src="./static/farmHourseExample.jpg" alt="" class="farmerImage">
+  <img src="/static/farmHourseExample.jpg" alt="" class="farmerImage">
   <!-- !!! Have to change this to {{farmer_name}} -->
   <div class="farmDescriptionBox">
     <div class="infoContainer">
@@ -49,11 +49,13 @@
 <div class="alignProductButton">
   <h3>Our<br><span style="color: #66D836;">Products</span></h3>
 
+  {% if notMyAccount != 1%}
   <button onclick="openModal('simpleModal')" style="margin-left: auto;">
     <div class="alignButtonContent">
       <img class="iconButton" src="/static/add.svg" alt=""> Add product
     </div>
   </button>
+  {% endif %}
 </div>
 
 <div id="simpleModal" class="modal">
@@ -91,7 +93,7 @@
                 <div class="price">
                   <select style="width: 150px; text-align: center;" class="priceInput" name="category" id="category" required>
                     <option value="" disabled selected>Select Category</option>
-                    <option value="Vegetables">Vegetable</option>
+                    <option value="Vegetable">Vegetable</option>
                     <option value="Milk product">Milk product</option>
                     <option value="Wheat">Wheat</option>
                     <option value="Meat">Meat</option>
@@ -112,7 +114,7 @@
   {% for product in products %}
   <div class="productBoxContent">
     <!-- Image -->
-    <img src="./static/carrots.jpg" alt="" class="productImage">
+    <img src="/static/carrots.jpg" alt="" class="productImage">
     <!-- Name, Describtion, Price -->
     <div class="productInformation">
       <h4>{{product[2]}}</h4>
@@ -127,7 +129,7 @@
   {% endfor %}
 </div>
 {% else %}
-<h1>No Products</h1>
+<h1 style="margin-bottom: 80px;">No Products</h1>
 {% endif %}
 <div class="locationBox">
   <!-- First Box -->
@@ -136,7 +138,7 @@
     <div class="locationBoxTextContent">
       <p>Lohmühlenstraße 65, 12435 Berlin</p>
       <div class="locationBoxDistance">
-        <img src="./static/carIcon.svg" alt="" class="carIcon">
+        <img src="/static/carIcon.svg" alt="" class="carIcon">
         <div>
           <p>10 min</p>
           <p>5 km</p>
@@ -147,7 +149,7 @@
   </div>
   <!-- Second Box -->
   <!-- Google maps AI -->
-  <img src="./static/maps.png" alt="" class="maps">
+  <img src="/static/maps.png" alt="" class="maps">
 
 </div>
 

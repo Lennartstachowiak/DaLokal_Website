@@ -7,6 +7,8 @@ function flashMessage() {
         document.getElementById('errorMessage').innerHTML = ''
     } if (flash_message == "wrong") {
         document.getElementById('errorMessage').innerHTML = 'Your email or password is not correct!'
+    } if (flash_message == "name") {
+        document.getElementById('errorMessage').innerHTML = 'Farm name already taken! Please take other name'
     }
 }
 

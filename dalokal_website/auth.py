@@ -189,10 +189,15 @@ def farm_information():
 
     if request.method != 'POST':
         cursor.close()
-        return render_template('complete_farm.html')
+        return render_template('complete_farm.html',flash_message="")
     else:
         # Create farm for user
         farmname = request.form.get('farmname')
+        cursor.execute(
+            'SELECT EXISTS(SELECT * FROM farm_table WHERE farmname="{farmname}");'.format(farmname=farmname))
+        nameCheck = cursor.fetchone()[0]
+        if nameCheck == 1:
+            return render_template('complete_farm.html', flash_message='name')
         description = request.form.get('farmDescription')
         cursor.execute('INSERT INTO farm_table (user_id, farmname, description) VALUES ("{userId}", "{farmname}", "{description}");'.format(
             userId=userId, farmname=farmname, description=description))
@@ -251,6 +256,12 @@ def farm_information():
         city = request.form.get('farmCity')
         cursor.execute(
             'INSERT INTO adress_table VALUES ("{farmId}","{street}","{postalCode}","{city}");'.format(farmId=farmId, street=street, postalCode=postalCode, city=city))
+
+        # Create farm category table
+        cursor.execute('''
+            INSERT INTO category_table (farm_id) 
+            VALUES ("{farmId}");'''.format(
+                farmId=farmId))
 
         # Commit inserts
         cursor.execute('COMMIT;')

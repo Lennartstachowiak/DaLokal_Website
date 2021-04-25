@@ -51,18 +51,18 @@
     <main>
         <div id="logoutModal" class="logoutModal">
             <div class="logoutContent">
-              <button onclick="closeModal('logoutModal')" class="closeBtn">&times;</button>
-              <div class="modalContainer">
-                  <h2>Do you really want to logout?</h2>
-                  <div class="logoutButtons">
-                    <form action="/logout">
-                      <button class="button">Yes</button>
-                    </form>
-                    <button onclick="closeModal('logoutModal')" class="button">No</button>
-                  </div>
-              </div>
+                <button onclick="closeModal('logoutModal')" class="closeBtn">&times;</button>
+                <div class="modalContainer">
+                    <h2>Do you really want to logout?</h2>
+                    <div class="logoutButtons">
+                        <form action="/logout">
+                            <button class="button">Yes</button>
+                        </form>
+                        <button onclick="closeModal('logoutModal')" class="button">No</button>
+                    </div>
+                </div>
             </div>
-          </div>
+        </div>
         <div class="mainHeader">Find your<br><span style="color: #66D836;">farm nearby</span></div>
         <div class="productCategorieContainer">
             <button class="productCategorieBox">
@@ -83,83 +83,69 @@
             </button>
         </div>
 
+        {% if farms != () %}
+
         <div class="farmBoxesContainer">
-            <div class="farmBox">
-                <img class="farmImg" src="/static/farmHourseExample.jpg" alt="">
-                <div class="farmInfo">
-                    <div class="farmInfoFirstLine">
-                        <h2>Farm made by Willi</h2>
-                        <div class="buttonOpen">Open</div>
+            {% for farm in farms %}
+            <form action="/user/{{farm[1]}}">
+                <button type="submit" class="farmBox">
+                    <img class="farmImg" src="/static/farmHourseExample.jpg" alt="">
+                    <div class="farmInfo">
+                        <div class="farmInfoFirstLine">
+                            <h2>{{farm[1]}}</h2>
+                            {% if farm[9] == 0 %}
+                            <div class="buttonOpen" style="background-color: #FF0000;">Closed</div>
+                            {% else %}
+                            {% if farm[9] == 1 %}
+                            <div class="buttonOpen">Open</div>
+                            {% else %}
+                            <div class="buttonOpen" style="background-color: #f4f4f4; color: rgb(131, 131, 131);">No
+                                data</div>
+                            {% endif %}
+                            {% endif %}
+                        </div>
+                        <div class="farmAdress">{{farm[2]}}, {{farm[3]}} {{farm[4]}}</div>
+                        {% if farm[5] or farm[6] or farm[7] or farm[8] != 0 %}
+                        <div class="farmProductCategoriesContainer">
+                            <div class="categorieHeader">Product categories:</div>
+                            {% if farm[5] != 0 %}
+                            <div class="farmProductCategories">
+                                <img class="farmProductImg" src="/static/icon_file/vegetables.png" alt="Here">
+                                <p class="farmProductTag">Vegetables</p>
+                            </div>
+                            {% endif %}
+                            {% if farm[6] != 0 %}
+                            <div class="farmProductCategories">
+                                <img class="farmProductImg" src="/static/icon_file/milk_products.png" alt="Here">
+                                <p class="farmProductTag">Milk products</p>
+                            </div>
+                            {% endif %}
+                            {% if farm[7] != 0 %}
+                            <div class="farmProductCategories">
+                                <img class="farmProductImg" src="/static/icon_file/wheat.png" alt="Here">
+                                <p class="farmProductTag">Wheat</p>
+                            </div>
+                            {% endif %}
+                            {% if farm[8] != 0 %}
+                            <div class="farmProductCategories">
+                                <img class="farmProductImg" src="/static/icon_file/meat.png" alt="Here">
+                                <p class="farmProductTag">Meat</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% else %}
+                        <h4>No products yet.</h4>
+                        {% endif%}
                     </div>
-                    <div class="farmAdress">Lohmühlenstraße 65, 12435 Berlin</div>
-                    <div class="farmProductCategoriesContainer">
-                        <div class="categorieHeader">Product categories:</div>
-                        <div class="farmProductCategories">
-                            <img class="farmProductImg" src="/static/icon_file/vegetables.png" alt="Here">
-                            <p class="farmProductTag">Vegetables</p>
-                        </div>
-                        <div class="farmProductCategories">
-                            <img class="farmProductImg" src="/static/icon_file/milk_products.png" alt="Here">
-                            <p class="farmProductTag">Milk products</p>
-                        </div>
-                        <div class="farmProductCategories">
-                            <img class="farmProductImg" src="/static/icon_file/wheat.png" alt="Here">
-                            <p class="farmProductTag">Wheat</p>
-                        </div>
-                        <div class="farmProductCategories">
-                            <img class="farmProductImg" src="/static/icon_file/meat.png" alt="Here">
-                            <p class="farmProductTag">Meat</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="farmBox">
-                <img class="farmImg" src="/static/farmHourseExample.jpg" alt="">
-                <div class="farmInfo">
-                    <div class="farmInfoFirstLine">
-                        <h2>Farm made by Willi</h2>
-                        <div class="buttonOpen" style="background-color: #FF0000;">Closed</div>
-                    </div>
-                    <div class="farmAdress">Lohmühlenstraße 65, 12435 Berlin</div>
-                    <div class="farmProductCategoriesContainer">
-                        <div class="categorieHeader">Product categories:</div>
-                        <div class="farmProductCategories">
-                            <img class="farmProductImg" src="/static/icon_file/milk_products.png" alt="Here">
-                            <p class="farmProductTag">Milk products</p>
-                        </div>
-                        <div class="farmProductCategories">
-                            <img class="farmProductImg" src="/static/icon_file/meat.png" alt="Here">
-                            <p class="farmProductTag">Meat</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="farmBox">
-                <img class="farmImg" src="/static/farmHourseExample.jpg" alt="">
-                <div class="farmInfo">
-                    <div class="farmInfoFirstLine">
-                        <h2>Farm made by Willi</h2>
-                        <div class="buttonOpen">Open</div>
-                    </div>
-                    <div class="farmAdress">Lohmühlenstraße 65, 12435 Berlin</div>
-                    <div class="farmProductCategoriesContainer">
-                        <div class="categorieHeader">Product categories:</div>
-                        <div class="farmProductCategories">
-                            <img class="farmProductImg" src="/static/icon_file/vegetables.png" alt="Here">
-                            <p class="farmProductTag">Vegetables</p>
-                        </div>
-                        <div class="farmProductCategories">
-                            <img class="farmProductImg" src="/static/icon_file/milk_products.png" alt="Here">
-                            <p class="farmProductTag">Milk products</p>
-                        </div>
-                        <div class="farmProductCategories">
-                            <img class="farmProductImg" src="/static/icon_file/wheat.png" alt="Here">
-                            <p class="farmProductTag">Wheat</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                </button>
+            </form>
+
+            {% endfor %}
+
+            {% else %}
+            <h4>No farms nearby</h4>
+            {% endif %}
+
     </main>
     <footer>
 

@@ -9,7 +9,7 @@
     <script src="/static/script.js"></script>
 </head>
 
-<body>
+<body onload="flashMessage()">
     <header>
         <a href="/">
             <div class="logoBoxHeader">
@@ -40,6 +40,9 @@
           </div>
         <form method="POST" action="/signup/complete-signup/farm-information">
             <div class="loginContainer">
+                {% if flash_message != '' %}
+                <div id="errorMessage" class="errorMessage">Farm name already taken! Please choose another name</div>
+                {% endif %}
                 <h1>Complete your farm information</h1>
                 <div class="timeContainer">
                     <h2>Opening hours:</h2>

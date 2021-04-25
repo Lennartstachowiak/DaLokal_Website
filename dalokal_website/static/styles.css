@@ -192,13 +192,6 @@ a {
 /* Second Box */
 
 
-h2 {
-    font-family: SF Pro Display;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 1.8rem;
-    color: black;
-}
 
 /* Location Box */
 
@@ -545,7 +538,6 @@ h5 {
     margin: 10% auto;
     padding: 25px 20px 35px 20px;
     width: 400px;
-    height: 120px;
     border-radius: 25px;
 }
 
@@ -946,6 +938,7 @@ button:hover {
 }
 
 .farmBox {
+    background-color: white;
     width: 536px;
     height: 274px;
 
@@ -962,9 +955,12 @@ button:hover {
 }
 
 .farmBox:hover {
+    background-color: white;
+    color: black;
     transform: scale(1.05);
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
     z-index: 0;
+    cursor: pointer;
 }
 
 .farmImg {
@@ -983,6 +979,7 @@ button:hover {
     width: 234px;
     display: flex;
     flex-direction: column;
+    overflow: scroll;
 }
 
 .farmInfoFirstLine {
@@ -996,6 +993,7 @@ h2 {
     align-items: center;
     font-size: 1.1rem;
     font-weight: bold;
+    max-width: 160px;
 }
 
 .mainHeader {
@@ -1064,6 +1062,8 @@ h2 {
 }
 
 .productCategorieBox:hover {
+    background-color: white;
+    color: black;
     transform: scale(1.05);
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
 }

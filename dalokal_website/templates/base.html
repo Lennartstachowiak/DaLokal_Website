@@ -13,7 +13,7 @@
     <header>
         <a href="/">
             <div class="logoBoxHeader">
-                <img src="./static/DaLokal_Logo.svg" alt="DaLokal_Logo" class="logo">
+                <img src="/static/DaLokal_Logo.svg" alt="DaLokal_Logo" class="logo">
                 <h6>DaLokal</h6>
             </div>
         </a>
@@ -26,6 +26,7 @@
                     </div>
                 </button>
             </form>
+            {% if notMyAccount != 1 %}
             <form action="/profile/edit">
                 <button class="logInButton">
                     <div class="alignButtonContent">
@@ -33,6 +34,7 @@
                     </div>
                 </button>
             </form>
+            {% endif %}
             <!-- Log out button ask again -->
             <button onclick="openModal('logoutModal')" class="logInButton">
                 <div class="alignButtonContent">
