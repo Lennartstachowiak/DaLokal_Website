@@ -65,80 +65,108 @@
         </div>
         <div class="mainHeader">Find your<br><span style="color: #66D836;">farm nearby</span></div>
         <div class="productCategorieContainer">
-            <button class="productCategorieBox">
-                <img class="productCategorieImg" src="/static/icon_file/vegetables.png" alt="">
-                <p class="productCategorieText">Vegetables</p>
-            </button>
-            <button class="productCategorieBox">
-                <img class="productCategorieImg" src="/static/icon_file/milk_products.png" alt="">
-                <p class="productCategorieText">Milk products</p>
-            </button>
-            <button class="productCategorieBox">
-                <img class="productCategorieImg" src="/static/icon_file/wheat.png" alt="">
-                <p class="productCategorieText">Wheat</p>
-            </button>
-            <button class="productCategorieBox">
-                <img class="productCategorieImg" src="/static/icon_file/meat.png" alt="">
-                <p class="productCategorieText">Meat</p>
-            </button>
+            <label class="checkbox">
+                <input name="filter" onclick="filter('all')" type="radio" checked>
+                <div class="productCategorieBox">
+                    <p class="productCategorieText">All categories</p>
+                </div>
+
+                </input>
+            </label>
+            <label class="checkbox">
+                <input name="filter" onclick="filter('Vegetables')" type="radio">
+                <div class="productCategorieBox">
+                    <img class="productCategorieImg" src="/static/icon_file/vegetables.png" alt="">
+                    <p class="productCategorieText">Vegetables</p>
+                </div>
+
+                </input>
+            </label>
+            <label class="checkbox">
+                <input name="filter" onclick="filter('Milk products')" type="radio">
+                <div class="productCategorieBox">
+                    <img class="productCategorieImg" src="/static/icon_file/milk_products.png" alt="">
+                    <p class="productCategorieText">Milk products</p>
+                </div>
+
+                </input>
+            </label>
+            <label class="checkbox">
+                <input name="filter" onclick="filter('Wheat')" type="radio">
+                <div class="productCategorieBox">
+                    <img class="productCategorieImg" src="/static/icon_file/wheat.png" alt="">
+                    <p class="productCategorieText">Wheat</p>
+                </div>
+                </input>
+            </label>
+            <label class="checkbox">
+                <input name="filter" onclick="filter('Meat')" type="radio">
+                <div class="productCategorieBox">
+                    <img class="productCategorieImg" src="/static/icon_file/meat.png" alt="">
+                    <p class="productCategorieText">Meat</p>
+                </div>
+                </input>
+            </label>
         </div>
 
         {% if farms != () %}
 
-        <div class="farmBoxesContainer">
+        <div id="farmBoxesContainer" class="farmBoxesContainer">
             {% for farm in farms %}
-            <form action="/user/{{farm[1]}}">
-                <button type="submit" class="farmBox">
-                    <img class="farmImg" src="/static/farmHourseExample.jpg" alt="">
-                    <div class="farmInfo">
-                        <div class="farmInfoFirstLine">
-                            <h2>{{farm[1]}}</h2>
-                            {% if farm[9] == 0 %}
-                            <div class="buttonOpen" style="background-color: #FF0000;">Closed</div>
+            <section>
+                <form action="/user/{{farm[1]}}">
+                    <button type="submit" class="farmBox">
+                        <img class="farmImg" src="/static/farmHourseExample.jpg" alt="">
+                        <div class="farmInfo">
+                            <div class="farmInfoFirstLine">
+                                <h2>{{farm[1]}}</h2>
+                                {% if farm[9] == 0 %}
+                                <div class="buttonOpen" style="background-color: #FF0000;">Closed</div>
+                                {% else %}
+                                {% if farm[9] == 1 %}
+                                <div class="buttonOpen">Open</div>
+                                {% else %}
+                                <div class="buttonOpen" style="background-color: #f4f4f4; color: rgb(131, 131, 131);">No
+                                    data</div>
+                                {% endif %}
+                                {% endif %}
+                            </div>
+                            <div class="farmAdress">{{farm[2]}}, {{farm[3]}} {{farm[4]}}</div>
+                            {% if farm[5] or farm[6] or farm[7] or farm[8] != 0 %}
+                            <div class="farmProductCategoriesContainer">
+                                <div class="categorieHeader">Product categories:</div>
+                                {% if farm[5] != 0 %}
+                                <div class="farmProductCategories">
+                                    <img class="farmProductImg" src="/static/icon_file/vegetables.png" alt="Here">
+                                    <p class="farmProductTag">Vegetables</p>
+                                </div>
+                                {% endif %}
+                                {% if farm[6] != 0 %}
+                                <div class="farmProductCategories">
+                                    <img class="farmProductImg" src="/static/icon_file/milk_products.png" alt="Here">
+                                    <p class="farmProductTag">Milk products</p>
+                                </div>
+                                {% endif %}
+                                {% if farm[7] != 0 %}
+                                <div class="farmProductCategories">
+                                    <img class="farmProductImg" src="/static/icon_file/wheat.png" alt="Here">
+                                    <p class="farmProductTag">Wheat</p>
+                                </div>
+                                {% endif %}
+                                {% if farm[8] != 0 %}
+                                <div class="farmProductCategories">
+                                    <img class="farmProductImg" src="/static/icon_file/meat.png" alt="Here">
+                                    <p class="farmProductTag">Meat</p>
+                                </div>
+                                {% endif %}
+                            </div>
                             {% else %}
-                            {% if farm[9] == 1 %}
-                            <div class="buttonOpen">Open</div>
-                            {% else %}
-                            <div class="buttonOpen" style="background-color: #f4f4f4; color: rgb(131, 131, 131);">No
-                                data</div>
-                            {% endif %}
-                            {% endif %}
+                            <h4>No products yet.</h4>
+                            {% endif%}
                         </div>
-                        <div class="farmAdress">{{farm[2]}}, {{farm[3]}} {{farm[4]}}</div>
-                        {% if farm[5] or farm[6] or farm[7] or farm[8] != 0 %}
-                        <div class="farmProductCategoriesContainer">
-                            <div class="categorieHeader">Product categories:</div>
-                            {% if farm[5] != 0 %}
-                            <div class="farmProductCategories">
-                                <img class="farmProductImg" src="/static/icon_file/vegetables.png" alt="Here">
-                                <p class="farmProductTag">Vegetables</p>
-                            </div>
-                            {% endif %}
-                            {% if farm[6] != 0 %}
-                            <div class="farmProductCategories">
-                                <img class="farmProductImg" src="/static/icon_file/milk_products.png" alt="Here">
-                                <p class="farmProductTag">Milk products</p>
-                            </div>
-                            {% endif %}
-                            {% if farm[7] != 0 %}
-                            <div class="farmProductCategories">
-                                <img class="farmProductImg" src="/static/icon_file/wheat.png" alt="Here">
-                                <p class="farmProductTag">Wheat</p>
-                            </div>
-                            {% endif %}
-                            {% if farm[8] != 0 %}
-                            <div class="farmProductCategories">
-                                <img class="farmProductImg" src="/static/icon_file/meat.png" alt="Here">
-                                <p class="farmProductTag">Meat</p>
-                            </div>
-                            {% endif %}
-                        </div>
-                        {% else %}
-                        <h4>No products yet.</h4>
-                        {% endif%}
-                    </div>
-                </button>
-            </form>
+                    </button>
+                </form>
+            </section>
 
             {% endfor %}
 

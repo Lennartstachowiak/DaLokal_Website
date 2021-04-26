@@ -39,3 +39,34 @@ function closeModal(modalId) {
     modal.style.display = 'none'
 }
 
+function filter(filter) {
+    farmBox = document.getElementById('farmBoxesContainer')
+    farm = farmBox.getElementsByTagName('section')
+
+    for (x = 0; x < farm.length; x++) {
+        if (filter === 'all') {
+            farm[x].style.display = '';
+        }
+        else {
+            categories = farm[x].getElementsByTagName('p');
+            if (categories[0] == undefined) {
+                farm[x].style.display = 'none';
+            }
+            else {
+                var count = 0
+                for (y = 0; y < categories.length; y++) {
+                    category = categories[y].innerHTML
+                    if (category === filter) {
+                        count++
+                    }
+                }
+                if (count === 0) {
+                    farm[x].style.display = 'none';
+                }
+                else {
+                    farm[x].style.display = '';
+                }
+            }
+        }
+    }
+}

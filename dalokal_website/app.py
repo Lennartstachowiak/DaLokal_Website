@@ -53,6 +53,7 @@ def checkCompleteUser(userId):
         return redirect('/signup/complete-signup/farm-information')
     return True
 
+
 def openOrClosed(farmId):
     cursor = connectDatabase()
     # Get current time
@@ -80,9 +81,9 @@ def openOrClosed(farmId):
         FROM time_table 
         WHERE farm_id="{farmId}" 
         AND day="{day}";'''.format(
-            farmId=farmId, day=day
-        ))
-    farmTime=cursor.fetchall()
+        farmId=farmId, day=day
+    ))
+    farmTime = cursor.fetchall()
     if farmTime != ():
         opening = farmTime[0][0]
         closing = farmTime[0][1]
@@ -94,13 +95,11 @@ def openOrClosed(farmId):
         # Check if closed or no data given
         cursor.execute('''
             SELECT * FROM time_table WHERE farm_id = "{farmId}";'''.format(
-                farmId=farmId))
+            farmId=farmId))
         timeData = cursor.fetchall()
         if timeData != ():
             return 0
         return 2
-
-
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -122,7 +121,7 @@ def index():
         ON adress_table.farm_id=farm_table.farm_id
         JOIN category_table
         ON category_table.farm_id=farm_table.farm_id;
-    ''')
+        ''')
     farms = cursor.fetchall()
     cursor.close()
     farmsUpdated = ()
@@ -158,9 +157,9 @@ def index():
             'SELECT firstname FROM user_table WHERE user_id="{userId}";'.format(userId=userId))
         firstname = cursor.fetchone()[0]
         # Get farm id from farm table
-        cursor.execute('SELECT farm_id FROM farm_table WHERE user_id="{userId}";'.format(userId=userId))
+        cursor.execute(
+            'SELECT farm_id FROM farm_table WHERE user_id="{userId}";'.format(userId=userId))
         farmId = cursor.fetchone()[0]
-        
 
         return render_template('index.html', loggedIn=loggedIn, firstname=firstname, farms=farmsUpdated)
 
@@ -225,11 +224,12 @@ def profile():
         cursor.close()
         return render_template('profile.html', page_title='My Page', farmname=farmname, firstname=firstname, lastname=lastname,  description=description, time=times, adress=adress, products=products)
 
+
 @app.route('/user/<farmname>', methods=['GET', 'POST'])
 def user(farmname):
     cursor = connectDatabase()
     cursor.execute(
-            'SELECT * FROM farm_table WHERE farmname="{farmname}";'.format(farmname=farmname))
+        'SELECT * FROM farm_table WHERE farmname="{farmname}";'.format(farmname=farmname))
     farmInfo = cursor.fetchone()
     farmId = farmInfo[0]
     userId = farmInfo[1]
@@ -300,25 +300,25 @@ def addProduct():
                 UPDATE category_table 
                 SET veg_check = 1 
                 WHERE farm_id = "{farmId}";'''.format(
-                    farmId=farmId))
+                farmId=farmId))
         if category == "Milk product":
             cursor.execute('''
                 UPDATE category_table 
                 SET milk_check = 1 
                 WHERE farm_id = "{farmId}";'''.format(
-                    farmId=farmId))
+                farmId=farmId))
         if category == "Wheat":
             cursor.execute('''
                 UPDATE category_table 
                 SET wheat_check = 1 
                 WHERE farm_id = "{farmId}";'''.format(
-                    farmId=farmId))
+                farmId=farmId))
         if category == "Meat":
             cursor.execute('''
                 UPDATE category_table 
                 SET meat_check = 1 
                 WHERE farm_id = "{farmId}";'''.format(
-                    farmId=farmId))
+                farmId=farmId))
 
         cursor.execute(
             '''INSERT INTO 

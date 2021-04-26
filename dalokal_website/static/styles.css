@@ -791,10 +791,6 @@ p {
     margin: 5px 15px;
 } */
 
-label {
-    margin-right: 10px;
-}
-
 .timeContainer {
     margin-top: 20px;
     width: 400px;
@@ -803,6 +799,10 @@ label {
 .dayContainer {
     display: flex;
     align-items: center;
+}
+
+.day {
+    margin-right: 15px;
 }
 
 .clearButton {
@@ -1047,7 +1047,7 @@ h2 {
 }
 
 .productCategorieBox {
-    width: 254px;
+    width: 196px;
     height: 120px;
     background-color: rgba(255, 255, 255, 0);
     border: 0;
@@ -1061,24 +1061,19 @@ h2 {
     margin-bottom: 65px;
 }
 
+.checkbox input{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkbox input:checked ~ .productCategorieBox{
+    background-color: #67d8364f;
+}
+
 .productCategorieBox:hover {
-    background-color: white;
-    color: black;
     transform: scale(1.05);
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
-}
-
-.productCategorieBox:focus {
-    background-color: #66D836;
-    outline: 0;
-}
-
-.productCategorieBox:focus .productCategorieImg {
-    filter: invert(100);
-}
-
-.productCategorieBox:focus .productCategorieText {
-    color: white;
 }
 
 .productCategorieImg {
