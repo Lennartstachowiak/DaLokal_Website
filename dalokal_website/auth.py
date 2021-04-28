@@ -156,7 +156,7 @@ def complete_sign_up():
         lastname = request.form.get('lastname')
         # Update user
         cursor.execute('UPDATE user_table SET firstname="{firstname}", lastname="{lastname}" WHERE user_id={userId};'
-                        .format(firstname=firstname, lastname=lastname, userId=userId))
+                       .format(firstname=firstname, lastname=lastname, userId=userId))
         cursor.execute('COMMIT;')
         cursor.close()
         return redirect('/signup/complete-signup/farm-information')
@@ -189,7 +189,7 @@ def farm_information():
 
     if request.method != 'POST':
         cursor.close()
-        return render_template('complete_farm.html',flash_message="")
+        return render_template('complete_farm.html', flash_message="")
     else:
         # Create farm for user
         farmname = request.form.get('farmname')
@@ -210,45 +210,45 @@ def farm_information():
 
         mon_b = request.form.get('mon_b')
         mon_e = request.form.get('mon_e')
-        if mon_b != '':
-            cursor.execute(
-                'INSERT INTO time_table VALUES ("{farmId}","Monday","{b}","{e}");'.format(farmId=farmId, b=mon_b, e=mon_e))
+
+        cursor.execute(
+            'INSERT INTO time_table VALUES ("{farmId}","Monday","{b}","{e}");'.format(farmId=farmId, b=mon_b, e=mon_e))
 
         tue_b = request.form.get('tue_b')
         tue_e = request.form.get('tue_e')
-        if tue_b != '':
-            cursor.execute(
-                'INSERT INTO time_table VALUES ("{farmId}","Tuesday","{b}","{e}");'.format(farmId=farmId, b=tue_b, e=tue_e))
+
+        cursor.execute(
+            'INSERT INTO time_table VALUES ("{farmId}","Tuesday","{b}","{e}");'.format(farmId=farmId, b=tue_b, e=tue_e))
 
         wed_b = request.form.get('wed_b')
         wed_e = request.form.get('wed_e')
-        if wed_b != '':
-            cursor.execute(
-                'INSERT INTO time_table VALUES ("{farmId}","Wednesday","{b}","{e}");'.format(farmId=farmId, b=wed_b, e=wed_e))
+
+        cursor.execute(
+            'INSERT INTO time_table VALUES ("{farmId}","Wednesday","{b}","{e}");'.format(farmId=farmId, b=wed_b, e=wed_e))
 
         thu_b = request.form.get('thu_b')
         thu_e = request.form.get('thu_e')
-        if thu_b != '':
-            cursor.execute(
-                'INSERT INTO time_table VALUES ("{farmId}","Thursday","{b}","{e}");'.format(farmId=farmId, b=thu_b, e=thu_e))
+
+        cursor.execute(
+            'INSERT INTO time_table VALUES ("{farmId}","Thursday","{b}","{e}");'.format(farmId=farmId, b=thu_b, e=thu_e))
 
         fri_b = request.form.get('fri_b')
         fri_e = request.form.get('fri_e')
-        if fri_b != '':
-            cursor.execute(
-                'INSERT INTO time_table VALUES ("{farmId}","Friday","{b}","{e}");'.format(farmId=farmId, b=fri_b, e=fri_e))
+
+        cursor.execute(
+            'INSERT INTO time_table VALUES ("{farmId}","Friday","{b}","{e}");'.format(farmId=farmId, b=fri_b, e=fri_e))
 
         sat_b = request.form.get('sat_b')
         sat_e = request.form.get('sat_e')
-        if sat_b != '':
-            cursor.execute(
-                'INSERT INTO time_table VALUES ("{farmId}","Saturday","{b}","{e}");'.format(farmId=farmId, b=sat_b, e=sat_e))
+
+        cursor.execute(
+            'INSERT INTO time_table VALUES ("{farmId}","Saturday","{b}","{e}");'.format(farmId=farmId, b=sat_b, e=sat_e))
 
         sun_b = request.form.get('sun_b')
         sun_e = request.form.get('sun_e')
-        if sun_b != '':
-            cursor.execute(
-                'INSERT INTO time_table VALUES ("{farmId}","Sunday","{b}","{e}");'.format(farmId=farmId, b=sun_b, e=sun_e))
+
+        cursor.execute(
+            'INSERT INTO time_table VALUES ("{farmId}","Sunday","{b}","{e}");'.format(farmId=farmId, b=sun_b, e=sun_e))
 
         # Adress
         street = request.form.get('farmStreet')
@@ -261,7 +261,7 @@ def farm_information():
         cursor.execute('''
             INSERT INTO category_table (farm_id) 
             VALUES ("{farmId}");'''.format(
-                farmId=farmId))
+            farmId=farmId))
 
         # Commit inserts
         cursor.execute('COMMIT;')

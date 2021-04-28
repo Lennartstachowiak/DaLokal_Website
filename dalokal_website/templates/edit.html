@@ -1,0 +1,240 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Edit your profile</h3>
+<form method="POST" action="/profile/edit">
+    <div class="editContent">
+        <div id="errorMessage" class="errorMessage"></div>
+        <table>
+            <tr>
+                <td>
+                    <h2><label for="email">Email:</label></h2>
+                </td>
+                <td>
+                    <input class="logInInput inputText" type="email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                        placeholder="{{userData[3]}}" name="email">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2><label for="psw">Password:</label></h2>
+                </td>
+                <td>
+                    <input class="logInInput inputText" type="password" placeholder="Change password" name="psw">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2><label for="psw_repeat">Repeat Password:</label></h2>
+                </td>
+                <td>
+                    <input class="logInInput inputText" type="password" placeholder="Repeat changed Password"
+                        name="psw_repeat">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2><label for="firstname">Firstname:</label></h2>
+                </td>
+                <td>
+                    <input class="logInInput inputText" placeholder="{{userData[4]}}" type="text" name="firstname"
+                        id="firstname">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2><label for="lastname">Lastname:</label></h2>
+                </td>
+                <td>
+                    <input class="logInInput inputText" placeholder="{{userData[5]}}" type="text" name="lastname"
+                        id="lastname">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2><label for="farmname">Farmname:</label></h2>
+                </td>
+                <td>
+                    <input class="logInInput inputText" placeholder="{{userData[1]}}" type="text" name="farmname"
+                        id="farmname">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2><label for="farmStreet">Street:</label></h2>
+                </td>
+                <td>
+                    <input class="logInInput inputText" placeholder="{{userData[6]}}" type="text" name="farmStreet"
+                        id="farmStreet">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2><label for="farmPostalCode">Postal code:</label></h2>
+                </td>
+                <td>
+                    <input class="logInInput inputText" placeholder="{{userData[7]}}" type="number" min="10000"
+                        max="99999" name="farmPostalCode" id="farmPostalCode">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2><label for="farmCity">City:</label></h2>
+                </td>
+                <td>
+                    <input class="logInInput inputText" placeholder="{{userData[8]}}" type="text" name="farmCity"
+                        id="farmCity">
+                </td>
+            </tr>
+        </table>
+        <div class="timeContainer">
+            <h4 style="margin-bottom: 15px; font-size: 1.2rem;">Opening hours:</h4>
+            <table>
+                <div class="dayContainer">
+                    <tr>
+                        <td>
+                            <label class="day" for="">Monday:</label>
+                        </td>
+                        <td>
+                            <input value="{{userTime[0][1]}}" type="time" id="mon_b" name="mon_b">
+                        </td>
+                        <td>
+                            <p>to</p>
+                        </td>
+                        <td>
+                            <input value="{{userTime[0][2]}}" type="time" id="mon_e" name="mon_e">
+                        </td>
+                        <td>
+                            <button type="button" onclick="clearTimeInput('mon_b','mon_e')"
+                                class="clearButton">Clear</button>
+                        </td>
+                    </tr>
+                </div>
+                <div class="dayContainer">
+                    <tr>
+                        <td>
+                            <label for="">Tuesday:</label>
+                        </td>
+                        <td>
+                            <input value="{{userTime[1][1]}}" type="time" id="tue_b" name="tue_b">
+                        </td>
+                        <td>
+                            <p>to</p>
+                        </td>
+                        <td>
+                            <input value="{{userTime[1][2]}}" type="time" id="tue_e" name="tue_e">
+                        </td>
+                        <td>
+                            <button type="button" onclick="clearTimeInput('tue_b','tue_e')"
+                                class="clearButton">Clear</button>
+                        </td>
+                    </tr>
+                </div>
+                <div class="dayContainer">
+                    <tr>
+                        <td>
+                            <label for="">Wednesday:</label>
+                        </td>
+                        <td>
+                            <input value="{{userTime[2][1]}}" type="time" id="wed_b" name="wed_b">
+                        </td>
+                        <td>
+                            <p>to</p>
+                        </td>
+                        <td>
+                            <input value="{{userTime[2][2]}}" type="time" id="wed_e" name="wed_e">
+                        </td>
+                        <td>
+                            <button type="button" onclick="clearTimeInput('wed_b','wed_e')"
+                                class="clearButton">Clear</button>
+                        </td>
+                    </tr>
+                </div>
+                <div class="dayContainer">
+                    <tr>
+                        <td>
+                            <label for="">Thursday:</label>
+                        </td>
+                        <td>
+                            <input value="{{userTime[3][1]}}" type="time" id="thu_b" name="thu_b">
+                        </td>
+                        <td>
+                            <p>to</p>
+                        </td>
+                        <td>
+                            <input value="{{userTime[3][2]}}" type="time" id="thu_e" name="thu_e">
+                        </td>
+                        <td>
+                            <button type="button" onclick="clearTimeInput('thu_b','thu_e')"
+                                class="clearButton">Clear</button>
+                        </td>
+                    </tr>
+                </div>
+                <div class="dayContainer">
+                    <tr>
+                        <td>
+                            <label for="">Friday:</label>
+                        </td>
+                        <td>
+                            <input value="{{userTime[4][1]}}" type="time" id="fri_b" name="fri_b">
+                        </td>
+                        <td>
+                            <p>to</p>
+                        </td>
+                        <td>
+                            <input value="{{userTime[4][2]}}" type="time" id="fri_e" name="fri_e">
+                        </td>
+                        <td>
+                            <button type="button" onclick="clearTimeInput('fri_b','fri_e')"
+                                class="clearButton">Clear</button>
+                        </td>
+                    </tr>
+                </div>
+                <div class="dayContainer">
+                    <tr>
+                        <td>
+                            <label for="">Saturday:</label>
+                        </td>
+                        <td>
+                            <input value="{{userTime[5][1]}}" type="time" id="sat_b" name="sat_b">
+                        </td>
+                        <td>
+                            <p>to</p>
+                        </td>
+                        <td>
+                            <input value="{{userTime[5][2]}}" type="time" id="sat_e" name="sat_e">
+                        </td>
+                        <td>
+                            <button type="button" onclick="clearTimeInput('sat_b','sat_e')"
+                                class="clearButton">Clear</button>
+                        </td>
+                    </tr>
+                </div>
+                <div class="dayContainer">
+                    <tr>
+                        <td>
+                            <label for="">Sunday:</label>
+                        </td>
+                        <td>
+                            <input value="{{userTime[6][1]}}" type="time" id="sun_b" name="sun_b">
+                        </td>
+                        <td>
+                            <p>to</p>
+                        </td>
+                        <td>
+                            <input value="{{userTime[6][2]}}" type="time" id="sun_e" name="sun_e">
+                        </td>
+                        <td>
+                            <button type="button" onclick="clearTimeInput('sun_b','sun_e')"
+                                class="clearButton">Clear</button>
+                        </td>
+                    </tr>
+                </div>
+            </table>
+        </div>
+        <button
+            onclick="adressChange(), timecheck('mon_b','mon_e'), timecheck('tue_b','tue_e'), timecheck('wed_b','wed_e'), timecheck('thu_b','thu_e'), timecheck('fri_b','fri_e'), timecheck('sat_b','sat_e'), timecheck('sun_b','sun_e')"
+            style="margin-top: 60px;" class="submit" type="submit" class="signupbtn">Submit</button>
+    </div>
+</form>
+{%endblock %}

@@ -12,7 +12,7 @@
     <script src="/static/script.js"></script>
 </head>
 
-<body onload="flashMessage()">
+<body onload="flashMessage('{{flash_message}}')">
     <a href="/">
         <div class="logoBoxHeader">
             <img src="./static/DaLokal_Logo.svg" alt="DaLokal_Logo" class="logo">
@@ -22,9 +22,7 @@
 
     <form action="/signup" method="POST">
         <div class="loginContainer">
-            {% if flash_message != '' %}
             <div id="errorMessage" class="errorMessage"></div>
-            {% endif %}
             <h1>
                 <img class="icon" src="/static/signup.svg"> Sign up
             </h1>

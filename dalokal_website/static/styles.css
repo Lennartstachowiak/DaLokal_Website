@@ -3,7 +3,7 @@
 html {
     display: flex;
     justify-content: center;
-    font-family: SF Pro Display;
+    font-family: SF Pro Display, Arial, Helvetica, sans-serif !important;
     font-style: normal;
 }
 
@@ -12,11 +12,15 @@ body {
     padding: 0;
     width: 1100px;
     margin-bottom: 300px;
+    font-family: SF Pro Display, Arial, Helvetica, sans-serif !important;
+    font-style: normal;
 }
 
 p,h1,h2,h3,h4,h5,h6 {
     padding: 0;
     margin: 0;
+    font-family: SF Pro Display, Arial, Helvetica, sans-serif;
+    font-style: normal;
 }
 
 /* Farmer Name */
@@ -148,7 +152,8 @@ a {
     width: 375px;
     height: 115px;
     resize: none;
-    font-family: SF Pro Display;
+    font-family: SF Pro Display, Arial, Helvetica, sans-serif;
+    font-style: normal;
     font-size: 1rem;
     text-align: justify;
 }
@@ -166,6 +171,8 @@ a {
 
 
 .farmerName {
+    font-family: SF Pro Display, Arial, Helvetica, sans-serif;
+    font-style: normal;
     font-weight: bold;
     font-size: 2.2rem;
     margin-bottom: 10px;
@@ -179,6 +186,8 @@ a {
 }
 
 .adress {
+    font-family: SF Pro Display, Arial, Helvetica, sans-serif;
+    font-style: normal;
     display: flex;
     align-items: center;
     height: 50px;
@@ -186,6 +195,8 @@ a {
 }
 
 .time {
+    font-family: SF Pro Display, Arial, Helvetica, sans-serif;
+    font-style: normal;
     font-size: 0.9rem;
 }
 
@@ -276,12 +287,16 @@ h3 {
 }
 
 .productInformation {
+    font-family: SF Pro Display, Arial, Helvetica, sans-serif;
+    font-style: normal;
     width: 254px;
     margin-left: 28px;
     overflow: scroll;
 }
 
 .productText {
+    font-family: SF Pro Display, Arial, Helvetica, sans-serif;
+    font-style: normal;
     margin: 15px 0;
     text-align: justify;
 }
@@ -327,6 +342,7 @@ button {
     transition: 0.2s;
     border-radius: 6px;
     align-self: center;
+    background-color: #f0f0f0;
 }
 
 button:hover .iconButton {
@@ -764,7 +780,7 @@ input:focus {
 }
 
 .errorMessage {
-    display: flex;
+    display: none;
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -997,7 +1013,7 @@ h2 {
 }
 
 .mainHeader {
-    font-family: SF Pro Display;
+    font-family: SF Pro Display, Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 2.5rem;
@@ -1033,6 +1049,8 @@ h2 {
 }
 
 .farmProductTags {
+    font-family: SF Pro Display, Arial, Helvetica, sans-serif;
+    font-style: normal;
     text-align: center;
     font-size: 0.9rem;
 }
@@ -1084,6 +1102,8 @@ h2 {
 .productCategorieText {
     font-size: 1rem;
     font-weight: bold;
+    font-family: SF Pro Display, Arial, Helvetica, sans-serif;
+    font-style: normal;
 }
 
 .buttonOpen{
@@ -1095,4 +1115,15 @@ h2 {
     height: 25px;
     color: white;
     border-radius: 6px;
+}
+
+.editAlign {
+    display: flex;
+    align-items: center;
+}
+
+.editContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

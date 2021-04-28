@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
+<!-- js error because of base.html onload=... if not here -->
+<div style="display: none;" id="errorMessage"></div>
 
 <div class="firstBlock">
   <!-- !!! Have to change this to {{farmer_img}} -->
   <img src="/static/farmHourseExample.jpg" alt="" class="farmerImage">
-  <!-- !!! Have to change this to {{farmer_name}} -->
   <div class="farmDescriptionBox">
     <div class="infoContainer">
       <h1 class="farmerName">{{farmname}}</h1>
@@ -49,13 +50,11 @@
 <div class="alignProductButton">
   <h3>Our<br><span style="color: #66D836;">Products</span></h3>
 
-  {% if notMyAccount != 1%}
-  <button onclick="openModal('simpleModal')" style="margin-left: auto;">
+  <button id="addProduct" onclick="openModal('simpleModal')" style="margin-left: auto;">
     <div class="alignButtonContent">
       <img class="iconButton" src="/static/add.svg" alt=""> Add product
     </div>
   </button>
-  {% endif %}
 </div>
 
 <div id="simpleModal" class="modal">

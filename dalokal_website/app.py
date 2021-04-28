@@ -160,6 +160,7 @@ def index():
         cursor.execute(
             'SELECT farm_id FROM farm_table WHERE user_id="{userId}";'.format(userId=userId))
         farmId = cursor.fetchone()[0]
+        cursor.close()
 
         return render_template('index.html', loggedIn=loggedIn, firstname=firstname, farms=farmsUpdated)
 
@@ -233,7 +234,7 @@ def user(farmname):
     farmInfo = cursor.fetchone()
     farmId = farmInfo[0]
     userId = farmInfo[1]
-    if userId in session:
+    if 'userId' in session:
         if userId == session['userId']:
             return redirect('/profile')
     farmname = farmInfo[2]
@@ -329,6 +330,256 @@ def addProduct():
         cursor.close()
 
         return redirect('/profile')
+
+
+@app.route('/profile/edit', methods=['GET', 'POST'])
+def edit():
+    # check if session cookie exist, if not returns to login
+    if 'userId' not in session:
+        return redirect('/login')
+    else:
+        userId = session['userId']
+        # check if session cookie is using the right data, if not logout
+        psw = session['psw']
+        cursor = connectDatabase()
+        cursor.execute(
+            'SELECT password FROM user_table WHERE user_id="{userId}";'.format(userId=userId))
+        psw_check = cursor.fetchone()[0]
+        if psw != psw_check:
+            return redirect('/logout')
+
+        cursor.execute('''
+        SELECT farm_table.user_id,
+            farm_table.farmname,
+            farm_table.description,
+            user_table.email,
+            user_table.firstname,
+            user_table.lastname,
+            adress_table.street,
+            adress_table.postalcode,
+            adress_table.city
+        FROM farm_table
+        JOIN user_table
+        ON user_table.user_id=farm_table.user_id
+        JOIN adress_table
+        ON adress_table.farm_id=farm_table.farm_id
+        WHERE farm_table.user_id ="{userId}";'''.format(
+            userId=userId))
+        userData = cursor.fetchone()
+        cursor.execute('''
+        SELECT time_table.day, 
+            time_table.opening, 
+            time_table.closing
+        FROM farm_table
+        JOIN time_table
+        ON time_table.farm_id=farm_table.farm_id
+        WHERE user_id="{userId}";'''.format(
+            userId=userId))
+        userTime = cursor.fetchall()
+
+        # If method Post than...
+        if request.method == 'POST':
+            email = request.form.get('email')
+            if email:
+                try:
+                    # Update db
+                    cursor.execute('''
+                    UPDATE user_table SET email="{email}" WHERE user_id="{userId}";
+                    '''.format(email=email, userId=userId))
+                except:
+                    return render_template('edit.html', edit=1, userTime=userTime, userData=userData, flash_message='emailEdit')
+
+            password = request.form.get('psw')
+            password_repeat = request.form.get('psw_repeat')
+            if password:
+                # check if psw are same
+                if password == password_repeat:
+                    # Hash changed password
+                    password = generate_password_hash(password)
+                    # Update db
+                    cursor.execute('''
+                    UPDATE user_table
+                    SET password="{password}"
+                    WHERE user_id="{userId}";
+                    '''.format(password=password, userId=userId))
+                    print('done2')
+                else:
+                    return render_template('edit.html', edit=1, userTime=userTime, userData=userData, flash_message='psw')
+
+            firstname = request.form.get('firstname')
+            if firstname:
+                cursor.execute('''
+                UPDATE user_table
+                SET firstname="{firstname}"
+                WHERE user_id="{userId}";
+                '''.format(firstname=firstname, userId=userId))
+                print('done3')
+
+            lastname = request.form.get('lastname')
+            if lastname:
+                cursor.execute('''
+                UPDATE user_table
+                SET lastname="{lastname}"
+                WHERE user_id="{userId}";
+                '''.format(lastname=lastname, userId=userId))
+                print('done4')
+
+            farmname = request.form.get('farmname')
+            if farmname:
+                try:
+                    cursor.execute('''
+                    UPDATE farm_table
+                    SET farmname="{farmname}"
+                    WHERE user_id="{userId}";
+                    '''.format(farmname=farmname, userId=userId))
+                    print('done5')
+                except:
+                    return render_template('edit.html', edit=1, userTime=userTime, userData=userData, flash_message='name')
+
+            street = request.form.get('farmStreet')
+            postalCode = request.form.get('farmPostalCode')
+            city = request.form.get('farmCity')
+            if street:
+                cursor.execute('''
+                UPDATE farm_table
+                JOIN adress_table
+                ON adress_table.farm_id=farm_table.farm_id
+                SET adress_table.street="{street}",
+                    adress_table.postalcode="{postalCode}",
+                    adress_table.city="{city}"
+                WHERE farm_table.user_id="{userId}";
+                '''.format(userId=userId, street=street, postalCode=postalCode, city=city))
+                print('done6')
+
+            cursor.execute('''
+            SELECT time_table.day, 
+                time_table.opening, 
+                time_table.closing
+            FROM farm_table
+            JOIN time_table
+            ON time_table.farm_id=farm_table.farm_id
+            WHERE user_id="{userId}";
+            '''.format(userId=userId))
+            timeCheck  = cursor.fetchall()
+
+            # Check if days time is different in db and given value. If yes it will update db
+            mon_b = request.form.get('mon_b')
+            mon_e = request.form.get('mon_e')
+            if str(mon_b) != str(timeCheck[0][1]) and str(mon_e) != str(timeCheck[0][2]):
+                cursor.execute('''
+                UPDATE farm_table
+                JOIN time_table
+                ON time_table.farm_id=farm_table.farm_id
+                SET opening="{mon_b}",
+                    closing="{mon_e}"
+                WHERE farm_table.user_id="{userId}"
+                AND time_table.day="Monday";
+                '''.format(mon_b=mon_b, mon_e=mon_e, userId=userId))
+                print('done7')
+            else:
+                print('equal')
+
+            tue_b = request.form.get('tue_b')
+            tue_e = request.form.get('tue_e')
+            if str(tue_b) != str(timeCheck[1][1]) and str(tue_e) != str(timeCheck[1][2]):
+                cursor.execute('''
+                UPDATE farm_table
+                JOIN time_table
+                ON time_table.farm_id=farm_table.farm_id
+                SET opening="{tue_b}",
+                    closing="{tue_e}"
+                WHERE farm_table.user_id="{userId}"
+                AND time_table.day="Tuesday";
+                '''.format(tue_b=tue_b, tue_e=tue_e, userId=userId))
+                print('done7')
+            else:
+                print('equal')
+
+            wed_b = request.form.get('wed_b')
+            wed_e = request.form.get('wed_e')
+            if str(wed_b) != str(timeCheck[2][1]) and str(wed_e) != str(timeCheck[2][2]):
+                cursor.execute('''
+                UPDATE farm_table
+                JOIN time_table
+                ON time_table.farm_id=farm_table.farm_id
+                SET opening="{wed_b}",
+                    closing="{wed_e}"
+                WHERE farm_table.user_id="{userId}"
+                AND time_table.day="Wednesday";
+                '''.format(wed_b=wed_b, wed_e=wed_e, userId=userId))
+                print('done7')
+            else:
+                print('equal')
+
+            thu_b = request.form.get('thu_b')
+            thu_e = request.form.get('thu_e')
+            if str(thu_b) != str(timeCheck[3][1]) and str(thu_e) != str(timeCheck[3][2]):
+                cursor.execute('''
+                UPDATE farm_table
+                JOIN time_table
+                ON time_table.farm_id=farm_table.farm_id
+                SET opening="{thu_b}",
+                    closing="{thu_e}"
+                WHERE farm_table.user_id="{userId}"
+                AND time_table.day="Thursday";
+                '''.format(thu_b=thu_b, thu_e=thu_e, userId=userId))
+                print('done7')
+            else:
+                print('equal')
+
+            fri_b = request.form.get('fri_b')
+            fri_e = request.form.get('fri_e')
+            if str(fri_b) != str(timeCheck[4][1]) and str(fri_e) != str(timeCheck[4][2]):
+                cursor.execute('''
+                UPDATE farm_table
+                JOIN time_table
+                ON time_table.farm_id=farm_table.farm_id
+                SET opening="{fri_b}",
+                    closing="{fri_e}"
+                WHERE farm_table.user_id="{userId}"
+                AND time_table.day="Friday";
+                '''.format(fri_b=fri_b, fri_e=fri_e, userId=userId))
+                print('done7')
+            else:
+                print('equal')
+
+            sat_b = request.form.get('sat_b')
+            sat_e = request.form.get('sat_e')
+            if str(sat_b) != str(timeCheck[5][1]) and str(sat_e) != str(timeCheck[5][2]):
+                cursor.execute('''
+                UPDATE farm_table
+                JOIN time_table
+                ON time_table.farm_id=farm_table.farm_id
+                SET opening="{sat_b}",
+                    closing="{sat_e}"
+                WHERE farm_table.user_id="{userId}"
+                AND time_table.day="Saturday";
+                '''.format(sat_b=sat_b, sat_e=sat_e, userId=userId))
+                print('done7')
+            else:
+                print('equal')
+
+            sun_b = request.form.get('sun_b')
+            sun_e = request.form.get('sun_e')
+            if str(sun_b) != str(timeCheck[6][1]) and str(sun_e) != str(timeCheck[6][2]):
+                cursor.execute('''
+                UPDATE farm_table
+                JOIN time_table
+                ON time_table.farm_id=farm_table.farm_id
+                SET opening="{sun_b}",
+                    closing="{sun_e}"
+                WHERE farm_table.user_id="{userId}"
+                AND time_table.day="Sunday";
+                '''.format(sun_b=sun_b, sun_e=sun_e, userId=userId))
+                print('done7')
+            else:
+                print('equal')
+
+            cursor.execute('COMMIT;')
+            return redirect('/profile')
+
+        cursor.close()
+        return render_template('edit.html', edit=1, userData=userData, userTime=userTime, flash_message='')
 
 
 # if __name__ == "__main__":
