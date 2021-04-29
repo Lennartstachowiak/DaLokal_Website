@@ -50,7 +50,7 @@
 <div class="alignProductButton">
   <h3>Our<br><span style="color: #66D836;">Products</span></h3>
 
-  <button id="addProduct" onclick="openModal('simpleModal')" style="margin-left: auto;">
+  <button class="profileButton" id="addProduct" onclick="openModal('simpleModal')" style="margin-left: auto;">
     <div class="alignButtonContent">
       <img class="iconButton" src="/static/icon_file/add.svg" alt=""> Add product
     </div>
@@ -116,7 +116,7 @@
     <img src="../static/product_img/{{product[4]}}" class="productImage">
     <!-- Name, Describtion, Price -->
     <div class="productInformation">
-      <button onclick="openModal('deleteModal')" class="deleteProduct"><img class="deleteIcon" src="/static/icon_file/trash.svg" alt=""></button>
+      <button id="deleteProduct" onclick="openModal('deleteModal')" class="deleteProduct"><img class="deleteIcon" src="/static/icon_file/trash.svg" alt=""></button>
       <h4>{{product[3]}}</h4>
       <p class="productText">{{product[5]}}</p>
       <p class="productText">#{{product[2]}}</p>

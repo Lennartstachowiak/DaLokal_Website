@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page_title }}</title>
+    <link rel="icon" type="image/png" href="/static/DaLokal_Icon.png"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <script src="/static/script.js"></script>
 </head>
@@ -28,8 +29,8 @@
                     </div>
                 </button>
             </form>
-            <form id="edit" action="/profile/edit">
-                <button class="logInButton">
+            <form action="/profile/edit">
+                <button id="edit" class="logInButton profileButton">
                     <div class="alignButtonContent">
                         <img class="iconButton" src="/static/icon_file/edit.svg"> <nav>Edit</nav> 
                     </div>

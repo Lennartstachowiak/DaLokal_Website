@@ -33,8 +33,8 @@ function timecheck(b, e) {
 
 function adressChange() {
     if (document.getElementById('farmStreet').value != "" ||
-    document.getElementById('farmPostalCode').value != "" ||
-    document.getElementById('farmCity').value != "") {
+        document.getElementById('farmPostalCode').value != "" ||
+        document.getElementById('farmCity').value != "") {
         document.getElementById('farmStreet').required = true;
         document.getElementById('farmPostalCode').required = true;
         document.getElementById('farmCity').required = true;
@@ -94,9 +94,13 @@ function filter(filter) {
 }
 
 function checkIfUser(notMyAccount) {
-    if (notMyAccount == 1) {
-        document.getElementById('edit').style.display = 'none';
-        document.getElementById('addProduct').style.display = 'none';
+    if (notMyAccount != 1) {
+        document.getElementById('edit').style.display = 'block';
+        if (document.getElementById('addProduct')) {
+            document.getElementById('addProduct').style.display = 'block';
+        } if (document.getElementById('deleteProduct')) {
+            document.getElementById('deleteProduct').style.display = 'block';
+        }
     }
 }
 

@@ -26,6 +26,7 @@ app = Blueprint('app', __name__)
 
 # Database connection for local connection
 
+
 def connectDatabase():
     cursor = pymysql.connect(
         host='localhost',
@@ -132,7 +133,6 @@ def index():
         farmId = farm[0]
         farm = farm + (openOrClosed(farmId),)
         farmsUpdated = farmsUpdated + (farm,)
-    print(farmsUpdated)
     if 'userId' not in session:
         return render_template('index.html', farms=farmsUpdated)
     else:
@@ -435,7 +435,6 @@ def edit():
                     SET password="{password}"
                     WHERE user_id="{userId}";
                     '''.format(password=password, userId=userId))
-                    print('done2')
                 else:
                     return render_template('edit.html', edit=1, userTime=userTime, userData=userData, flash_message='psw')
 
@@ -446,7 +445,6 @@ def edit():
                 SET firstname="{firstname}"
                 WHERE user_id="{userId}";
                 '''.format(firstname=firstname, userId=userId))
-                print('done3')
 
             lastname = request.form.get('lastname')
             if lastname:
@@ -455,7 +453,6 @@ def edit():
                 SET lastname="{lastname}"
                 WHERE user_id="{userId}";
                 '''.format(lastname=lastname, userId=userId))
-                print('done4')
 
             farmname = request.form.get('farmname')
             if farmname:
@@ -465,7 +462,6 @@ def edit():
                     SET farmname="{farmname}"
                     WHERE user_id="{userId}";
                     '''.format(farmname=farmname, userId=userId))
-                    print('done5')
                 except:
                     return render_template('edit.html', edit=1, userTime=userTime, userData=userData, flash_message='name')
 
@@ -482,7 +478,6 @@ def edit():
                     adress_table.city="{city}"
                 WHERE farm_table.user_id="{userId}";
                 '''.format(userId=userId, street=street, postalCode=postalCode, city=city))
-                print('done6')
 
             cursor.execute('''
             SELECT time_table.day, 
@@ -508,9 +503,7 @@ def edit():
                 WHERE farm_table.user_id="{userId}"
                 AND time_table.day="Monday";
                 '''.format(mon_b=mon_b, mon_e=mon_e, userId=userId))
-                print('done7')
-            else:
-                print('equal')
+           
 
             tue_b = request.form.get('tue_b')
             tue_e = request.form.get('tue_e')
@@ -524,9 +517,7 @@ def edit():
                 WHERE farm_table.user_id="{userId}"
                 AND time_table.day="Tuesday";
                 '''.format(tue_b=tue_b, tue_e=tue_e, userId=userId))
-                print('done7')
-            else:
-                print('equal')
+            
 
             wed_b = request.form.get('wed_b')
             wed_e = request.form.get('wed_e')
@@ -540,9 +531,7 @@ def edit():
                 WHERE farm_table.user_id="{userId}"
                 AND time_table.day="Wednesday";
                 '''.format(wed_b=wed_b, wed_e=wed_e, userId=userId))
-                print('done7')
-            else:
-                print('equal')
+            
 
             thu_b = request.form.get('thu_b')
             thu_e = request.form.get('thu_e')
@@ -556,9 +545,7 @@ def edit():
                 WHERE farm_table.user_id="{userId}"
                 AND time_table.day="Thursday";
                 '''.format(thu_b=thu_b, thu_e=thu_e, userId=userId))
-                print('done7')
-            else:
-                print('equal')
+            
 
             fri_b = request.form.get('fri_b')
             fri_e = request.form.get('fri_e')
@@ -572,9 +559,7 @@ def edit():
                 WHERE farm_table.user_id="{userId}"
                 AND time_table.day="Friday";
                 '''.format(fri_b=fri_b, fri_e=fri_e, userId=userId))
-                print('done7')
-            else:
-                print('equal')
+            
 
             sat_b = request.form.get('sat_b')
             sat_e = request.form.get('sat_e')
@@ -588,9 +573,7 @@ def edit():
                 WHERE farm_table.user_id="{userId}"
                 AND time_table.day="Saturday";
                 '''.format(sat_b=sat_b, sat_e=sat_e, userId=userId))
-                print('done7')
-            else:
-                print('equal')
+            
 
             sun_b = request.form.get('sun_b')
             sun_e = request.form.get('sun_e')
@@ -604,9 +587,7 @@ def edit():
                 WHERE farm_table.user_id="{userId}"
                 AND time_table.day="Sunday";
                 '''.format(sun_b=sun_b, sun_e=sun_e, userId=userId))
-                print('done7')
-            else:
-                print('equal')
+            
 
             cursor.execute('COMMIT;')
             return redirect('/profile')

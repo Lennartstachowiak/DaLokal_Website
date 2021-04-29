@@ -979,11 +979,17 @@ h2 {
 }
 
 .deleteProduct {
+    display: none;
     width: 35px;
     height: 35px;
     transition: 0.2s;
     float: right;
 }
+
+.profileButton {
+    display: none;
+}
+
 .deleteProduct:hover {
     background-color: red;
     transition: 0.2s;
