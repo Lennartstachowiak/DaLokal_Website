@@ -6,7 +6,7 @@
 
 <div class="firstBlock">
   <!-- !!! Have to change this to {{farmer_img}} -->
-  <img src="/static/farmHourseExample.jpg" alt="" class="farmerImage">
+  <img src="/static/farmer_img/{{farmImg}}" alt="" class="farmerImage">
   <div class="farmDescriptionBox">
     <div class="infoContainer">
       <h1 class="farmerName">{{farmname}}</h1>
@@ -36,7 +36,7 @@
         </table>
         {% else %}
         <div class="noTime">
-          <img src="/static/bug.svg" alt="" style="height: 28px; width: 28px; margin-bottom: 10px;">
+          <img src="/static/icon_file/bug.svg" alt="" style="height: 28px; width: 28px; margin-bottom: 10px;">
           <p>No opening hours provided!</p>
         </div>
 
@@ -52,7 +52,7 @@
 
   <button id="addProduct" onclick="openModal('simpleModal')" style="margin-left: auto;">
     <div class="alignButtonContent">
-      <img class="iconButton" src="/static/add.svg" alt=""> Add product
+      <img class="iconButton" src="/static/icon_file/add.svg" alt=""> Add product
     </div>
   </button>
 </div>
@@ -113,15 +113,30 @@
   {% for product in products %}
   <div class="productBoxContent">
     <!-- Image -->
-    <img src="/static/carrots.jpg" alt="" class="productImage">
+    <img src="../static/product_img/{{product[4]}}" class="productImage">
     <!-- Name, Describtion, Price -->
     <div class="productInformation">
-      <h4>{{product[2]}}</h4>
-      <p class="productText">{{product[3]}}</p>
-      <p class="productText">#{{product[1]}}</p>
+      <button onclick="openModal('deleteModal')" class="deleteProduct"><img class="deleteIcon" src="/static/icon_file/trash.svg" alt=""></button>
+      <h4>{{product[3]}}</h4>
+      <p class="productText">{{product[5]}}</p>
+      <p class="productText">#{{product[2]}}</p>
       <div class="productButtonLine">
-        <div class="priceWeightProduct">{{product[4]}} €</div>
-        <div class="priceWeightProduct">{{product[5]}} kg</div>
+        <div class="priceWeightProduct">{{product[6]}} €</div>
+        <div class="priceWeightProduct">{{product[7]}} kg</div>
+      </div>
+    </div>
+  </div>
+  <div id="deleteModal" class="logoutModal">
+    <div class="logoutContent">
+      <button onclick="closeModal('deleteModal')" class="closeBtn">&times;</button>
+      <div class="modalContainer">
+          <h2>Do you really want to delete {{product[3]}}?</h2>
+          <div class="logoutButtons">
+            <form action="/profile/delete-product/{{product[0]}}">
+              <button class="button">Yes</button>
+            </form>
+            <button onclick="closeModal('deleteModal')" class="button">No</button>
+          </div>
       </div>
     </div>
   </div>
@@ -130,26 +145,5 @@
 {% else %}
 <h1 style="margin-bottom: 80px;">No Products</h1>
 {% endif %}
-<div class="locationBox">
-  <!-- First Box -->
-  <div class="locationBoxText">
-    <h2 class="subHeader">My location</h2>
-    <div class="locationBoxTextContent">
-      <p>Lohmühlenstraße 65, 12435 Berlin</p>
-      <div class="locationBoxDistance">
-        <img src="/static/carIcon.svg" alt="" class="carIcon">
-        <div>
-          <p>10 min</p>
-          <p>5 km</p>
-        </div>
-      </div>
-      <button type="button" class="buttonRoute">Route</button>
-    </div>
-  </div>
-  <!-- Second Box -->
-  <!-- Google maps AI -->
-  <img src="/static/maps.png" alt="" class="maps">
-
-</div>
 
 {% endblock %}

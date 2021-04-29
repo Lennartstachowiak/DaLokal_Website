@@ -13,18 +13,21 @@
 </head>
 
 <body onload="flashMessage('{{flash_message}}')">
-    <a href="/">
-        <div class="logoBoxHeader">
-            <img src="./static/DaLokal_Logo.svg" alt="DaLokal_Logo" class="logo">
-            <h6>DaLokal</h6>
-        </div>
-    </a>
+    <header>
+        <a href="/">
+            <div class="logoBoxHeader">
+                <img src="./static/DaLokal_Logo.svg" alt="DaLokal_Logo" class="logo">
+                <h6>DaLokal</h6>
+            </div>
+        </a>
+    </header>
+
 
     <form action="/signup" method="POST">
         <div class="loginContainer">
             <div id="errorMessage" class="errorMessage"></div>
             <h1>
-                <img class="icon" src="/static/signup.svg"> Sign up
+                <img class="icon" src="/static/icon_file/signup.svg"> Sign up
             </h1>
             <!-- The pattern is checking if the format matches the email pattern -->
             <input class="logInInput inputText" type="email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"

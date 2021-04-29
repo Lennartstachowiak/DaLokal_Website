@@ -72,8 +72,8 @@ h6 {
 }
 
 .iconButton {
-    height: 1rem;
-    width: 1rem;
+    height: 18px;
+    width: 18px;
     margin-right: 8px;
     transition: 0.2s;
 }
@@ -126,6 +126,7 @@ a {
     margin-top: 50px;
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
 }
 
@@ -137,10 +138,9 @@ a {
 }
 
 .farmDescriptionBox {
-    height: 200px;
-    width: 818px;
     margin-left: 28px;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .infoContainer {
@@ -181,8 +181,8 @@ a {
 }
 
 .timeAdressContainer {
-    width: 400px;
     margin-left: 28px;
+    width: 395px;
 }
 
 .adress {
@@ -268,6 +268,7 @@ h3 {
 }
 
 .categorieHeader {
+    align-self: flex-start;
     font-size: 0.9rem;
     font-weight: bold;
     margin-bottom: 2px;
@@ -329,6 +330,7 @@ h4 {
 }
 
 .productImage {
+    object-fit: cover;
     width: 254px;
     height: 254px;
     border-radius: 30px;
@@ -489,6 +491,7 @@ h5 {
 }
 
 .priceInput {
+    background-color: white;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -577,132 +580,6 @@ h5 {
   }
 
 
-
-@media only screen and (max-width: 1200px) {
-
-    body {
-        padding: 0 50px;
-        margin-bottom: 300px;
-    }
-
-    main {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .logoBoxHeader {
-        display: flex;
-        align-items: center;
-        font-weight: bold;
-        font-size: 2rem;
-        color: #414141;
-    }
-    
-    .linkBoxHeader {
-        width: 450px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-style: normal;
-        font-size: 1rem;
-        margin-left: auto;
-    }
-
-
-
-    .aboutMeBox {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 70px;
-        margin-bottom: 100px;
-    }
-    
-    .aboutMeBoxText {
-        width: 536px;
-    }
-    
-    .aboutMeBoxImage {
-        width: 536px;
-        height: 356px;
-        border-radius: 15px;
-        box-shadow: 0px 10px 100px 2px rgba(0, 0, 0, 0.2);
-        margin-left: 0;
-        margin-top: 40px;
-    }
-
-
-
-    .locationBox {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .locationBoxText {
-        height: 250px;
-        width: 536px;
-        order: 1;
-        margin-left: 0;
-    }
-
-
-    .locationBoxTextContent {
-        margin-top: 20px;
-        height: 60%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-    
-    .locationBoxDistance {
-        display: flex;
-    }
-    
-    .carIcon {
-        margin-right: 12px;
-    }
-    
-    .buttonRoute {
-        font-size: 1rem;
-        color: white;
-        background: #66D836;
-        border-radius: 6px;
-        text-align: center;
-        max-width: 200px;
-        height: 50px;
-        border: none;
-    }
-    
-    .maps {
-        order: 1;
-        width: 536px;
-        height: 356px;
-        box-shadow: 0px 10px 100px 2px rgba(0, 0, 0, 0.2);
-        border-radius: 15px;
-        object-fit: cover;
-        overflow: hidden;
-    }
-
-
-
-    .productBox {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    h3 {
-        width: 536px;
-        font-family: SF Pro Display;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 2.5rem;
-        margin: 100px 0 50px 0;
-    }
-}
-
 .logo {
     height: 40px;
     margin-right: 10px;
@@ -751,8 +628,6 @@ h1 {
 }
 
 .loginContainer {
-    height: 100%;
-    min-height: 750px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -809,7 +684,6 @@ p {
 
 .timeContainer {
     margin-top: 20px;
-    width: 400px;
 }
 
 .dayContainer {
@@ -839,6 +713,21 @@ button:hover {
     background-color: #66D836;
     color: white;
     cursor: pointer;
+}
+
+.checkboxImg input{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkboxImg input:checked ~ .farmImg{
+    transform: scale(1.1);
+    box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.5);
+}
+
+.alignFarmImg {
+    display: flex;
 }
 
 .farmInput {
@@ -881,48 +770,6 @@ button:hover {
     background-color: #67d8368e;
 }
 
-@media only screen and (max-width: 1150px) {
-    .logo {
-        height: 2.5rem;
-        margin-right: 10px;
-        margin-left: 25px;
-    }
-
-    body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        width: 1150px;
-    }
-}
-
-@media only screen and (max-width: 450px) {
-    .logo {
-        margin-left: 0px;
-    }
-
-    .logoBoxHeader {
-        width: 100%;
-        margin-top: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .logInInput {
-        max-width: 300px;
-        min-height: 64px;
-    }
-
-    .errorMessage {
-        text-align: center;
-        max-width: 200px;
-        padding: 0 50px;
-        min-height: 80px;
-    }
-}
-
-
 /* Mainpage *//* Mainpage *//* Mainpage */
 /* Mainpage *//* Mainpage *//* Mainpage */
 /* Mainpage *//* Mainpage *//* Mainpage */
@@ -957,6 +804,7 @@ button:hover {
     background-color: white;
     width: 536px;
     height: 274px;
+    padding: 0;
 
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
@@ -1005,6 +853,7 @@ button:hover {
 }
 
 h2 {
+    text-align: center;
     display: flex;
     align-items: center;
     font-size: 1.1rem;
@@ -1025,6 +874,7 @@ h2 {
 }
 
 .farmAdress {
+    align-self: flex-start;
     margin-bottom: 16px;
     font-size: 0.9rem;
 }
@@ -1036,8 +886,8 @@ h2 {
 
 .farmProductCategories {
     margin-top: 5px;
-    height: 60px;
-    width: 117px;
+    height: 50%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1126,4 +976,422 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.deleteProduct {
+    width: 35px;
+    height: 35px;
+    transition: 0.2s;
+    float: right;
+}
+.deleteProduct:hover {
+    background-color: red;
+    transition: 0.2s;
+}
+
+.deleteIcon {
+    height: 15px;
+    width: 15px;
+}
+.deleteProduct:hover  .deleteIcon{
+    filter: invert(100%) sepia(6%) saturate(1%) hue-rotate(87deg) brightness(106%) contrast(100%);
+}
+
+@media only screen and (max-width: 1200px) {
+
+    body {
+        padding: 0 50px;
+        margin-bottom: 300px;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .logoBoxHeader {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        font-size: 2rem;
+        color: #414141;
+    }
+
+    .firstBlock {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    .farmerImage {
+        margin-bottom: 50px;
+    }
+
+    .farmerName {
+        text-align: center;
+    }
+
+    .farmDescriptionBox {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-wrap: nowrap;
+    }
+
+    .timeAdressContainer {
+        margin: 0;
+    }
+
+    .locationBox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .locationBoxText {
+        height: 250px;
+        width: 536px;
+        order: 1;
+        margin-left: 0;
+    }
+
+
+    .locationBoxTextContent {
+        margin-top: 20px;
+        height: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .locationBoxDistance {
+        display: flex;
+    }
+    
+    .carIcon {
+        margin-right: 12px;
+    }
+    
+    .buttonRoute {
+        font-size: 1rem;
+        color: white;
+        background: #66D836;
+        border-radius: 6px;
+        text-align: center;
+        max-width: 200px;
+        height: 50px;
+        border: none;
+    }
+    
+    .maps {
+        order: 1;
+        width: 536px;
+        height: 356px;
+        box-shadow: 0px 10px 100px 2px rgba(0, 0, 0, 0.2);
+        border-radius: 15px;
+        object-fit: cover;
+        overflow: hidden;
+    }
+
+    .farmBoxesContainer {
+        flex-direction: column;
+    }
+
+    .productCategorieBox {
+        margin-right: 15px;
+        margin-bottom: 15px;
+    }
+
+    .productCategorieContainer {
+        justify-content: center;
+        margin-bottom: 35px;
+    }
+
+    .productBox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h3 {
+        width: 536px;
+        font-family: SF Pro Display;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 2.5rem;
+        margin: 50px 0 50px 0;
+    }
+}
+
+/* Phone */
+@media only screen and (max-width: 700px) {
+    body {
+        padding: 0 25px;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .iconButton {
+        height: 16px;
+        width: 16px;
+        margin: 0;
+    }
+
+    .logInButton {
+        width: 45px;
+        margin-left: 15px;
+    }
+
+    .productCategorieContainer {
+        width: 422px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .farmBox {
+        width: 482.4px;
+        height: 246.6px;
+    }
+
+    h2 {
+        font-size: 0.9rem;
+    }
+
+    .farmAdress, .categorieHeader, .farmProductTags {
+        font-size: 0.8rem;
+    }
+
+    .farmProductImg {
+        height: 36px;
+        width: 36px;
+    }
+
+    .buttonOpen {
+        height: 22.5px;
+        width: 58.5px;
+        font-size: 0.7rem;
+    }
+
+    .farmImg {
+        height: 210.6px;
+        width: 210.6px;
+        margin: 18px 9px 18px 18px;
+    }
+
+    .farmInfo {
+        height: 210.6px;
+        width: 210.6px;
+        margin: 18px 18px 18px 9px;
+    }
+}
+
+@media only screen and (max-width: 535px) {
+    .farmBox {
+        width: 434.15px;
+        height: 221.93px;
+    }
+
+    h2 {
+        font-size: 0.8rem;
+    }
+
+    .farmAdress, .categorieHeader, .farmProductTags {
+        font-size: 0.7rem;
+    }
+
+    .farmProductImg {
+        height: 32.4px;
+        width: 32.4px;
+    }
+
+    .buttonOpen {
+        height: 20.25px;
+        width: 52.65px;
+        font-size: 0.6rem;
+    }
+
+    .farmImg {
+        height: 189.53px;
+        width: 189.53px;
+        margin: 16.2px 8.1px 16.2px 16.2px;
+    }
+
+    .farmInfo {
+        height: 189.53px;
+        width: 189.53px;
+        margin: 16.2px 16.2px 16.2px 8.1px;
+    }
+}
+
+@media only screen and (max-width: 590px) {
+
+    .productCategorieContainer {
+        width: 390.73px;
+    }
+
+    .productCategorieBox {
+        height: 108px;
+        width: 176.4px;
+    }
+
+    .productCategorieText {
+        font-size: 0.9rem;
+    }
+
+    .farmBox {
+        width: 390.73px;
+        height: 199.73px;
+    }
+
+    h2 {
+        font-size: 0.8rem;
+    }
+
+    .farmAdress, .categorieHeader, .farmProductTags {
+        font-size: 0.7rem;
+    }
+
+    .farmProductImg {
+        height: 32.4px;
+        width: 32.4px;
+    }
+
+    .buttonOpen {
+        height: 18.23px;
+        width: 47.38px;
+        font-size: 0.6rem;
+    }
+
+    .farmImg {
+        height: 170.56px;
+        width: 170.56px;
+        margin: 14.58px 7.29.1px 14.58px 14.58px;
+    }
+
+    .farmInfo {
+        height: 170.56px;
+        width: 170.56px;
+        margin: 14.58px 14.58px 14.58px 7.29px;
+    }
+}
+
+@media only screen and (max-width: 445px) {
+
+    .productCategorieContainer {
+        width: 352px;
+    }
+
+    .productCategorieBox {
+        height: 108px;
+        width: 158.75px;
+    }
+
+    .productCategorieText {
+        font-size: 0.7rem;
+    }
+
+    .farmBox {
+        width: 351.65px;
+        height: 179.75px;
+    }
+
+    h2 {
+        font-size: 0.7rem;
+    }
+
+    .farmAdress, .categorieHeader, .farmProductTags {
+        font-size: 0.6rem;
+    }
+
+    .farmProductImg {
+        height: 32.4px;
+        width: 32.4px;
+    }
+
+    .buttonOpen {
+        height: 16.4px;
+        width: 42.64px;
+        font-size: 0.5rem;
+    }
+
+    .farmImg {
+        height: 153.49px;
+        width: 153.49px;
+        margin: 13.02px 6.51px 13.02px 13.02px;
+    }
+
+    .farmInfo {
+        height: 153.49px;
+        width: 153.49px;
+        margin: 13.02px 13.02px 13.02px 6.51px;
+    }
+}
+
+@media only screen and (max-width: 405px) {
+
+    .productCategorieContainer {
+        width: 332px;
+    }
+
+    .productCategorieBox {
+        height: 97.2px;
+        width: 142.88px;
+    }
+
+    .productCategorieImg {
+        height: 63px;
+        width: 63px;
+    }
+
+    .productCategorieText {
+        font-size: 0.6rem;
+    }
+
+    .farmBox {
+        width: 316.48px;
+        height: 161.78px;
+    }
+
+    h2 {
+        font-size: 0.7rem;
+    }
+
+    .farmAdress, .categorieHeader, .farmProductTags {
+        font-size: 0.5rem;
+    }
+
+    .farmProductImg {
+        height: 32.4px;
+        width: 32.4px;
+    }
+
+    .buttonOpen {
+        height: 16.4px;
+        width: 42.64px;
+        font-size: 0.4rem;
+    }
+
+    .farmImg {
+        height: 138.14px;
+        width: 138.14px;
+        margin: 11.7px 5.85px 11.7px 11.7px;
+    }
+
+    .farmInfo {
+        height: 138.14px;
+        width: 138.14px;
+        margin: 11.7px 11.7px 11.7px 5.85px;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    body {
+        padding: 0 10px;
+    }
 }

@@ -24,23 +24,26 @@
             <form action="/">
                 <button class="logInButton">
                     <div class="alignButtonContent">
-                        <img class="iconButton" src="/static/home.svg"> Homepage
+                        <img class="iconButton" src="/static/icon_file/home.svg"> <nav>Homepage</nav> 
                     </div>
                 </button>
             </form>
             <form id="edit" action="/profile/edit">
                 <button class="logInButton">
                     <div class="alignButtonContent">
-                        <img class="iconButton" src="/static/edit.svg"> Edit
+                        <img class="iconButton" src="/static/icon_file/edit.svg"> <nav>Edit</nav> 
                     </div>
                 </button>
             </form>
+
             <!-- Log out button ask again -->
+            {% if notLoggedIn != 1 %}
             <button onclick="openModal('logoutModal')" class="logInButton">
                 <div class="alignButtonContent">
-                    <img class="iconButton" src="/static/logout.svg"> Log out
+                    <img class="iconButton" src="/static/icon_file/logout.svg"> <nav>Log out</nav> 
                 </div>
             </button>
+            {% endif %}
         </div>
     </header>
     <main>

@@ -19,25 +19,25 @@
         </a>
         <button onclick="openModal('logoutModal')" style="margin-left: auto;" class="signOutButton">
             <div class="alignButtonContent">
-                <img class="iconButton" src="/static/logout.svg"> Log out
+                <img class="iconButton" src="/static/icon_file/logout.svg"> Log out
             </div>
         </button>
     </header>
     <main>
         <div id="logoutModal" class="logoutModal">
             <div class="logoutContent">
-              <button onclick="closeModal('logoutModal')" class="closeBtn">&times;</button>
-              <div class="modalContainer">
-                  <h2>Do you really want to logout?</h2>
-                  <div class="logoutButtons">
-                    <form action="/logout">
-                      <button class="button">Yes</button>
-                    </form>
-                    <button onclick="closeModal('logoutModal')" class="button">No</button>
-                  </div>
-              </div>
+                <button onclick="closeModal('logoutModal')" class="closeBtn">&times;</button>
+                <div class="modalContainer">
+                    <h2>Do you really want to logout?</h2>
+                    <div class="logoutButtons">
+                        <form action="/logout">
+                            <button class="button">Yes</button>
+                        </form>
+                        <button onclick="closeModal('logoutModal')" class="button">No</button>
+                    </div>
+                </div>
             </div>
-          </div>
+        </div>
         <form method="POST" action="/signup/complete-signup/farm-information">
             <div class="loginContainer">
                 <div id="errorMessage" class="errorMessage"></div>
@@ -197,8 +197,34 @@
                     <input class="inputAdress" placeholder="City" type="text" name="farmCity" id="farmCity" required>
                 </div>
 
-                <textarea maxlength="700" class="descriptionText" placeholder="Enter your description about your farm" type="text"
-                    name="farmDescription" id="farmDescription" required></textarea>
+                <textarea maxlength="700" class="descriptionText" placeholder="Enter your description about your farm"
+                    type="text" name="farmDescription" id="farmDescription" required></textarea>
+                <div>
+                    <h5 style="margin-bottom: 20px;">Choose a profile picture</h5>
+                    <div class="alignFarmImg">
+                        <label class="checkboxImg">
+                            <input type="radio" id="firstImg" name="farmImg" value="farm1.jpg" required>
+                            <img class="farmImg" src="/static/farmer_img/farm1.jpg">
+                        </label>
+                        <label class="checkboxImg">
+                            <input type="radio" id="secondImg" name="farmImg" value="farm2.jpg" required>
+                            <img class="farmImg" src="/static/farmer_img/farm2.jpg">
+                        </label>
+                    </div>
+                    <div class="alignFarmImg">
+                        <label class="checkboxImg">
+                            <input type="radio" id="thirdImg" name="farmImg" value="farm3.jpg" required>
+                            <img class="farmImg" src="/static/farmer_img/farm3.jpg">
+                        </label>
+                        <label class="checkboxImg">
+                            <input type="radio" id="forthImg" name="farmImg" value="farm4.jpg" required>
+                            <img class="farmImg" src="/static/farmer_img/farm4.jpg">
+
+                        </label>
+                    </div>
+
+                </div>
+
                 <button
                     onclick="timecheck('mon_b','mon_e'), timecheck('tue_b','tue_e'), timecheck('wed_b','wed_e'), timecheck('thu_b','thu_e'), timecheck('fri_b','fri_e'), timecheck('sat_b','sat_e'), timecheck('sun_b','sun_e')"
                     class="submit" type="submit" class="signupbtn">Submit</button>

@@ -21,14 +21,14 @@
             <form action="/login">
                 <button class="logInButton">
                     <div class="alignButtonContent">
-                        <img class="iconButton" src="/static/login.svg"> Log in
+                        <img class="iconButton" src="/static/icon_file/login.svg"> <nav>Log in</nav> 
                     </div>
                 </button>
             </form>
             <form action="/signup">
                 <button class="logInButton">
                     <div class="alignButtonContent">
-                        <img class="iconButton" src="/static/signup.svg"> Sign up
+                        <img class="iconButton" src="/static/icon_file/signup.svg"> <nav>Sign up</nav> 
                     </div>
                 </button>
             </form>
@@ -36,13 +36,13 @@
             <form action="/profile">
                 <button class="logInButton">
                     <div class="alignButtonContent">
-                        <img class="iconButton" src="/static/profile.svg"> {{firstname}}
+                        <img class="iconButton" src="/static/icon_file/profile.svg"> <nav>{{firstname}}</nav> 
                     </div>
                 </button>
             </form>
             <button onclick="openModal('logoutModal')" class="logInButton">
                 <div class="alignButtonContent">
-                    <img class="iconButton" src="/static/logout.svg"> Log out
+                    <img class="iconButton" src="/static/icon_file/logout.svg"> <nav>Log out</nav> 
                 </div>
             </button>
             {% endif %}
@@ -70,42 +70,34 @@
                 <div class="productCategorieBox">
                     <p class="productCategorieText">All categories</p>
                 </div>
-
-                </input>
             </label>
             <label class="checkbox">
                 <input name="filter" onclick="filter('Vegetables')" type="radio">
                 <div class="productCategorieBox">
-                    <img class="productCategorieImg" src="/static/icon_file/vegetables.png" alt="">
+                    <img class="productCategorieImg" src="/static/icon_file/vegetable_icon.svg" alt="">
                     <p class="productCategorieText">Vegetables</p>
                 </div>
-
-                </input>
             </label>
             <label class="checkbox">
                 <input name="filter" onclick="filter('Milk products')" type="radio">
                 <div class="productCategorieBox">
-                    <img class="productCategorieImg" src="/static/icon_file/milk_products.png" alt="">
+                    <img class="productCategorieImg" src="/static/icon_file/milk_icon.svg" alt="">
                     <p class="productCategorieText">Milk products</p>
                 </div>
-
-                </input>
             </label>
             <label class="checkbox">
                 <input name="filter" onclick="filter('Wheat')" type="radio">
                 <div class="productCategorieBox">
-                    <img class="productCategorieImg" src="/static/icon_file/wheat.png" alt="">
+                    <img class="productCategorieImg" src="/static/icon_file/wheat_icon.svg" alt="">
                     <p class="productCategorieText">Wheat</p>
                 </div>
-                </input>
             </label>
             <label class="checkbox">
                 <input name="filter" onclick="filter('Meat')" type="radio">
                 <div class="productCategorieBox">
-                    <img class="productCategorieImg" src="/static/icon_file/meat.png" alt="">
+                    <img class="productCategorieImg" src="/static/icon_file/meat_icon.svg" alt="">
                     <p class="productCategorieText">Meat</p>
                 </div>
-                </input>
             </label>
         </div>
 
@@ -116,14 +108,14 @@
             <section>
                 <form action="/user/{{farm[1]}}">
                     <button type="submit" class="farmBox">
-                        <img class="farmImg" src="/static/farmHourseExample.jpg" alt="">
+                        <img class="farmImg" src="/static/farmer_img/{{farm[2]}}" alt="">
                         <div class="farmInfo">
                             <div class="farmInfoFirstLine">
                                 <h2>{{farm[1]}}</h2>
-                                {% if farm[9] == 0 %}
+                                {% if farm[10] == 0 %}
                                 <div class="buttonOpen" style="background-color: #FF0000;">Closed</div>
                                 {% else %}
-                                {% if farm[9] == 1 %}
+                                {% if farm[10] == 1 %}
                                 <div class="buttonOpen">Open</div>
                                 {% else %}
                                 <div class="buttonOpen" style="background-color: #f4f4f4; color: rgb(131, 131, 131);">No
@@ -131,31 +123,31 @@
                                 {% endif %}
                                 {% endif %}
                             </div>
-                            <div class="farmAdress">{{farm[2]}}, {{farm[3]}} {{farm[4]}}</div>
-                            {% if farm[5] or farm[6] or farm[7] or farm[8] != 0 %}
+                            <div class="farmAdress">{{farm[3]}}, {{farm[4]}} {{farm[5]}}</div>
+                            {% if farm[6] or farm[7] or farm[8] or farm[9] != 0 %}
+                            <div class="categorieHeader">Product categories:</div>
                             <div class="farmProductCategoriesContainer">
-                                <div class="categorieHeader">Product categories:</div>
-                                {% if farm[5] != 0 %}
-                                <div class="farmProductCategories">
-                                    <img class="farmProductImg" src="/static/icon_file/vegetables.png" alt="Here">
-                                    <p class="farmProductTags">Vegetables</p>
-                                </div>
-                                {% endif %}
                                 {% if farm[6] != 0 %}
                                 <div class="farmProductCategories">
-                                    <img class="farmProductImg" src="/static/icon_file/milk_products.png" alt="Here">
-                                    <p class="farmProductTags">Milk products</p>
+                                    <img class="farmProductImg" src="/static/icon_file/vegetable_icon.svg" alt="Here">
+                                    <p class="farmProductTags">Vegetables</p>
                                 </div>
                                 {% endif %}
                                 {% if farm[7] != 0 %}
                                 <div class="farmProductCategories">
-                                    <img class="farmProductImg" src="/static/icon_file/wheat.png" alt="Here">
-                                    <p class="farmProductTags">Wheat</p>
+                                    <img class="farmProductImg" src="/static/icon_file/milk_icon.svg" alt="Here">
+                                    <p class="farmProductTags">Milk products</p>
                                 </div>
                                 {% endif %}
                                 {% if farm[8] != 0 %}
                                 <div class="farmProductCategories">
-                                    <img class="farmProductImg" src="/static/icon_file/meat.png" alt="Here">
+                                    <img class="farmProductImg" src="/static/icon_file/wheat_icon.svg" alt="Here">
+                                    <p class="farmProductTags">Wheat</p>
+                                </div>
+                                {% endif %}
+                                {% if farm[9] != 0 %}
+                                <div class="farmProductCategories">
+                                    <img class="farmProductImg" src="/static/icon_file/meat_icon.svg" alt="Here">
                                     <p class="farmProductTags">Meat</p>
                                 </div>
                                 {% endif %}

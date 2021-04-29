@@ -26,7 +26,6 @@ app = Blueprint('app', __name__)
 
 # Database connection for local connection
 
-
 def connectDatabase():
     cursor = pymysql.connect(
         host='localhost',
@@ -109,6 +108,7 @@ def index():
     cursor.execute('''
         SELECT farm_table.farm_id,
             farm_table.farmname,
+            farm_table.farm_img,
             adress_table.street,
             adress_table.postalcode,
             adress_table.city,
@@ -132,7 +132,7 @@ def index():
         farmId = farm[0]
         farm = farm + (openOrClosed(farmId),)
         farmsUpdated = farmsUpdated + (farm,)
-
+    print(farmsUpdated)
     if 'userId' not in session:
         return render_template('index.html', farms=farmsUpdated)
     else:
@@ -199,7 +199,8 @@ def profile():
         farmInfo = cursor.fetchone()
         farmId = farmInfo[0]
         farmname = farmInfo[2]
-        description = farmInfo[3]
+        farmImg = farmInfo[3]
+        description = farmInfo[4]
         # Time
         cursor.execute('''SELECT * FROM time_table WHERE farm_id="{farmId}" 
                         ORDER BY 
@@ -212,6 +213,12 @@ def profile():
                                 WHEN day = 'Sunday' THEN 7
                         END ASC;'''.format(farmId=farmId))
         times = cursor.fetchall()
+        timesUpdated = ()
+        for time in times:
+            if str(time[2]) != '0:00:00':
+                timesUpdated = timesUpdated + (time,)
+                
+                
         # Adress
         cursor.execute(
             '''SELECT * FROM adress_table WHERE farm_id="{farmId}";'''.format(farmId=farmId))
@@ -219,11 +226,11 @@ def profile():
         adress = farmAdress[1]+', '+str(farmAdress[2])+' '+farmAdress[3]
         cursor.execute('''
             SELECT 
-                farm_id, category, product_name, product_description, product_price, product_weight 
+                product_id, farm_id, category, product_name, product_img, product_description, product_price, product_weight 
             FROM product_table WHERE farm_id="{farmId}";'''.format(farmId=farmId))
         products = cursor.fetchall()
         cursor.close()
-        return render_template('profile.html', page_title='My Page', farmname=farmname, firstname=firstname, lastname=lastname,  description=description, time=times, adress=adress, products=products)
+        return render_template('profile.html', page_title='My Page', farmname=farmname, farmImg=farmImg, firstname=firstname, lastname=lastname,  description=description, time=timesUpdated, adress=adress, products=products)
 
 
 @app.route('/user/<farmname>', methods=['GET', 'POST'])
@@ -234,11 +241,16 @@ def user(farmname):
     farmInfo = cursor.fetchone()
     farmId = farmInfo[0]
     userId = farmInfo[1]
+    farmImg = farmInfo[3]
     if 'userId' in session:
+        # to remove or keep the logout btn if logged in or not
+        notLoggedIn = 0
         if userId == session['userId']:
             return redirect('/profile')
+    else:
+        notLoggedIn = 1
     farmname = farmInfo[2]
-    description = farmInfo[3]
+    description = farmInfo[4]
     # Time
     cursor.execute('''SELECT * FROM time_table WHERE farm_id="{farmId}" 
                     ORDER BY 
@@ -250,7 +262,11 @@ def user(farmname):
                             WHEN day = 'Saturday' THEN 6
                             WHEN day = 'Sunday' THEN 7
                     END ASC;'''.format(farmId=farmId))
-    time = cursor.fetchall()
+    times = cursor.fetchall()
+    timesUpdated = ()
+    for time in times:
+        if str(time[2]) != '0:00:00':
+            timesUpdated = timesUpdated + (time,)
     # Adress
     cursor.execute(
         '''SELECT * FROM adress_table WHERE farm_id="{farmId}";'''.format(farmId=farmId))
@@ -258,12 +274,12 @@ def user(farmname):
     adress = farmAdress[1]+', '+str(farmAdress[2])+' '+farmAdress[3]
     cursor.execute('''
         SELECT 
-            farm_id, category, product_name, product_description, product_price, product_weight 
+            product_id, farm_id, category, product_name, product_img, product_description, product_price, product_weight 
         FROM product_table WHERE farm_id="{farmId}";'''.format(farmId=farmId))
     products = cursor.fetchall()
     notMyAccount = 1
     cursor.close()
-    return render_template('profile.html', page_title=farmname, farmname=farmname, description=description, time=time, adress=adress, products=products, notMyAccount=notMyAccount)
+    return render_template('profile.html', page_title=farmname, farmname=farmname, farmImg=farmImg, description=description, time=timesUpdated, adress=adress, products=products, notMyAccount=notMyAccount, notLoggedIn = notLoggedIn)
 
 
 @app.route('/profile/product-add', methods=['GET', 'POST'])
@@ -289,32 +305,36 @@ def addProduct():
         farmId = cursor.fetchone()[0]
 
         # Create product
-        productName = request.form.get('productName')
-        productDescription = request.form.get('productDescription')
+        productName = request.form.get('productName').capitalize()
+        productDescription = request.form.get('productDescription').capitalize()
         price = request.form.get('priceEuro')+'.'+request.form.get('priceCent')
         weight = request.form.get('weight')
         category = request.form.get('category')
 
-        # Update category table for the farm
+        # Update category table for the farm and give it a img depending on the category of the product
         if category == "Vegetable":
+            img = 'vegetable.jpg'
             cursor.execute('''
                 UPDATE category_table 
                 SET veg_check = 1 
                 WHERE farm_id = "{farmId}";'''.format(
                 farmId=farmId))
         if category == "Milk product":
+            img = 'milk.jpg'
             cursor.execute('''
                 UPDATE category_table 
                 SET milk_check = 1 
                 WHERE farm_id = "{farmId}";'''.format(
                 farmId=farmId))
         if category == "Wheat":
+            img = 'wheat.jpg'
             cursor.execute('''
                 UPDATE category_table 
                 SET wheat_check = 1 
                 WHERE farm_id = "{farmId}";'''.format(
                 farmId=farmId))
         if category == "Meat":
+            img = 'meat.jpg'
             cursor.execute('''
                 UPDATE category_table 
                 SET meat_check = 1 
@@ -323,13 +343,26 @@ def addProduct():
 
         cursor.execute(
             '''INSERT INTO 
-                product_table (farm_id, category, product_name, product_description, product_price, product_weight) 
-            VALUES ("{farmId}", "{category}", "{productName}", "{productDescription}", "{price}", "{weight}");'''.format(
-                farmId=farmId, category=category, productName=productName, productDescription=productDescription, price=price, weight=weight))
+                product_table (farm_id, category, product_name, product_img, product_description, product_price, product_weight) 
+            VALUES ("{farmId}", "{category}", "{productName}", "{productImg}", "{productDescription}", "{price}", "{weight}");'''.format(
+                farmId=farmId, category=category, productName=productName, productImg=img, productDescription=productDescription, price=price, weight=weight))
         cursor.execute('COMMIT;')
         cursor.close()
 
         return redirect('/profile')
+
+@app.route('/profile/delete-product/<productId>', methods=['GET', 'POST'])
+def deleteProduct(productId):
+    cursor = connectDatabase()
+    cursor.execute('''
+    DELETE
+    FROM product_table
+    WHERE product_id="{productId}";
+    '''.format(productId=productId))
+    cursor.execute('COMMIT;')
+    cursor.close()
+    return redirect('/profile')
+
 
 
 @app.route('/profile/edit', methods=['GET', 'POST'])

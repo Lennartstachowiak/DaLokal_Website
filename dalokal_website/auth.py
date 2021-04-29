@@ -199,8 +199,9 @@ def farm_information():
         if nameCheck == 1:
             return render_template('complete_farm.html', flash_message='name')
         description = request.form.get('farmDescription')
-        cursor.execute('INSERT INTO farm_table (user_id, farmname, description) VALUES ("{userId}", "{farmname}", "{description}");'.format(
-            userId=userId, farmname=farmname, description=description))
+        farmImg = request.form.get('farmImg')
+        cursor.execute('INSERT INTO farm_table (user_id, farmname, farm_img, description) VALUES ("{userId}", "{farmname}", "{farmImg}", "{description}");'.format(
+            userId=userId, farmname=farmname, farmImg=farmImg, description=description))
         cursor.execute('COMMIT;')
 
         # Time
