@@ -523,7 +523,7 @@ h5 {
     transition: 0.2s;
     border-radius: 20px;
     align-self: center;
-    margin-top: 15px;
+    margin-top: 30px;
 }
 
 .submit:hover {
@@ -986,6 +986,14 @@ h2 {
     float: right;
 }
 
+.deleteProfile {
+    margin: 0;
+}
+
+.deleteProfile:hover {
+    background-color: red;
+}
+
 .profileButton {
     display: none;
 }
@@ -1121,15 +1129,6 @@ h2 {
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-
-    h3 {
-        width: 536px;
-        font-family: SF Pro Display;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 2.5rem;
-        margin: 50px 0 50px 0;
     }
 }
 

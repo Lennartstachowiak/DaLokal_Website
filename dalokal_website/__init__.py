@@ -16,6 +16,6 @@ def create_app():
     return app
 
 """ Command line to run local
-export FLASK_APP=project
+export FLASK_APP=dalokal_website
 export FLASK_DEBUG=1
 flask run"""

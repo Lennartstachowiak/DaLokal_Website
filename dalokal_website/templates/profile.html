@@ -73,9 +73,9 @@
               <div>
                 <h5>Price</h5>
                 <div class="price">
-                  <input class="priceInput" type="number" name="priceEuro" id="priceEuro" placeholder="0" required>
+                  <input class="priceInput" type="number" name="priceEuro" id="priceEuro" placeholder="0" min="0" required>
                   <p class="priceText">,</p>
-                  <input class="priceInput" type="number" name="priceCent" id="priceCent" value="00" required>
+                  <input class="priceInput" type="number" name="priceCent" id="priceCent" value="00" min="00" required>
                   <p class="priceText">€</p>
                 </div>
               </div>
@@ -116,7 +116,7 @@
     <img src="../static/product_img/{{product[4]}}" class="productImage">
     <!-- Name, Describtion, Price -->
     <div class="productInformation">
-      <button id="deleteProduct" onclick="openModal('deleteModal')" class="deleteProduct"><img class="deleteIcon" src="/static/icon_file/trash.svg" alt=""></button>
+      <button name="deleteProduct" onclick="openModal('deleteModal{{product[0]}}')" class="deleteProduct"><img class="deleteIcon" src="/static/icon_file/trash.svg" alt=""></button>
       <h4>{{product[3]}}</h4>
       <p class="productText">{{product[5]}}</p>
       <p class="productText">#{{product[2]}}</p>
@@ -126,9 +126,9 @@
       </div>
     </div>
   </div>
-  <div id="deleteModal" class="logoutModal">
+  <div id="deleteModal{{product[0]}}" class="logoutModal">
     <div class="logoutContent">
-      <button onclick="closeModal('deleteModal')" class="closeBtn">&times;</button>
+      <button onclick="closeModal('deleteModal{{product[0]}}')" class="closeBtn">&times;</button>
       <div class="modalContainer">
           <h2>Do you really want to delete {{product[3]}}?</h2>
           <div class="logoutButtons">

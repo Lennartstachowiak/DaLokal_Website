@@ -113,10 +113,10 @@
                         <div class="farmInfo">
                             <div class="farmInfoFirstLine">
                                 <h2>{{farm[1]}}</h2>
-                                {% if farm[10] == 0 %}
+                                {% if farm[11] == 0 %}
                                 <div class="buttonOpen" style="background-color: #FF0000;">Closed</div>
                                 {% else %}
-                                {% if farm[10] == 1 %}
+                                {% if farm[11] == 1 %}
                                 <div class="buttonOpen">Open</div>
                                 {% else %}
                                 <div class="buttonOpen" style="background-color: #f4f4f4; color: rgb(131, 131, 131);">No
@@ -124,29 +124,33 @@
                                 {% endif %}
                                 {% endif %}
                             </div>
-                            <div class="farmAdress">{{farm[3]}}, {{farm[4]}} {{farm[5]}}</div>
-                            {% if farm[6] or farm[7] or farm[8] or farm[9] != 0 %}
-                            <div class="categorieHeader">Product categories:</div>
+                            <div class="farmAdress">{{farm[4]}}, {{farm[5]}} {{farm[6]}}</div>
+                            {% if farm[7] or farm[8] or farm[9] or farm[10] != 0 %}
+                            {% if farm[3] == 1 %}
+                            <div class="categorieHeader">{{farm[3]}} product in this category:</div>
+                            {% else %}
+                            <div class="categorieHeader">{{farm[3]}} products in this category:</div>
+                            {% endif %}
                             <div class="farmProductCategoriesContainer">
-                                {% if farm[6] != 0 %}
+                                {% if farm[7] != 0 %}
                                 <div class="farmProductCategories">
                                     <img class="farmProductImg" src="/static/icon_file/vegetable_icon.svg" alt="Here">
                                     <p class="farmProductTags">Vegetables</p>
                                 </div>
                                 {% endif %}
-                                {% if farm[7] != 0 %}
+                                {% if farm[8] != 0 %}
                                 <div class="farmProductCategories">
                                     <img class="farmProductImg" src="/static/icon_file/milk_icon.svg" alt="Here">
                                     <p class="farmProductTags">Milk products</p>
                                 </div>
                                 {% endif %}
-                                {% if farm[8] != 0 %}
+                                {% if farm[9] != 0 %}
                                 <div class="farmProductCategories">
                                     <img class="farmProductImg" src="/static/icon_file/wheat_icon.svg" alt="Here">
                                     <p class="farmProductTags">Wheat</p>
                                 </div>
                                 {% endif %}
-                                {% if farm[9] != 0 %}
+                                {% if farm[10] != 0 %}
                                 <div class="farmProductCategories">
                                     <img class="farmProductImg" src="/static/icon_file/meat_icon.svg" alt="Here">
                                     <p class="farmProductTags">Meat</p>

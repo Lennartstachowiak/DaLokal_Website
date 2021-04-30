@@ -110,6 +110,7 @@ def index():
         SELECT farm_table.farm_id,
             farm_table.farmname,
             farm_table.farm_img,
+            farm_table.total_products,
             adress_table.street,
             adress_table.postalcode,
             adress_table.city,
@@ -362,6 +363,42 @@ def deleteProduct(productId):
     cursor.execute('COMMIT;')
     cursor.close()
     return redirect('/profile')
+
+@app.route('/profile/delete-profile/<userId>', methods=['GET', 'POST'])
+def deleteProfile(userId):
+    cursor = connectDatabase()
+    cursor.execute('''
+    DELETE product_table,
+        time_table,
+        category_table,
+        adress_table
+    FROM farm_table 
+    JOIN product_table
+    ON product_table.farm_id=farm_table.farm_id
+    JOIN time_table
+    ON time_table.farm_id=farm_table.farm_id
+    JOIN category_table
+    ON category_table.farm_id=farm_table.farm_id
+    JOIN adress_table
+    ON adress_table.farm_id=farm_table.farm_id
+    WHERE farm_table.user_id="{userId}";
+    '''.format(userId=userId))
+    # Have to be separeted deleted because of foreign key constraints
+    cursor.execute('''
+    DELETE
+    FROM farm_table
+    WHERE user_id="{userId}";
+    '''.format(userId=userId))
+    # Have to be separeted deleted because of foreign key constraints
+    cursor.execute('''
+    DELETE
+    FROM user_table
+    WHERE user_id="{userId}";
+    '''.format(userId=userId))
+    cursor.execute('COMMIT;')
+    cursor.close()
+    # go to logout to delete session and than jump to main
+    return redirect('/logout')
 
 
 

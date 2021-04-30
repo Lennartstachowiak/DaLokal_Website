@@ -98,8 +98,10 @@ function checkIfUser(notMyAccount) {
         document.getElementById('edit').style.display = 'block';
         if (document.getElementById('addProduct')) {
             document.getElementById('addProduct').style.display = 'block';
-        } if (document.getElementById('deleteProduct')) {
-            document.getElementById('deleteProduct').style.display = 'block';
+        } if (document.getElementsByClassName('deleteProduct')) {
+            var element = document.getElementsByClassName('deleteProduct');
+            for (i = 0; i<element.length; i++){
+                element[i].style.display = 'block'}
         }
     }
 }

@@ -1,7 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h3 style="text-align: center;">Edit your profile</h3>
+<div style="display: flex; width: 100%;">
+    <div style="flex: 1; display: flex; justify-self: center;"></div>
+    <div style="flex: 1; display: flex; justify-self: center; justify-content: center;"><h3 style="text-align: center;">Edit your profile</h3></div>
+    <div style="flex: 1; display: flex; justify-self: center; justify-content: flex-end;"><button onclick="openModal('deleteModal')" class="deleteProfile">Delete my profile</button></div>
+</div>
+
+<div id="deleteModal" class="logoutModal">
+    <div class="logoutContent">
+      <button onclick="closeModal('deleteModal')" class="closeBtn">&times;</button>
+      <div class="modalContainer">
+          <h2>Do you really want to delete your profile?</h2>
+          <div class="logoutButtons">
+            <form action="/profile/delete-profile/{{userData[0]}}">
+              <button class="button">Yes</button>
+            </form>
+            <button onclick="closeModal('deleteModal')" class="button">No</button>
+          </div>
+      </div>
+    </div>
+  </div>
+
 <form method="POST" action="/profile/edit">
     <div class="editContent">
         <div id="errorMessage" class="errorMessage"></div>
@@ -234,7 +254,7 @@
         </div>
         <button
             onclick="adressChange(), timecheck('mon_b','mon_e'), timecheck('tue_b','tue_e'), timecheck('wed_b','wed_e'), timecheck('thu_b','thu_e'), timecheck('fri_b','fri_e'), timecheck('sat_b','sat_e'), timecheck('sun_b','sun_e')"
-            style="margin-top: 60px;" class="submit" type="submit" class="signupbtn">Submit</button>
+            class="submit" type="submit">Submit changes</button>
     </div>
 </form>
 {%endblock %}
