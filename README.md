@@ -30,5 +30,12 @@ CREATE TABLE IF NOT EXISTS product_table (
     farm_id INT(11) NOT NULL,
     category VARCHAR(45) NOT NULL,
     product_name VARCHAR(45) NOT NULL,
-    
+
 )
+
+To do:
+- Delete can't work if farm doesn't have details in table so it doesn't find a row.
+- Create a error page
+- Delete product and delete profile need security
+- If running locally create schema and tables if not exists
+- Finish the readme

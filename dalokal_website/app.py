@@ -383,12 +383,14 @@ def deleteProfile(userId):
     ON adress_table.farm_id=farm_table.farm_id
     WHERE farm_table.user_id="{userId}";
     '''.format(userId=userId))
+    cursor.execute('COMMIT;')
     # Have to be separeted deleted because of foreign key constraints
     cursor.execute('''
     DELETE
     FROM farm_table
     WHERE user_id="{userId}";
     '''.format(userId=userId))
+    cursor.execute('COMMIT;')
     # Have to be separeted deleted because of foreign key constraints
     cursor.execute('''
     DELETE
