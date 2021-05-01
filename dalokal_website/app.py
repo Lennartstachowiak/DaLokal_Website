@@ -375,11 +375,10 @@ def deleteProduct(productId):
     WHERE product_id="{productId}";
     '''.format(productId=productId))
     data = cursor.fetchall()
-    print(data)
     if data == ():
         return redirect('/error/delete')
-    farmId = data[0]
-    category = data[1]
+    farmId = data[0][0]
+    category = data[0][1]
     # Get session id to check if user is allowed to delete the product
     sessionUserId = session['userId']
     # Get userId form farm_table
@@ -430,19 +429,27 @@ def deleteProduct(productId):
 def deleteProfile(userId):
     # Get session userId
     sessionUserId = session['userId']
-    if userId != sessionUserId:
+    if str(userId) != str(sessionUserId):
         error = 'delete'
         return redirect('/error/{error}'.format(error=error))
     else:
         cursor = connectDatabase()
         # Delete products if exists
         cursor.execute('''
-        DELETE product_table
+        SELECT product_table.product_id
         FROM farm_table
         JOIN product_table
         ON product_table.farm_id=farm_table.farm_id
-        WHERE farm_table.user_id="{userId}";
+        WHERE user_id="{userId}";
         '''.format(userId=userId))
+        productIds = cursor.fetchall()
+        # Delete ever product after the other because of trigger 'after delete'
+        for productId in productIds:
+            cursor.execute('''
+            DELETE
+            FROM product_table
+            WHERE product_id="{productId[0]}"
+            '''.format(productId=productId))
 
         # Delete time_table if exists
         cursor.execute('''
