@@ -8,4 +8,4 @@ Every farmer can sign up and can edited his farm every time. The farmer can give
 ### ER Diagram
 
 Every user and every user data is connected to the database of MySQL.
-![](images/ER_Diagram.png)
+![](images/ER_DiagramMySQL.png)
