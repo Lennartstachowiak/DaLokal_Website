@@ -15,6 +15,7 @@ from flask_login import UserMixin
 # )
 # cursor = conn.cursor()
 
+
 # Database connection for local connection
 conn = pymysql.connect(
     host='localhost',
