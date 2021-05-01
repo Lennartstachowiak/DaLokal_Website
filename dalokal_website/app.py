@@ -1,6 +1,4 @@
 import os
-
-import logging
 import pymysql
 from flask import Blueprint, render_template, request, session, jsonify, redirect
 from datetime import date, datetime, time
