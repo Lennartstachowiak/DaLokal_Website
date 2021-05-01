@@ -599,6 +599,15 @@ def edit():
                     except:
                         return render_template('edit.html', edit=1, userTime=userTime, userData=userData, flash_message='name')
 
+                description = request.form.get('description')
+                if description:
+                    cursor.execute('''
+                    UPDATE farm_table
+                    SET description="{description}"
+                    WHERE user_id="{userId}";
+                    '''.format(description=description, userId=userId))
+
+
                 street = request.form.get('farmStreet')
                 postalCode = request.form.get('farmPostalCode')
                 city = request.form.get('farmCity')
@@ -716,6 +725,14 @@ def edit():
                     AND time_table.day="Sunday";
                     '''.format(sun_b=sun_b, sun_e=sun_e, userId=userId))
 
+                farmImg = request.form.get('farmImg')
+                if farmImg:
+                    cursor.execute('''
+                    UPDATE farm_table
+                    SET farm_img="{farmImg}"
+                    WHERE user_id="{userId}";
+                    '''.format(farmImg=farmImg, userId=userId))
+
                 cursor.execute('COMMIT;')
                 return redirect('/profile')
 
@@ -732,8 +749,8 @@ def error(error):
     if error == 'delete':
         msg = 'You can\'t delete others products or accounts!'
     if error == 'problem':
-        msg = '''Something went wrong please try to logout and login again!<br>
-            If the error still appears please don't hesitate to contact us! <br>
+        msg = '''Something went wrong please try to logout and login again!
+            If the error still appears please don't hesitate to contact us!
             Lennart.Stachowiak@gmail.com'''
     return render_template('error.html', msg=msg, notMyAccount=1)
 

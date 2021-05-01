@@ -3,24 +3,27 @@
 {% block content %}
 <div style="display: flex; width: 100%;">
     <div style="flex: 1; display: flex; justify-self: center;"></div>
-    <div style="flex: 1; display: flex; justify-self: center; justify-content: center;"><h3 style="text-align: center;">Edit your profile</h3></div>
-    <div style="flex: 1; display: flex; justify-self: center; justify-content: flex-end;"><button onclick="openModal('deleteModal')" class="deleteProfile">Delete my profile</button></div>
+    <div style="flex: 1; display: flex; justify-self: center; justify-content: center;">
+        <h3 style="text-align: center;">Edit your profile</h3>
+    </div>
+    <div style="flex: 1; display: flex; justify-self: center; justify-content: flex-end;"><button
+            onclick="openModal('deleteModal')" class="deleteProfile">Delete my profile</button></div>
 </div>
 
 <div id="deleteModal" class="logoutModal">
     <div class="logoutContent">
-      <button onclick="closeModal('deleteModal')" class="closeBtn">&times;</button>
-      <div class="modalContainer">
-          <h2>Do you really want to delete your profile?</h2>
-          <div class="logoutButtons">
-            <form action="/profile/delete-profile/{{userData[0]}}">
-              <button class="button">Yes</button>
-            </form>
-            <button onclick="closeModal('deleteModal')" class="button">No</button>
-          </div>
-      </div>
+        <button onclick="closeModal('deleteModal')" class="closeBtn">&times;</button>
+        <div class="modalContainer">
+            <h2>Do you really want to delete your profile?</h2>
+            <div class="logoutButtons">
+                <form action="/profile/delete-profile/{{userData[0]}}">
+                    <button class="button">Yes</button>
+                </form>
+                <button onclick="closeModal('deleteModal')" class="button">No</button>
+            </div>
+        </div>
     </div>
-  </div>
+</div>
 
 <form method="POST" action="/profile/edit">
     <div class="editContent">
@@ -77,6 +80,16 @@
                 <td>
                     <input class="logInInput inputText" placeholder="{{userData[1]}}" type="text" name="farmname"
                         id="farmname">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2><label for="description">Description:</label></h2>
+                </td>
+                <td>
+                    <textarea style="resize: none; height: 125px; width: 350px; padding: 25px; font-family: SF Pro Display, Arial, Helvetica, sans-serif !important;
+                    font-style: normal;" maxlength="700" class="logInInput inputText" placeholder="{{userData[2]}}"
+                        type="text" name="description" id="description"></textarea>
                 </td>
             </tr>
             <tr>
@@ -251,6 +264,30 @@
                     </tr>
                 </div>
             </table>
+        </div>
+        <div>
+            <h5 style="margin-bottom: 20px;">Choose a profile picture</h5>
+            <div class="alignFarmImg">
+                <label class="checkboxImg">
+                    <input type="radio" id="firstImg" name="farmImg" value="farm1.jpg" required>
+                    <img class="farmImg" src="/static/farmer_img/farm1.jpg">
+                </label>
+                <label class="checkboxImg">
+                    <input type="radio" id="secondImg" name="farmImg" value="farm2.jpg" required>
+                    <img class="farmImg" src="/static/farmer_img/farm2.jpg">
+                </label>
+            </div>
+            <div class="alignFarmImg">
+                <label class="checkboxImg">
+                    <input type="radio" id="thirdImg" name="farmImg" value="farm3.jpg" required>
+                    <img class="farmImg" src="/static/farmer_img/farm3.jpg">
+                </label>
+                <label class="checkboxImg">
+                    <input type="radio" id="forthImg" name="farmImg" value="farm4.jpg" required>
+                    <img class="farmImg" src="/static/farmer_img/farm4.jpg">
+
+                </label>
+            </div>
         </div>
         <button
             onclick="adressChange(), timecheck('mon_b','mon_e'), timecheck('tue_b','tue_e'), timecheck('wed_b','wed_e'), timecheck('thu_b','thu_e'), timecheck('fri_b','fri_e'), timecheck('sat_b','sat_e'), timecheck('sun_b','sun_e')"
