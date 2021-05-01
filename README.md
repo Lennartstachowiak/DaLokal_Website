@@ -18,7 +18,9 @@ After done this go to __init__.py, app.py and auth.py and set
 To get started and run the website on a localhost enter the following three lines in your terminal
 
 export FLASK_APP=dalokal_website
+
 export FLASK_DEBUG=1
+
 flask run
 
 If database not setted up automatically use this queries in MySQL Workbench:
