@@ -23,16 +23,11 @@ app.secret_key = "hello"
 #     return cursor
 
 # def createDatabase():
-#     db_user = os.environ.get('CLOUD_SQL_USERNAME')
-#     db_password = os.environ.get('CLOUD_SQL_PASSWORD')
-#     db_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
-#     unix_socket = '/cloudsql/{}'.format(db_connection_name)
 #     cursor = pymysql.connect(
-#         user=db_user,
-#         password=db_password,
-#         unix_socket=unix_socket,
-#     )
-
+#         host='localhost',
+#         user='root',
+#         password='My2418SQL5765'
+#     ).cursor()
 #     cursor.execute('''
 #         CREATE SCHEMA IF NOT EXISTS dalokalschema;
 #         ''')
