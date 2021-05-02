@@ -104,7 +104,7 @@ def openOrClosed(farmId):
         return 2
 
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
     try:
         # Use farm id to get all data of all farms
@@ -1002,7 +1002,3 @@ def error(error):
             If the error still appears please don't hesitate to contact us!
             Lennart.Stachowiak@gmail.com'''
     return render_template('error.html', msg=msg, notMyAccount=1)
-
-
-if __name__ == "__main__":
-    app.run(host="localhost", port=8080, debug=True)
