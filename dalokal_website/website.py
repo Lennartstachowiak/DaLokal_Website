@@ -1,5 +1,6 @@
 import os
 import pymysql
+from flask import Flask
 from flask import Blueprint, render_template, request, session, jsonify, redirect
 from datetime import date, datetime, time
 """ For hashing the password """
