@@ -777,7 +777,7 @@ button:hover {
 .logInBoxHeader {
     margin-left: auto;
     display: flex;
-    align-items: center;
+    height: 45px;
 }
 
 
