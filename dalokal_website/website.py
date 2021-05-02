@@ -7,6 +7,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Blueprint('app', __name__)
 
+# app = Blueprint('app', __name__)
+
 """ That connection is for GCloud """
 # Connection to database set up
 # db_user = os.environ.get('CLOUD_SQL_USERNAME')
