@@ -10,8 +10,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 app.secret_key = "hello"
 
-createDatabase()
-
 """ That connection is for GCloud """
 # Connection to database set up+
 def connectDatabase():
@@ -50,7 +48,7 @@ def createDatabase():
         password=db_password,
         unix_socket=unix_socket,
     )
-    
+
     cursor.execute('''
         CREATE SCHEMA IF NOT EXISTS dalokalschema;
         ''')
@@ -208,6 +206,7 @@ def openOrClosed(farmId):
             return 0
         return 2
 
+createDatabase()
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
