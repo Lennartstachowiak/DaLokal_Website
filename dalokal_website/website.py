@@ -5,7 +5,7 @@ from datetime import date, datetime, time
 """ For hashing the password """
 from werkzeug.security import generate_password_hash, check_password_hash
 
-app = Blueprint('app', __name__)
+app = Flask(__name__)
 
 # app = Blueprint('app', __name__)
 
