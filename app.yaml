@@ -15,4 +15,4 @@ env_variables:
   CLOUD_SQL_USERNAME: root
   CLOUD_SQL_PASSWORD: My2418SQL5765
   CLOUD_SQL_DATABASE_NAME: dalokalschema
-  CLOUD_SQL_CONNECTION_NAME: dalokal:europe-west3:myinstance
+  CLOUD_SQL_CONNECTION_NAME: dalokal-website:europe-west3:myinstance
