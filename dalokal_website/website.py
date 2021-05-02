@@ -211,69 +211,66 @@ def openOrClosed(farmId):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    try:
-        # Use farm id to get all data of all farms
+    # Use farm id to get all data of all farms
+    cursor = connectDatabase()
+    cursor.execute('''
+        SELECT farm_table.farm_id,
+            farm_table.farmname,
+            farm_table.farm_img,
+            farm_table.total_products,
+            adress_table.street,
+            adress_table.postalcode,
+            adress_table.city,
+            category_table.veg_check,
+            category_table.milk_check,
+            category_table.wheat_check,
+            category_table.meat_check
+        FROM farm_table
+        JOIN adress_table
+        ON adress_table.farm_id=farm_table.farm_id
+        JOIN category_table
+        ON category_table.farm_id=farm_table.farm_id;
+        ''')
+    farms = cursor.fetchall()
+    cursor.close()
+    farmsUpdated = ()
+
+    # Check if farm is open or closed
+    # Add open or closed to the farm tuples
+    for farm in farms:
+        farmId = farm[0]
+        farm = farm + (openOrClosed(farmId),)
+        farmsUpdated = farmsUpdated + (farm,)
+    if 'userId' not in session:
+        return render_template('index.html', farms=farmsUpdated)
+    else:
+        userId = session['userId']
+        # check if session cookie is using the right data, if not logout
+        psw = session['psw']
         cursor = connectDatabase()
-        cursor.execute('''
-            SELECT farm_table.farm_id,
-                farm_table.farmname,
-                farm_table.farm_img,
-                farm_table.total_products,
-                adress_table.street,
-                adress_table.postalcode,
-                adress_table.city,
-                category_table.veg_check,
-                category_table.milk_check,
-                category_table.wheat_check,
-                category_table.meat_check
-            FROM farm_table
-            JOIN adress_table
-            ON adress_table.farm_id=farm_table.farm_id
-            JOIN category_table
-            ON category_table.farm_id=farm_table.farm_id;
-            ''')
-        farms = cursor.fetchall()
+        cursor.execute(
+            'SELECT password FROM user_table WHERE user_id="{userId}";'.format(userId=userId))
+        psw_check = cursor.fetchone()[0]
+        if psw != psw_check:
+            return redirect('/logout')
+
+        # If everything right start this code
+        loggedIn = True
+        # Checking if finished signup
+        if checkCompleteUser(userId) != True:
+            return checkCompleteUser(userId)
+
+        # Get firstname from user table
+        cursor.execute(
+            'SELECT firstname FROM user_table WHERE user_id="{userId}";'.format(userId=userId))
+        firstname = cursor.fetchone()[0]
+        # Get farm id from farm table
+        cursor.execute(
+            'SELECT farm_id FROM farm_table WHERE user_id="{userId}";'.format(userId=userId))
+        farmId = cursor.fetchone()[0]
         cursor.close()
-        farmsUpdated = ()
 
-        # Check if farm is open or closed
-        # Add open or closed to the farm tuples
-        for farm in farms:
-            farmId = farm[0]
-            farm = farm + (openOrClosed(farmId),)
-            farmsUpdated = farmsUpdated + (farm,)
-        if 'userId' not in session:
-            return render_template('index.html', farms=farmsUpdated)
-        else:
-            userId = session['userId']
-            # check if session cookie is using the right data, if not logout
-            psw = session['psw']
-            cursor = connectDatabase()
-            cursor.execute(
-                'SELECT password FROM user_table WHERE user_id="{userId}";'.format(userId=userId))
-            psw_check = cursor.fetchone()[0]
-            if psw != psw_check:
-                return redirect('/logout')
-
-            # If everything right start this code
-            loggedIn = True
-            # Checking if finished signup
-            if checkCompleteUser(userId) != True:
-                return checkCompleteUser(userId)
-
-            # Get firstname from user table
-            cursor.execute(
-                'SELECT firstname FROM user_table WHERE user_id="{userId}";'.format(userId=userId))
-            firstname = cursor.fetchone()[0]
-            # Get farm id from farm table
-            cursor.execute(
-                'SELECT farm_id FROM farm_table WHERE user_id="{userId}";'.format(userId=userId))
-            farmId = cursor.fetchone()[0]
-            cursor.close()
-
-            return render_template('index.html', loggedIn=loggedIn, firstname=firstname, farms=farmsUpdated)
-    except:
-        return redirect('/error/problem')
+        return render_template('index.html', loggedIn=loggedIn, firstname=firstname, farms=farmsUpdated)
 
 
 @app.route('/profile', methods=['GET', 'POST'])
