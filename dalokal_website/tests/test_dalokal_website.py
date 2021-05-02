@@ -12,6 +12,6 @@ def test_index():
 
         # Store the contents of the html response in a local variable.
         # This should be a string with the same content as the file index.html
-        # html_content = response.data.decode()
+        html_content = response.data.decode()
 
-        # assert "<html>" in html_content
+        assert "<html>" in html_content
