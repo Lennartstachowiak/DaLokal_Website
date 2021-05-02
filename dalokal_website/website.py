@@ -10,22 +10,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 app.secret_key = "hello"
 
-""" That connection is for GCloud """
-# Connection to database set up+
-def connectDatabase():
-    db_user = os.environ.get('CLOUD_SQL_USERNAME')
-    db_password = os.environ.get('CLOUD_SQL_PASSWORD')
-    db_name = os.environ.get('CLOUD_SQL_DATABASE_NAME')
-    db_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
-    unix_socket = '/cloudsql/{}'.format(db_connection_name)
-    cursor = pymysql.connect(
-        user=db_user,
-        password=db_password,
-        unix_socket=unix_socket,
-        db=db_name
-    )
-    return cursor
-
 # Database connection for local connection
 
 
@@ -143,6 +127,24 @@ def createDatabase():
         WHERE farm_id = OLD.farm_id;''')
     cursor.close()
 
+createDatabase()
+
+""" That connection is for GCloud """
+# Connection to database set up+
+def connectDatabase():
+    db_user = os.environ.get('CLOUD_SQL_USERNAME')
+    db_password = os.environ.get('CLOUD_SQL_PASSWORD')
+    db_name = os.environ.get('CLOUD_SQL_DATABASE_NAME')
+    db_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
+    unix_socket = '/cloudsql/{}'.format(db_connection_name)
+    cursor = pymysql.connect(
+        user=db_user,
+        password=db_password,
+        unix_socket=unix_socket,
+        db=db_name
+    )
+    return cursor
+
 def checkCompleteUser(userId):
     cursor = connectDatabase()
     cursor.execute(
@@ -205,8 +207,6 @@ def openOrClosed(farmId):
         if timeData != ():
             return 0
         return 2
-
-createDatabase()
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
