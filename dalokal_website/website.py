@@ -129,6 +129,7 @@ app.secret_key = "hello"
 
 # createDatabase()
 
+
 """ That connection is for GCloud """
 # Connection to database set up+
 def connectDatabase():
