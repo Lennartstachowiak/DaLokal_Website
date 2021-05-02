@@ -12,6 +12,8 @@ Every farmer can sign up and can edited his farm every time. The farmer can give
 Hosted with gcloud
 [DaLokal](https://dalokal-website.ey.r.appspot.com/?)
 
+The DB password is locked in a github secret
+
 ### For local run
 
 Connect MySQL database with website.
@@ -22,7 +24,7 @@ for gcloud connection add #
 - user to your MySQL connection user name (default is root)
 - and if used your password after password=''
 
-To get started and run the website on a localhost enter the following three lines in your terminal
+To get started and run the website on a localhost enter the following three lines in your terminal:
 
 export FLASK_APP=dalokal_website.website.py
 
@@ -30,7 +32,8 @@ export FLASK_DEBUG=1
 
 flask run
 
-If database not setted up automatically use this queries in MySQL Workbench:
+If database not setted up automatically use this queries in MySQL Workbench to create the database:
+This queries should normally be run in the function on website.py createDatabase() in line 28
 
 ## ER Diagram
 
