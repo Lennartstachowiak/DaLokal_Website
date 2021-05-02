@@ -8,7 +8,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 
 app = Flask(__name__)
-app.secret_key = "hello"
+app.secret_key = "secretPassword"
+
+# configure Flask using environment variables
+app.config.from_pyfile("config.py")
 
 # Database connection for local connection
 
