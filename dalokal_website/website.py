@@ -13,8 +13,8 @@ app.secret_key = "secretPassword"
 # configure Flask using environment variables
 app.config.from_pyfile("config.py")
 
-# Database connection for local connection
 
+## Database connection for local connection
 
 # def connectDatabase():
 #     cursor = pymysql.connect(
