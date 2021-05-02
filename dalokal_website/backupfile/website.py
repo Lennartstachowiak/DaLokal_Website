@@ -1,31 +1,31 @@
-import os
-import pymysql
-from flask import Blueprint, render_template, request, session, jsonify, redirect
-from datetime import date, datetime, time
-""" For hashing the password """
-from werkzeug.security import generate_password_hash, check_password_hash
+# import os
+# import pymysql
+# from flask import Blueprint, render_template, request, session, jsonify, redirect
+# from datetime import date, datetime, time
+# """ For hashing the password """
+# from werkzeug.security import generate_password_hash, check_password_hash
 
 
-app = Flask(__name__)
-app.secret_key = "hello"
+# app = Flask(__name__)
+# app.secret_key = "hello"
 
-""" That connection is for GCloud """
-# Connection to database set up+
-def connectDatabase():
-    db_user = os.environ.get('CLOUD_SQL_USERNAME')
-    db_password = os.environ.get('CLOUD_SQL_PASSWORD')
-    db_name = os.environ.get('CLOUD_SQL_DATABASE_NAME')
-    db_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
-    unix_socket = '/cloudsql/{}'.format(db_connection_name)
-    cursor = pymysql.connect(
-        user=db_user,
-        password=db_password,
-        unix_socket=unix_socket,
-        db=db_name
-    )
-    return cursor
+# """ That connection is for GCloud """
+# # Connection to database set up+
+# def connectDatabase():
+#     db_user = os.environ.get('CLOUD_SQL_USERNAME')
+#     db_password = os.environ.get('CLOUD_SQL_PASSWORD')
+#     db_name = os.environ.get('CLOUD_SQL_DATABASE_NAME')
+#     db_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
+#     unix_socket = '/cloudsql/{}'.format(db_connection_name)
+#     cursor = pymysql.connect(
+#         user=db_user,
+#         password=db_password,
+#         unix_socket=unix_socket,
+#         db=db_name
+#     )
+#     return cursor
 
-# Database connection for local connection
+# # Database connection for local connection
 
 
 # def connectDatabase():
