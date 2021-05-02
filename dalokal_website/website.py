@@ -104,7 +104,7 @@ def openOrClosed(farmId):
         return 2
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def index():
     try:
         # Use farm id to get all data of all farms
