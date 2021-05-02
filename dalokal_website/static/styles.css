@@ -68,7 +68,7 @@ h6 {
 .linkBoxHeader {
     margin-left: auto;
     display: flex;
-    align-items: center;
+    height: 45px;
 }
 
 .iconButton {

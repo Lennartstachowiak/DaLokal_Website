@@ -13,14 +13,14 @@ app.secret_key = "hello"
 # Database connection for local connection
 
 
-""" # def connectDatabase():
+# def connectDatabase():
 #     cursor = pymysql.connect(
 #         host='localhost',
 #         user='root',
 #         password='My2418SQL5765',
 #         database='dalokalschema'
 #     ).cursor()
-#     return cursor """
+#     return cursor
 
 # def createDatabase():
 #     db_user = os.environ.get('CLOUD_SQL_USERNAME')
