@@ -1,1 +1,1 @@
-from dalokal_website.website import app  # noqa: F401
+from dalokal_website.__init__ import app  # noqa: F401
