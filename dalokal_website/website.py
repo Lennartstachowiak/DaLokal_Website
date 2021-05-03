@@ -33,7 +33,10 @@ app.config.from_pyfile("config.py")
 #     ).cursor()
 #     return cursor
 
-""" user and password above and below """
+""" Set user and password to your DB data """
+""" For example user is often 'root' """
+""" Uncomment both functions above and the one below """
+""" User and password above and below """
 
 # def createDatabase():
 #     cursor = pymysql.connect(

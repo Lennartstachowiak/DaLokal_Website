@@ -12,6 +12,8 @@ Every farmer can sign up and can edited his farm every time. The farmer can give
 * Now the farmer can add his product he want to sell (product, description, price etc.). 
 * After that every user can see the products and also the product categories the farmer provides to the page.
 
+---
+
 ## ER Diagram
 
 Every user and every user data is connected to the database of MySQL.
@@ -23,6 +25,10 @@ Every user and every user data is connected to the database of MySQL.
 * category_table has a zero to many relationship to farm_table
 product_table has to triggers one for AFTER INSERT and one for AFTER DELETE.
 
+---
+
+# Instruction
+
 ## Get started
 
 ### Online page
@@ -30,11 +36,19 @@ product_table has to triggers one for AFTER INSERT and one for AFTER DELETE.
 Hosted with gcloud
 [DaLokal](https://dalokal-website.ey.r.appspot.com/?)
 
-### For local run
+### Set up for a development environment
 
-Connect MySQL database with website.
+### Install required packages
 
-For that if not already install [MySQL Community](https://www.mysql.com/products/community/) and [MySQL Workbench](https://www.mysql.com/products/workbench/) on your pc and create a connection.
+In terminal use:
+
+pip install -r requirements.txt
+
+### Connect the database
+
+The used database is MySQL
+
+Install [MySQL Community](https://www.mysql.com/products/community/) and [MySQL Workbench](https://www.mysql.com/products/workbench/) on your pc if not already installed and create a connection.
 
 - After done this go to website.py and use connection for local host and remove all comment #
 - For gcloud connection comment it with #
@@ -44,12 +58,6 @@ Set:
 - and if you have a password for your database set it in password=''
 The parts are also commented in website.py
 
-### Install required packages
-
-In terminal use:
-
-pip install -r requirements.txt
-
 #### To get started and run the website on a localhost enter the following three lines in your terminal:
 
 export FLASK_APP=dalokal_website.website.py
@@ -58,10 +66,16 @@ export FLASK_DEBUG=1
 
 flask run
 
+---
+
+### Database problems
+
 If database not setted up automatically use this queries in MySQL Workbench to create the database:
 This queries should normally be run in the function on website.py createDatabase() in line 28
 
+```SQL
 CREATE SCHEMA IF NOT EXISTS dalokalschema;
+
 USE dalokalschema;
 
 CREATE TABLE IF NOT EXISTS user_table (
@@ -148,3 +162,4 @@ FOR EACH ROW
 	UPDATE farm_table
 		SET total_products = total_products - 1
 	WHERE farm_id = OLD.farm_id;
+````
