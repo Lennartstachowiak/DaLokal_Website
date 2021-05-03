@@ -129,7 +129,7 @@ app.config.from_pyfile("config.py")
 
 
 """ That connection is for GCloud """
-# Connection to database set up+
+# Connection to database set up
 def connectDatabase():
     db_user = os.environ.get('CLOUD_SQL_USERNAME')
     db_password = os.environ.get('CLOUD_SQL_PASSWORD')
