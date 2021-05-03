@@ -44,6 +44,12 @@ Set:
 - and if you have a password for your database set it in password=''
 The parts are also commented in website.py
 
+### Install required packages
+
+In terminal use:
+
+pip install -r requirements.txt
+
 #### To get started and run the website on a localhost enter the following three lines in your terminal:
 
 export FLASK_APP=dalokal_website.website.py
