@@ -23,17 +23,13 @@
     <form method="POST" action="/login">
         <div class="loginContainer">
             <div id="errorMessage" class="errorMessage"></div>
-            <h1>
+            <h1 style="margin-top: 60px;">
                 <img class="icon" src="/static/icon_file/login.svg"> Log in
             </h1>
             <input class="logInInput inputText" type="email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                 placeholder="Enter Email" name="email" required>
             <input class="logInInput inputText" minlength="6" type="password" placeholder="Enter Password" name="psw" required>
-            <label class="logInInput">
-                <input type="checkbox">
-                Remember me
-            </label>
-            <button type="submit" class="signupbtn">Login</button>
+            <button style="margin-top: 20px;" type="submit" class="signupbtn">Login</button>
         </div>
     </form>
 </body>

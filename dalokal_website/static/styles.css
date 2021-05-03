@@ -29,6 +29,7 @@ h1 {
     font-style: normal;
     font-weight: normal;
     font-size: 1.8rem;
+    font-weight: 600;
 }
 
 /* Text */
@@ -1283,6 +1284,11 @@ h2 {
         width: 170.56px;
         margin: 14.58px 14.58px 14.58px 7.29px;
     }
+
+    .logInInput {
+        width: 300px;
+    }
+
 }
 
 @media only screen and (max-width: 445px) {
@@ -1391,6 +1397,10 @@ h2 {
         height: 138.14px;
         width: 138.14px;
         margin: 11.7px 11.7px 11.7px 5.85px;
+    }
+
+    .logInInput {
+        width: 250px;
     }
 }
 

@@ -8,7 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 
 app = Flask(__name__)
-app.secret_key = "secretPassword"
+app.secret_key = os.environ.get('secret_key')
 
 # configure Flask using environment variables
 app.config.from_pyfile("config.py")
