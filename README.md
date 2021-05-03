@@ -5,7 +5,12 @@
 DaLokal is a project to connect customer with farms nearby. The user is able to see which farm is selling which goods,what categories, what the farm is about (description), where the farm can be find (adress) and at which time the farm is open.
 Every farmer can sign up and can edited his farm every time. The farmer can give a description about his or her farm can give it opening and closing times and can add or delete products and more. 
 
-Farmer can signup or login. While sining up the farmer provides data about himself (firstname and lastname) and about the farm (opening hours, farmname, description etc.) after finishing that he can still edit his data (like login email or password or farm description etc.). Now the farm is displayed on the homepage for everyone. Now the farmer can add his product he want to sell (product, description, price etc.). After that every user can see his products and also the product categories the farmer provides on the homepage
+* Farmer can signup or login. 
+* While sining up the farmer provides data about himself (firstname and lastname) and about the farm (opening hours, farmname, description etc.) 
+* After finishing that he can still edit his data (like login email or password or farm description etc.). 
+* Now the farm is displayed on the homepage for everyone. 
+* Now the farmer can add his product he want to sell (product, description, price etc.). 
+* After that every user can see the products and also the product categories the farmer provides to the page.
 
 ## ER Diagram
 
@@ -25,19 +30,21 @@ product_table has to triggers one for AFTER INSERT and one for AFTER DELETE.
 Hosted with gcloud
 [DaLokal](https://dalokal-website.ey.r.appspot.com/?)
 
-The DB password is locked in a github secret
-
 ### For local run
 
 Connect MySQL database with website.
-For that if not already install [MySQL Community](https://www.mysql.com/products/community/) and [MySQL Workbench](https://www.mysql.com/products/workbench/) on your pc and create a connection.
-After done this go to website.py and use connection for local host and remove all #
-for gcloud connection add #
-- host='localhost'
-- user to your MySQL connection user name (default is root)
-- and if used your password after password=''
 
-To get started and run the website on a localhost enter the following three lines in your terminal:
+For that if not already install [MySQL Community](https://www.mysql.com/products/community/) and [MySQL Workbench](https://www.mysql.com/products/workbench/) on your pc and create a connection.
+
+- After done this go to website.py and use connection for local host and remove all comment #
+- For gcloud connection comment it with #
+Set:
+- host='localhost'
+- user='' to your MySQL connection user name (default is root)
+- and if you have a password for your database set it in password=''
+The parts are also commented in website.py
+
+#### To get started and run the website on a localhost enter the following three lines in your terminal:
 
 export FLASK_APP=dalokal_website.website.py
 

@@ -15,6 +15,10 @@ app.secret_key = os.environ.get('secret_key')
 app.config.from_pyfile("config.py")
 
 
+""" To run the website on a localhost use code below """
+""" To run the website on a localhost use code below """
+""" To run the website on a localhost use code below """
+
 ## Database connection for local connection
 
 # Secretkey for local use
@@ -23,17 +27,19 @@ app.config.from_pyfile("config.py")
 # def connectDatabase():
 #     cursor = pymysql.connect(
 #         host='localhost',
-#         user='root',
-#         password='My2418SQL5765',
+#         user='',
+#         password='',
 #         database='dalokalschema'
 #     ).cursor()
 #     return cursor
 
+""" user and password above and below """
+
 # def createDatabase():
 #     cursor = pymysql.connect(
 #         host='localhost',
-#         user='root',
-#         password='My2418SQL5765'
+#         user='',
+#         password=''
 #     ).cursor()
 #     cursor.execute('''
 #         CREATE SCHEMA IF NOT EXISTS dalokalschema;
@@ -131,8 +137,15 @@ app.config.from_pyfile("config.py")
 
 # createDatabase()
 
+""" To run the website on a localhost use the code above """
+""" To run the website on a localhost use the code above """
+""" To run the website on a localhost use the code above """
+
 
 """ That connection is for GCloud """
+""" If running locally set the code below in # """
+""" If running locally set the code below in # """
+""" If running locally set the code below in # """
 # Connection to database set up
 def connectDatabase():
     db_user = os.environ.get('CLOUD_SQL_USERNAME')
@@ -147,6 +160,9 @@ def connectDatabase():
         db=db_name
     ).cursor()
     return cursor
+""" If running locally set the code above in # """
+""" If running locally set the code above in # """
+""" If running locally set the code above in # """
 
 def checkCompleteUser(userId):
     cursor = connectDatabase()
