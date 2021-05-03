@@ -1577,6 +1577,11 @@ h2 {
 
 @media only screen and (max-width: 405px) {
 
+    .timeContainer {
+        width: 370px;
+        overflow: scroll;
+    }
+
     .modal-content {
         width: 250px;
         height: 250px;
