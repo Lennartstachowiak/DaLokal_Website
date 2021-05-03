@@ -1182,12 +1182,13 @@ h2 {
         width: 300px;
         height: 300px;
         overflow: scroll;
-        margin: 60% auto;
+        margin: 50% auto;
     }
 
     .productInput {
         width: 250px;
         height: 50px;
+        border-radius: 15px;
         font-size: 0.8rem;
     }
 
@@ -1198,6 +1199,7 @@ h2 {
 
     .descriptionText {
         width: 250px;
+        border-radius: 15px;
         font-size: 0.8rem;
     }
 
@@ -1209,6 +1211,18 @@ h2 {
 
     .price {
         height: 50px;
+    }
+
+    .logoutContent {
+        width: 250px;
+    }
+
+    .logoutButtons {
+        height: 45px;
+    }
+
+    .button {
+        width: 90px;
     }
 
     .farmBox {
