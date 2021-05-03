@@ -50,9 +50,9 @@
 <div class="alignProductButton">
   <h3>Our<br><span style="color: #66D836;">Products</span></h3>
 
-  <button class="profileButton" id="addProduct" onclick="openModal('simpleModal')" style="margin-left: auto;">
+  <button class="logInButton" id="addProduct" onclick="openModal('simpleModal')" style="margin-left: auto;">
     <div class="alignButtonContent">
-      <img class="iconButton" src="/static/icon_file/add.svg" alt=""> Add product
+      <img class="iconButton" src="/static/icon_file/add.svg" alt=""> <nav>Add product</nav> 
     </div>
   </button>
 </div>
@@ -82,7 +82,7 @@
               <div>
                 <h5>Weight / Liter</h5>
                 <div class="price">
-                  <input style="width: 100px;" class="priceInput" type="number" step="0.001" name="weight" id="weight"
+                  <input style="width: 100px;" class="priceInput" type="number" step="0.001" min="0" name="weight" id="weight"
                     placeholder="0,000" required>
                   <p class="priceText">kg / l</p>
                 </div>
@@ -100,7 +100,7 @@
                 </div>
               </div>
             </div>
-            <button class="submit" type="submit" class="signupbtn">Submit</button>
+            <button style="margin-top: 20px;" type="submit" class="signupbtn">Submit</button>
           </div>
         </form>
       </div>

@@ -17,20 +17,13 @@ body {
 }
 
 p,h1,h2,h3,h4,h5,h6 {
-    padding: 0;
     margin: 0;
+    padding: 0;
     font-family: SF Pro Display, Arial, Helvetica, sans-serif;
     font-style: normal;
 }
 
 /* Farmer Name */
-h1 {
-    font-family: SF Pro Display;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 1.8rem;
-    font-weight: 600;
-}
 
 /* Text */
 p {
@@ -203,56 +196,17 @@ a {
 /* Second Box */
 
 
-
-/* Location Box */
-
-.locationBox {
+.logIn {
+    font-family: SF Pro Display;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.8rem;
+    font-weight: 600;
     display: flex;
-}
-
-.locationBoxText {
-    height: 356px;
-    width: 470px;
-    order: 1;
-    display: block;
-    margin-left: auto;
-}
-
-.locationBoxTextContent {
-    margin-top: 50px;
-    height: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.locationBoxDistance {
-    display: flex;
-}
-
-.carIcon {
-    margin-right: 12px;
-}
-
-.buttonRoute {
-    font-size: 1rem;
-    color: white;
-    background: #66D836;
-    border-radius: 6px;
-    text-align: center;
-    max-width: 200px;
-    height: 50px;
-    border: none;
-}
-
-.maps {
-    order: 0;
-    width: 536px;
-    height: 356px;
-    box-shadow: 0px 10px 100px 2px rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
-    object-fit: cover;
-    overflow: hidden;
+    justify-content: center;
+    padding: 15px;
+    margin-top: 30px;
+    margin-bottom: 15px;
 }
 
 /* My product box */
@@ -323,6 +277,15 @@ h4 {
     text-align: center;
 }
 
+.noProduct {
+    margin-top: 50px;
+    font-family: SF Pro Display;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
 .productButtonLine {
     width: 254px;
     display: flex;
@@ -375,10 +338,9 @@ button:hover .iconButton {
 .modal-content {
     position: relative;
     background-color: white;
-    margin: 3% auto;
+    margin: 25% auto;
     padding: 20px;
     width: 800px;
-    height: 550px;
     border-radius: 25px;
 }
 
@@ -428,7 +390,7 @@ button:hover .iconButton {
     justify-content: center;
     align-items: center;
     width: 690px;
-    min-height: 64px;
+    height: 64px;
 } 
 
 .center {
@@ -443,23 +405,8 @@ button:hover .iconButton {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     border-radius: 25px;
     transition: 0.2s;
-    margin: 15px;
-    margin-top: 60px;
-}
-
-.descriptionText {
-    border: 0;
-    width: 660px;
-    height: 200px;
-    resize: none;
-    border-radius: 25px;
-    padding: 15px;
-    margin: 15px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
-    text-align: center;
-    font-family: SF Pro Display;
-    font-style: normal;
-    font-size: 1rem;
+    margin-top: 15px;
+    align-self: center;
 }
 
 .priceWeightContainer {
@@ -511,7 +458,6 @@ h5 {
 
 .priceText {
     font-size: 1rem;
-    min-height: 64px;
     display: flex;
     align-items: center;
 }
@@ -593,14 +539,6 @@ h6 {
     color: #414141;
 }
 
-h1 {
-    padding: 0;
-    margin: 0;
-    font-size: 2rem;
-    font-weight: 600;
-    margin-bottom: 30px;
-}
-
 .icon {
     height: 2rem;
     width: 2rem;
@@ -643,10 +581,6 @@ h1 {
     min-height: 64px;
 }
 
-.inputText {
-    margin: 15px;
-}
-
 
 /* Remove input action border */
 input:focus {
@@ -665,7 +599,8 @@ input:focus {
     padding: 0 50px;
     min-height: 80px;
     border-radius: 25px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+    margin-top: 30px;
 }
 
 a, a:link, a:visited, a:active {
@@ -752,17 +687,18 @@ button:hover {
 
 .descriptionText {
     border: 0;
-    width: 660px;
+    width: 690px;
     height: 115px;
     resize: none;
     border-radius: 25px;
     padding: 15px;
-    margin: 15px;
+    margin-top: 30px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
     text-align: center;
     font-family: SF Pro Display;
     font-style: normal;
     font-size: 1rem;
+    align-self: center;
 }
 
 .descriptionText:focus {
@@ -1018,6 +954,15 @@ h2 {
         margin-bottom: 300px;
     }
 
+    .noProduct {
+        margin-top: 45px;
+        font-size: 1rem;
+    }
+
+    .alignProductButton {
+        width: 395px;
+    }
+
     main {
         display: flex;
         flex-direction: column;
@@ -1132,10 +1077,45 @@ h2 {
     }
 }
 
+@media only screen and (max-width: 900px) {
+    .modal-content {
+        width: 500px;
+        height: 500px;
+        overflow: scroll;
+    }
+
+    .productInput {
+        width: 400px;
+    }
+
+    .descriptionText {
+        width: 400px;
+    }
+
+    .priceWeightContainer {
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
 /* Phone */
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 790px) {
     body {
         padding: 0 25px;
+    }
+
+    .farmInput {
+        width: 400px;
+    }
+
+    .descriptionText {
+        width: 400px;
+    }
+
+    .noProduct {
+        margin-top: 35px;
+        font-size: 0.9rem;
     }
 
     nav {
@@ -1156,18 +1136,98 @@ h2 {
     .productCategorieContainer {
         width: 422px;
     }
+
+    .productBox {
+        width: 428px;
+    }
+
+    .productBoxContent {
+        height: 200px;
+        width: 428px;
+        margin-bottom: 50px;
+    }
+
+    .productImage {
+        height: 200px;
+        width: 200px;
+    }
+
+    .productInformation{
+        width: 200px;
+    }
+
+    .productButtonLine {
+        width: 200px;
+    }
+
+    .priceWeightProduct {
+        width: 90px;
+        height: 40px;
+        font-size: 0.8rem;
+    }
+
+    h4 {
+        margin-top: 30px;
+    }
+
+    .deleteProfile {
+        width: 90px;
+        font-size: 0.6rem;
+    }
 }
 
 @media only screen and (max-width: 600px) {
+
+    .modal-content {
+        width: 300px;
+        height: 300px;
+        overflow: scroll;
+        margin: 60% auto;
+    }
+
+    .productInput {
+        width: 250px;
+        height: 50px;
+        font-size: 0.8rem;
+    }
+
+    h5 {
+        font-size: 0.8rem;
+        margin-bottom: 10px;
+    }
+
+    .descriptionText {
+        width: 250px;
+        font-size: 0.8rem;
+    }
+
+    .priceWeightContainer {
+        width: 250px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .price {
+        height: 50px;
+    }
+
     .farmBox {
         width: 482.4px;
         height: 246.6px;
     }
 
+    h3 {
+        font-size: 1.8rem;
+    }
+
     h2 {
         font-size: 0.9rem;
     }
-
+    
+    .noProduct {
+        margin-top: 30px;
+        font-size: 0.8rem;
+    }
     .farmAdress, .categorieHeader, .farmProductTags {
         font-size: 0.8rem;
     }
@@ -1194,6 +1254,16 @@ h2 {
         width: 210.6px;
         margin: 18px 18px 18px 9px;
     }
+
+    h4 {
+        margin-top: 25px;
+    }
+
+    .errorMessage {
+        width: 220px;
+        font-size: 0.8rem;
+        padding: 0 30px;
+    }
 }
 
 @media only screen and (max-width: 535px) {
@@ -1202,8 +1272,17 @@ h2 {
         height: 221.93px;
     }
 
+    html {
+        width: 100%;
+    }
+
     h2 {
         font-size: 0.8rem;
+    }
+
+    .noProduct {
+        margin-top: 25px;
+        font-size: 0.7rem;
     }
 
     .farmAdress, .categorieHeader, .farmProductTags {
@@ -1232,6 +1311,58 @@ h2 {
         width: 189.53px;
         margin: 16.2px 16.2px 16.2px 8.1px;
     }
+
+    .infoContainer {
+        width: 300px;
+    }
+
+    .farmDescriptionBox {
+        width: 300px;
+    }
+
+    .farmerName {
+        font-size: 1.8rem;
+    }
+
+    .description {
+        width: 300px;
+        font-size: 0.8rem;
+    }
+
+    .timeAdressContainer {
+        width: 300px;
+    }
+
+    .alignProductButton {
+        width: 300px;
+    }
+
+    .noTime {
+        padding: 10px;
+        width: 280px;
+
+    }
+
+    .productText {
+        font-size: 0.7rem;
+    }
+
+    h4 {
+        margin-top: 20px;
+        font-size: 0.9rem;
+    }
+
+    .inputText {
+       font-size: 0.8rem;
+    }
+
+    .farmInput {
+        width: 300px;
+    }
+
+    .descriptionText {
+        font-size: 0.8rem;
+    }
 }
 
 @media only screen and (max-width: 590px) {
@@ -1256,6 +1387,11 @@ h2 {
 
     h2 {
         font-size: 0.8rem;
+    }
+
+    .noProduct {
+        margin-top: 20px;
+        font-size: 0.7rem;
     }
 
     .farmAdress, .categorieHeader, .farmProductTags {
@@ -1289,12 +1425,48 @@ h2 {
         width: 300px;
     }
 
+    .productBox {
+        width: 378px;
+    }
+
+    .productBoxContent {
+        height: 175px;
+        width: 378px;
+        margin-bottom: 50px;
+    }
+
+    .productImage {
+        height: 175px;
+        width: 175px;
+    }
+
+    .productInformation{
+        width: 175px;
+    }
+
+    .productButtonLine {
+        width: 175px;
+    }
+
+    .priceWeightProduct {
+        width: 70px;
+        height: 30px;
+        font-size: 0.7rem;
+    }
 }
 
 @media only screen and (max-width: 445px) {
 
     .productCategorieContainer {
         width: 352px;
+    }
+
+    .farmInfoFirstLine {
+        padding: 3px 0;
+    }
+
+    h3 {
+        font-size: 1.2rem;
     }
 
     .productCategorieBox {
@@ -1317,17 +1489,26 @@ h2 {
 
     .farmAdress, .categorieHeader, .farmProductTags {
         font-size: 0.6rem;
+        margin: 0;
     }
 
     .farmProductImg {
         height: 32.4px;
         width: 32.4px;
     }
+    
+    .farmAdress {
+        margin-bottom: 5px;
+    }
 
     .buttonOpen {
         height: 16.4px;
         width: 42.64px;
         font-size: 0.5rem;
+    }
+
+    .farmProductCategories {
+        margin-top: 0;
     }
 
     .farmImg {
@@ -1341,9 +1522,76 @@ h2 {
         width: 153.49px;
         margin: 13.02px 13.02px 13.02px 6.51px;
     }
+
+    .productBox {
+        width: 314px;
+    }
+
+    .productBoxContent {
+        height: 150px;
+        width: 314px;
+        margin-bottom: 30px;
+    }
+
+    .productImage {
+        height: 150px;
+        width: 150px;
+    }
+
+    .productInformation{
+        width: 150px;
+        margin-left: 14px;
+    }
+
+    .productButtonLine {
+        width: 150px;
+    }
+
+    .priceWeightProduct {
+        width: 60px;
+        height: 30px;
+        font-size: 0.7rem;
+    }
+
+    td {
+        font-size: 0.7rem;
+    }
+
+    .clearButton {
+        width: 40px;
+        height: 25px;
+        font-size: 0.6rem;
+    }
 }
 
 @media only screen and (max-width: 405px) {
+
+    .modal-content {
+        width: 250px;
+        height: 250px;
+        overflow: scroll;
+    }
+
+    .productInput {
+        width: 200px;
+        border-radius: 15px;
+        font-size: 0.7rem;
+    }
+
+    h5 {
+        font-size: 0.8rem;
+    }
+
+    .descriptionText {
+        width: 200px;
+        border-radius: 15px;
+        font-size: 0.7rem;
+    }
+
+    .priceWeightContainer {
+        width: 200px;
+        border-radius: 15px;
+    }
 
     .productCategorieContainer {
         width: 332px;
@@ -1357,10 +1605,6 @@ h2 {
     .productCategorieImg {
         height: 63px;
         width: 63px;
-    }
-
-    .productCategorieText {
-        font-size: 0.6rem;
     }
 
     .farmBox {
@@ -1402,10 +1646,88 @@ h2 {
     .logInInput {
         width: 250px;
     }
+
+    .productBox {
+        width: 314px;
+    }
+
+    .productBoxContent {
+        height: 150px;
+        width: 314px;
+    }
+
+    .productImage {
+        height: 150px;
+        width: 150px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
 }
 
-@media only screen and (max-width: 350px) {
-    body {
-        padding: 0 10px;
+@media only screen and (max-width: 370px) {
+    .noTime {
+        width: 250px;
+    }
+
+    .description {
+        width: 250px;
+    }
+
+    .farmerName {
+        width: 250x;
+    }
+
+    .timeAdressContainer {
+        width: 250px;
+    }
+
+    .farmDescriptionBox {
+        width: 250px;
+    }
+
+    .infoContainer {
+        width: 250px;
+    }
+
+    .productBox {
+        width: 264px;
+    }
+
+    .productBoxContent {
+        height: 125px;
+        width: 264px;
+    }
+
+    .productInformation {
+        width: 125px;
+    }
+
+    .priceWeightProduct {
+        width: 50px;
+        font-size: 0.5rem;
+        height: 25px;
+    }
+
+    h4 {
+        margin-top: 15px;
+    }
+
+    .productText {
+        margin: 7px 0;
+    }
+
+    .alignProductButton {
+        width: 264px;
+    }
+
+    .productButtonLine {
+        width: 125px;
+    }
+
+    .productImage {
+        height: 125px;
+        width: 125px;
     }
 }
