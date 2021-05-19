@@ -22,16 +22,16 @@ app.config.from_pyfile("config.py")
 ## Database connection for local connection
 
 # Secretkey for local use
-# app.secret_key = 'ThisIsASecretKey;-)'
+app.secret_key = 'ThisIsASecretKey;-)'
 
-# def connectDatabase():
-#     cursor = pymysql.connect(
-#         host='localhost',
-#         user='',
-#         password='',
-#         database='dalokalschema'
-#     ).cursor()
-#     return cursor
+def connectDatabase():
+    cursor = pymysql.connect(
+        host='localhost',
+        user='root',
+        password='My2418SQL5765',
+        database='dalokalschema'
+    ).cursor()
+    return cursor
 
 """ Set user and password to your DB data """
 """ For example user is often 'root' """
@@ -150,19 +150,19 @@ app.config.from_pyfile("config.py")
 """ If running locally set the code below in # """
 """ If running locally set the code below in # """
 # Connection to database set up
-def connectDatabase():
-    db_user = os.environ.get('CLOUD_SQL_USERNAME')
-    db_password = os.environ.get('CLOUD_SQL_PASSWORD')
-    db_name = os.environ.get('CLOUD_SQL_DATABASE_NAME')
-    db_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
-    unix_socket = '/cloudsql/{}'.format(db_connection_name)
-    cursor = pymysql.connect(
-        user=db_user,
-        password=db_password,
-        unix_socket=unix_socket,
-        db=db_name
-    ).cursor()
-    return cursor
+# def connectDatabase():
+#     db_user = os.environ.get('CLOUD_SQL_USERNAME')
+#     db_password = os.environ.get('CLOUD_SQL_PASSWORD')
+#     db_name = os.environ.get('CLOUD_SQL_DATABASE_NAME')
+#     db_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
+#     unix_socket = '/cloudsql/{}'.format(db_connection_name)
+#     cursor = pymysql.connect(
+#         user=db_user,
+#         password=db_password,
+#         unix_socket=unix_socket,
+#         db=db_name
+#     ).cursor()
+#     return cursor
 """ If running locally set the code above in # """
 """ If running locally set the code above in # """
 """ If running locally set the code above in # """

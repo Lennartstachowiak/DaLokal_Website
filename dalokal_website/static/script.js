@@ -45,10 +45,10 @@ function adressChange() {
     }
 }
 
-function clearTimeInput(b, e) {
-    document.getElementById(b).value = ''
-    document.getElementById(e).value = ''
-}
+// function clearTimeInput(b, e) {
+//     document.getElementById(b).value = ''
+//     document.getElementById(e).value = ''
+// }
 
 
 function openModal(modalId) {
