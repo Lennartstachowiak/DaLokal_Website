@@ -3,7 +3,6 @@ import pymysql
 from flask import Flask
 from flask import Blueprint, render_template, request, session, jsonify, redirect
 from datetime import date, datetime, time
-from pymysql import cursors
 """ For hashing the password """
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -137,47 +136,6 @@ app.config.from_pyfile("config.py")
 #         UPDATE farm_table
 #             SET total_products = total_products - 1
 #         WHERE farm_id = OLD.farm_id;''')
-#     cursor.execute('''
-#     CREATE INDEX firstname_idx
-#     ON user_table(firstname);
-#     ''')
-#     cursor.execute('''
-#     CREATE INDEX lastname_idx
-#     ON user_table(lastname);
-#     ''')
-
-#     cursor.execute('''
-#     CREATE INDEX farm_table_farm_img_idx
-#     ON farm_table(farm_img);
-#     ''')
-#     cursor.execute('''
-#     CREATE INDEX farm_table_total_products_idx
-#     ON farm_table(total_products);
-#     ''')
-#     cursor.execute('''
-#     CREATE INDEX time_table_farm_id_idx
-#     ON time_table(farm_id);
-#     ''')
-#     cursor.execute('''
-#     CREATE INDEX time_table_day_idx
-#     ON time_table(day);
-#     ''')
-#     cursor.execute('''
-#     CREATE INDEX product_table_farm_id_idx
-#     ON product_table(farm_id);
-#     ''')
-#     cursor.execute('''
-#     CREATE INDEX product_table_category_idx
-#     ON product_table(category);
-#     ''')
-#     cursor.execute('''
-#     CREATE INDEX product_table_product_name_idx
-#     ON product_table(product_name);
-#     ''')
-#     cursor.execute('''
-#     CREATE INDEX adress_table_postalcode_idx
-#     ON adress_table(postalcode);
-#     ''')
 #     cursor.close()
 
 # createDatabase()
